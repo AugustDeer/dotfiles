@@ -31,6 +31,21 @@
 
   programs.kitty.enable = true;
 
+  programs.bat.enable = true;
+
+  home.shellAliases.cat = "bat";
+
+  programs.yazi.enable = true;
+
+  programs.fzf.enable = true;
+
+  programs.ripgrep.enable = true;
+
+  programs.eza = {
+    enable = true;
+    icons = "auto";
+  };
+
   programs.noctalia = {
     enable = true;
 
