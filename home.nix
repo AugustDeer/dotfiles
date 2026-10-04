@@ -8,7 +8,24 @@
 
   home.stateVersion = "26.05";
 
+  home.pointerCursor = {
+    enable = true;
+    package = pkgs.vanilla-dmz;
+    name = "Vanilla-DMZ-AA";
+    gtk.enable = true;
+    x11.enable = true;
+  };
+
   programs.home-manager.enable = true;
+
+  stylix = {
+    enable = true;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/kanagawa.yaml";
+    polarity = "dark";
+    targets.noctalia.enable = false; # Use the official kanagawa theme
+    targets.nixvim.enable = false;   # Use the official kanagawa theme
+    targets.firefox.enable = false;
+  };
 
   programs.bash.enable = true;
 
@@ -81,6 +98,13 @@
         "name:^eDP-1$,width:2560,height:1600,vrr:1,scale:1.25"
       ];
 
+      cursor_size = 32;
+
+      rootcolor = "0x" + config.lib.stylix.colors.base00 + "ff";
+      bordercolor = "0x" + config.lib.stylix.colors.base03 + "ff";
+      focuscolor = "0x" + config.lib.stylix.colors.base0B + "ff";
+      urgentcolor = "0x" + config.lib.stylix.colors.base08 + "ff";
+
       exec-once = "noctalia";
 
       trackpad_natural_scrolling = 1;
@@ -151,10 +175,5 @@
         "SUPER,btn_right,moveresize,curresize"
       ];
     };
-  };
-
-  gtk = {
-    enable = true;
-    colorScheme = "dark";
   };
 }

@@ -18,6 +18,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixvim.url = "github:nix-community/nixvim";
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs @ {
@@ -28,6 +32,7 @@
     home-manager,
     mangowm,
     nixvim,
+    stylix,
     ...
   }:
     flake-parts.lib.mkFlake {inherit inputs;} (top @ {
@@ -43,6 +48,7 @@
       flake = {
         nixosConfigurations.augustROG = inputs.nixpkgs.lib.nixosSystem {
           modules = [
+            stylix.nixosModules.stylix
             mangowm.nixosModules.mango
             ./configuration.nix
             # Closest hardware to GA605W
@@ -60,6 +66,7 @@
         homeConfigurations.adeer = home-manager.lib.homeManagerConfiguration {
           pkgs = import nixpkgs {system = "x86_64-linux";};
           modules = [
+	    stylix.homeModules.stylix
             mangowm.hmModules.mango
             nixvim.homeModules.nixvim
             ./home.nix
