@@ -10,6 +10,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    mangowm = {
+      url = "github:mangowm/mango";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs @ {
@@ -18,6 +22,7 @@
     nixpkgs,
     nixos-hardware,
     home-manager,
+    mangowm,
     ...
   }:
     flake-parts.lib.mkFlake {inherit inputs;} (top @ {
@@ -33,6 +38,7 @@
       flake = {
         nixosConfigurations.augustROG = inputs.nixpkgs.lib.nixosSystem {
           modules = [
+            mangowm.nixosModules.mango
             ./configuration.nix
             # Closest hardware to GA605W
             nixos-hardware.nixosModules.asus-zephyrus-gu605cw
@@ -48,7 +54,10 @@
 
         homeConfigurations.adeer = home-manager.lib.homeManagerConfiguration {
           pkgs = import nixpkgs {system = "x86_64-linux";};
-          modules = [./home.nix];
+          modules = [
+            mangowm.hmModules.mango
+            ./home.nix
+          ];
         };
       };
 
