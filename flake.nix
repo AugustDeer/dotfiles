@@ -12,8 +12,20 @@
     };
   };
 
-  outputs = inputs@{ self, flake-parts, nixpkgs, nixos-hardware, home-manager, ... }:
-    flake-parts.lib.mkFlake { inherit inputs; } (top@{ config, withSystem, moduleWithSystem, ... }: {
+  outputs = inputs @ {
+    self,
+    flake-parts,
+    nixpkgs,
+    nixos-hardware,
+    home-manager,
+    ...
+  }:
+    flake-parts.lib.mkFlake {inherit inputs;} (top @ {
+      config,
+      withSystem,
+      moduleWithSystem,
+      ...
+    }: {
       imports = [
         inputs.home-manager.flakeModules.home-manager
       ];
@@ -35,10 +47,15 @@
         };
 
         homeConfigurations.adeer = home-manager.lib.homeManagerConfiguration {
-          pkgs = import nixpkgs { system = "x86_64-linux"; };
-          modules = [ ./home.nix ];
+          pkgs = import nixpkgs {system = "x86_64-linux";};
+          modules = [./home.nix];
         };
+      };
+
+      systems = ["x86_64-linux"];
+
+      perSystem = {inputs', ...}: {
+        formatter = inputs'.nixpkgs.legacyPackages.alejandra;
       };
     });
 }
-

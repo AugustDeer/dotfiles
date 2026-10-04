@@ -1,11 +1,12 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   home.username = "adeer";
   home.homeDirectory = "/home/adeer";
 
   home.stateVersion = "26.05";
-
 
   programs.home-manager.enable = true;
 
@@ -13,7 +14,7 @@
 
   programs.starship = {
     enable = true;
-    presets = [ "nerd-font-symbols" ];
+    presets = ["nerd-font-symbols"];
   };
 
   programs.git = {
@@ -31,7 +32,6 @@
   programs.kitty.enable = true;
 
   programs.noctalia.enable = true;
-
 
   gtk = {
     enable = true;

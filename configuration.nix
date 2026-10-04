@@ -1,10 +1,12 @@
-{ config, pkgs, ... }:
-
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -87,7 +89,7 @@
   users.users."adeer" = {
     isNormalUser = true;
     description = "August Deer";
-    extraGroups = [ "networkmanager" "wheel" "video" "render" ];
+    extraGroups = ["networkmanager" "wheel" "video" "render"];
   };
 
   # Allow unfree packages
@@ -100,7 +102,6 @@
     wget
     brightnessctl
   ];
-
 
   fonts.enableDefaultPackages = true;
   fonts.packages = with pkgs; [
@@ -150,5 +151,5 @@
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "26.05"; # Did you read the comment?
 
-  nix.settings.experimental-features = [ "flakes" "nix-command" ];
+  nix.settings.experimental-features = ["flakes" "nix-command"];
 }
