@@ -31,7 +31,15 @@
 
   programs.kitty.enable = true;
 
-  programs.noctalia.enable = true;
+  programs.noctalia = {
+    enable = true;
+
+    settings = {
+      widget.clock = {
+        format = "{:%-I:%M %p}";
+      };
+    };
+  };
 
   wayland.windowManager.mango = {
     enable = true;
