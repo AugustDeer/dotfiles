@@ -46,6 +46,20 @@
     icons = "auto";
   };
 
+  programs.nixvim = {
+    enable = true;
+
+    colorschemes.kanagawa.enable = true;
+
+    clipboard.providers.wl-copy.enable = true;
+
+    plugins.lspconfig.enable = true;
+
+    lsp.servers = {
+      nil_ls.enable = true;
+    };
+  };
+
   programs.noctalia = {
     enable = true;
 

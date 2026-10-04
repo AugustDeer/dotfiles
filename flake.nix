@@ -14,6 +14,7 @@
       url = "github:mangowm/mango";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixvim.url = "github:nix-community/nixvim";
   };
 
   outputs = inputs @ {
@@ -23,6 +24,7 @@
     nixos-hardware,
     home-manager,
     mangowm,
+    nixvim,
     ...
   }:
     flake-parts.lib.mkFlake {inherit inputs;} (top @ {
@@ -56,6 +58,7 @@
           pkgs = import nixpkgs {system = "x86_64-linux";};
           modules = [
             mangowm.hmModules.mango
+            nixvim.homeModules.nixvim
             ./home.nix
           ];
         };
