@@ -85,6 +85,11 @@
       icons = "auto";
     };
 
+    programs.zoxide = {
+      enable = true;
+      options = ["--cmd cd"];
+    };
+
     programs.nixvim = {
       enable = true;
 
