@@ -66,6 +66,11 @@
 
     programs.gh.enable = true;
 
+    programs.delta = {
+      enable = true;
+      enableGitIntegration = true;
+    };
+
     programs.firefox.enable = true;
 
     programs.kitty.enable = true;
