@@ -86,6 +86,8 @@
     programs.nixvim = {
       enable = true;
 
+      defaultEditor = true;
+
       colorschemes.kanagawa.enable = true;
 
       clipboard.providers.wl-copy.enable = true;
