@@ -75,7 +75,10 @@
 
     programs.kitty.enable = true;
 
-    programs.bat.enable = true;
+    programs.bat = {
+      enable = true;
+      extraPackages = with pkgs.bat-extras; [ batman ];
+    };
 
     home.shellAliases.cat = "bat";
 
