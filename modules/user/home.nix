@@ -64,6 +64,8 @@
       };
     };
 
+    programs.gh.enable = true;
+
     programs.firefox.enable = true;
 
     programs.kitty.enable = true;
