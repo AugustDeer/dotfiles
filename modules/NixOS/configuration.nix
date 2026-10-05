@@ -33,6 +33,9 @@
     boot.kernelPackages = pkgs.linuxPackages_latest;
 
     boot.initrd.luks.devices."luks-f785ec98-a216-429b-85ae-94f440a19e62".device = "/dev/disk/by-uuid/f785ec98-a216-429b-85ae-94f440a19e62";
+
+    programs.nix-ld.enable = true;
+
     networking.hostName = "augustROG"; # Define your hostname.
     # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
