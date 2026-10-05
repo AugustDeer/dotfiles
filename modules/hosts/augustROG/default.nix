@@ -22,7 +22,7 @@
   flake.nixosModules.augustROGModule = {pkgs, ...}: {
     imports = [
       # Include the results of the hardware scan.
-      ../../hardware-configuration.nix
+      ./_hardware-configuration.nix
     ];
 
     # Use the systemd-boot EFI boot loader.
@@ -103,7 +103,6 @@
     services.libinput.enable = true;
 
     services.displayManager.ly.enable = true;
-    programs.hyprland.enable = true;
     programs.mango.enable = true;
 
     # Define a user account. Don't forget to set a password with ‘passwd’.
