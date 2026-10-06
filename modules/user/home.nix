@@ -10,8 +10,6 @@
   flake.homeConfigurations.adeer = inputs.home-manager.lib.homeManagerConfiguration {
     pkgs = import inputs.nixpkgs {system = "x86_64-linux";};
     modules = [
-      inputs.stylix.homeModules.stylix
-      inputs.mangowm.hmModules.mango
       inputs.nixvim.homeModules.nixvim
       self.homeModules.mango
       self.homeModules.adeerModule
@@ -34,15 +32,6 @@
       name = "Vanilla-DMZ-AA";
       gtk.enable = true;
       x11.enable = true;
-    };
-
-    stylix = {
-      enable = true;
-      base16Scheme = "${pkgs.base16-schemes}/share/themes/kanagawa.yaml";
-      polarity = "dark";
-      targets.noctalia.enable = false; # Use the official kanagawa theme
-      targets.nixvim.enable = false; # Use the official kanagawa theme
-      targets.firefox.enable = false;
     };
 
     programs.home-manager.enable = true;
@@ -73,11 +62,28 @@
 
     programs.firefox.enable = true;
 
-    programs.kitty.enable = true;
+    programs.kitty = {
+      enable = true;
+      themeFile = "kanagawa";
+    };
 
     programs.bat = {
       enable = true;
-      extraPackages = with pkgs.bat-extras; [ batman ];
+      config = {
+        theme = "kanagawa";
+      };
+      extraPackages = with pkgs.bat-extras; [batman];
+      themes = {
+        kanagawa = {
+          src = pkgs.fetchFromGitHub {
+            owner = "rebelot";
+            repo = "kanagawa.nvim";
+            rev = "bb85e4bfc8d89b0e62c8fa53ccdd13d12e2f77b3";
+            hash = "sha256-fMP4NUCKD1ZcNkaHy6SuNm020ECXpBOihGv2n1wyTN4=";
+          };
+          file = "extras/tmTheme/kanagawa.tmTheme";
+        };
+      };
     };
 
     home.shellAliases.cat = "bat";

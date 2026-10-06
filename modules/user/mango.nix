@@ -4,11 +4,11 @@
   ];
 
   flake.homeModules.mango = {config, ...}: {
+    imports = [inputs.mangowm.hmModules.mango];
+
     wayland.windowManager.mango = {
       enable = true;
-      settings = let
-        colors = config.lib.stylix.colors;
-      in {
+      settings = {
         env = [
           "WLR_DRM_NO_ATOMIC,1"
         ];
@@ -19,10 +19,12 @@
 
         cursor_size = 32;
 
-        rootcolor = "0x" + colors.base00 + "ff";
-        bordercolor = "0x" + colors.base03 + "ff";
-        focuscolor = "0x" + colors.base0B + "ff";
-        urgentcolor = "0x" + colors.base08 + "ff";
+        rootcolor = "0x1f1f28ff";
+        bordercolor = "0x363646ff";
+        dropcolor = "0x76946a80";
+        splitcolor = "0x7e9cd8ff";
+        focuscolor = "0x76946aff";
+        urgentcolor = "0xc34043ff";
 
         exec-once = "noctalia";
 
