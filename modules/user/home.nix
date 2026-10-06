@@ -36,6 +36,11 @@
 
     programs.home-manager.enable = true;
 
+    xdg.userDirs = {
+      enable = true;
+      createDirectories = true;
+    };
+
     programs.bash.enable = true;
 
     programs.starship = {
@@ -119,6 +124,11 @@
       enable = true;
 
       settings = {
+        theme = {
+	  mode = "dark";
+	  source = "builtin";
+	  builtin = "Kanagawa";
+	};
         widget.clock = {
           format = "{:%-I:%M %p}";
         };
