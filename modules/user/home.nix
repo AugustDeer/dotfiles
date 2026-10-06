@@ -84,7 +84,7 @@
       extraPackages = with pkgs.bat-extras; [batman];
       themes = {
         kanagawa = {
-          src = "${inputs.kanagawa}/extras/tmTheme/";
+          src = "${pkgs.vimPlugins.kanagawa-nvim}/extras/tmTheme/";
           file = "kanagawa.tmTheme";
         };
       };
