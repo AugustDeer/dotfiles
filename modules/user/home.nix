@@ -26,6 +26,10 @@
 
     home.stateVersion = "26.05";
 
+    home.packages = with pkgs; [
+      wl-clipboard
+    ];
+
     home.pointerCursor = {
       enable = true;
       package = pkgs.vanilla-dmz;
