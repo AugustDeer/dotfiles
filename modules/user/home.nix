@@ -125,14 +125,16 @@
 
       settings = {
         theme = {
-	  mode = "dark";
-	  source = "builtin";
-	  builtin = "Kanagawa";
-	};
+          mode = "dark";
+          source = "builtin";
+          builtin = "Kanagawa";
+        };
         widget.clock = {
           format = "{:%-I:%M %p}";
         };
       };
     };
+
+    programs.vesktop.enable = true;
   };
 }
