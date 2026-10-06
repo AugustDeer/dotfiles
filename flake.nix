@@ -18,9 +18,11 @@
       url = "github:mangowm/mango";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixvim.url = "github:nix-community/nixvim";
+    nvf = {
+      url = "github:NotAShelf/nvf";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs:
-    inputs.flake-parts.lib.mkFlake {inherit inputs;} (inputs.import-tree ./modules);
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 }

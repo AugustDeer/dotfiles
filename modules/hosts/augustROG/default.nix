@@ -3,7 +3,8 @@
   self,
   lib,
   ...
-}: {
+}:
+{
   flake.nixosConfigurations.augustROG = lib.nixosSystem {
     modules = [
       inputs.mangowm.nixosModules.mango
@@ -11,8 +12,9 @@
     ];
   };
 
-  flake.nixosModules.augustROGHardware = {...}: {
-    imports = with inputs.nixos-hardware.nixosModules;
+  flake.nixosModules.augustROGHardware = { ... }: {
+    imports =
+      with inputs.nixos-hardware.nixosModules;
       [
         common-cpu-amd
         common-gpu-nvidia
@@ -37,7 +39,7 @@
     services.tuned.enable = true;
   };
 
-  flake.nixosModules.augustROGModule = {pkgs, ...}: {
+  flake.nixosModules.augustROGModule = { pkgs, ... }: {
     imports = [
       # Include the results of the hardware scan.
       ./_hardware-configuration.nix
@@ -51,7 +53,8 @@
     # Use latest kernel.
     boot.kernelPackages = pkgs.linuxPackages_latest;
 
-    boot.initrd.luks.devices."luks-f785ec98-a216-429b-85ae-94f440a19e62".device = "/dev/disk/by-uuid/f785ec98-a216-429b-85ae-94f440a19e62";
+    boot.initrd.luks.devices."luks-f785ec98-a216-429b-85ae-94f440a19e62".device =
+      "/dev/disk/by-uuid/f785ec98-a216-429b-85ae-94f440a19e62";
 
     programs.nix-ld.enable = true;
 
@@ -128,7 +131,12 @@
     users.users."adeer" = {
       isNormalUser = true;
       description = "August Deer";
-      extraGroups = ["networkmanager" "wheel" "video" "render"];
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+        "video"
+        "render"
+      ];
     };
 
     # Allow unfree packages
@@ -190,6 +198,9 @@
     # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
     system.stateVersion = "26.05"; # Did you read the comment?
 
-    nix.settings.experimental-features = ["flakes" "nix-command"];
+    nix.settings.experimental-features = [
+      "flakes"
+      "nix-command"
+    ];
   };
 }
