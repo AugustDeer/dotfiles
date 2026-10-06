@@ -19,6 +19,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixvim.url = "github:nix-community/nixvim";
+
+    kanagawa = {
+      url = "github:rebelot/kanagawa.nvim";
+      flake = false;
+    };
   };
 
   outputs = inputs:

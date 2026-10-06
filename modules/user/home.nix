@@ -75,13 +75,8 @@
       extraPackages = with pkgs.bat-extras; [batman];
       themes = {
         kanagawa = {
-          src = pkgs.fetchFromGitHub {
-            owner = "rebelot";
-            repo = "kanagawa.nvim";
-            rev = "bb85e4bfc8d89b0e62c8fa53ccdd13d12e2f77b3";
-            hash = "sha256-fMP4NUCKD1ZcNkaHy6SuNm020ECXpBOihGv2n1wyTN4=";
-          };
-          file = "extras/tmTheme/kanagawa.tmTheme";
+          src = "${inputs.kanagawa}/extras/tmTheme/";
+          file = "kanagawa.tmTheme";
         };
       };
     };
