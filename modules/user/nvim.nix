@@ -44,7 +44,10 @@
                 enableFormat = true;
                 enableExtraDiagnostics = true;
 
-                nix.enable = true;
+                nix = {
+                  enable = true;
+                  format.type = [ "nixfmt" ];
+                };
                 markdown = {
                   enable = true;
                   extensions.markview-nvim.enable = true;
