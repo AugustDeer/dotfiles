@@ -5,6 +5,7 @@
     imports = [ inputs.nvf.homeManagerModules.nvf ];
     home.packages = [
       (withSystem pkgs.stdenv.hostPlatform.system ({ config, ... }: config.packages.neovim))
+      inputs.nvf.packages.${pkgs.stdenv.hostPlatform.system}.docs-manpages
     ];
   };
 
