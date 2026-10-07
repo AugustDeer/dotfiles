@@ -1,35 +1,50 @@
-{ inputs, ... }: {
+{ inputs, withSystem, ... }: {
   imports = [ inputs.home-manager.flakeModules.home-manager ];
 
-  flake.homeModules.neovim = { pkgs, ... }: {
+  flake.homeModules.neovim = { pkgs, lib, ... }: {
     imports = [ inputs.nvf.homeManagerModules.nvf ];
-    programs.nvf = {
-      enable = true;
-      defaultEditor = true;
-      settings.vim = {
-        extraPlugins = with pkgs.vimPlugins; {
-          kanagawa = {
-            package = kanagawa-nvim;
-            setup = /* lua */ "vim.cmd('colorscheme kanagawa')";
-          };
-        };
+    home.packages = [
+      (withSystem pkgs.stdenv.hostPlatform.system ({ config, ... }: config.packages.neovim))
+    ];
+  };
 
-        vimAlias = true;
+  perSystem = { pkgs, ... }: {
+    packages.neovim =
+      (inputs.nvf.lib.neovimConfiguration {
+        inherit pkgs;
+        modules = [
+          {
+            vim = {
+              extraPlugins = with pkgs.vimPlugins; {
+                kanagawa = {
+                  package = kanagawa-nvim;
+                  setup = /* lua */ "vim.cmd('colorscheme kanagawa')";
+                };
+              };
 
-        clipboard.enable = true;
+              vimAlias = true;
 
-        lsp.enable = true;
+              mini.basics.enable = true;
 
-        autocomplete.blink-cmp.enable = true;
+              binds.whichKey.enable = true;
 
-        languages = {
-          enableTreesitter = true;
-          enableFormat = true;
-          enableExtraDiagnostics = true;
+              clipboard.enable = true;
 
-          nix.enable = true;
-        };
-      };
-    };
+              lsp.enable = true;
+
+              autocomplete.blink-cmp.enable = true;
+
+              languages = {
+                enableTreesitter = true;
+                enableFormat = true;
+                enableExtraDiagnostics = true;
+
+                nix.enable = true;
+              };
+            };
+
+          }
+        ];
+      }).neovim;
   };
 }

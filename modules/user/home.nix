@@ -1,6 +1,5 @@
 {
   inputs,
-  self,
   config,
   ...
 }:
@@ -12,19 +11,21 @@
   flake.homeConfigurations.adeer = inputs.home-manager.lib.homeManagerConfiguration {
     pkgs = import inputs.nixpkgs { system = "x86_64-linux"; };
     modules = [
-      config.flake.homeModules.neovim
-      self.homeModules.mango
-      self.homeModules.adeerModule
+      config.flake.homeModules.adeerModule
     ];
   };
 
   flake.homeModules.adeerModule =
     {
-      config,
       pkgs,
       ...
     }:
     {
+      imports = [
+        config.flake.homeModules.neovim
+        config.flake.homeModules.mango
+      ];
+
       home.username = "adeer";
       home.homeDirectory = "/home/adeer";
 
