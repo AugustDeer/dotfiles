@@ -91,13 +91,12 @@
           };
         };
       };
-
       programs.gh.enable = true;
-
       programs.delta = {
         enable = true;
         enableGitIntegration = true;
       };
+      programs.lazygit.enable = true;
 
       programs.firefox.enable = true;
 
