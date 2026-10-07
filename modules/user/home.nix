@@ -68,6 +68,11 @@
         x11.enable = true;
       };
 
+      gtk = {
+        enable = true;
+        colorScheme = "dark";
+      };
+
       programs.home-manager.enable = true;
 
       xdg.userDirs = {

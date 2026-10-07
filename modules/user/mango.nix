@@ -35,6 +35,7 @@
 
           "SUPER,RETURN,spawn,kitty"
           "SUPER+SHIFT,Return,spawn,firefox"
+          "SUPER+CTRL,Return,spawn,thunar"
 
           "SUPER,M,quit"
           "SUPER,Q,killclient,"

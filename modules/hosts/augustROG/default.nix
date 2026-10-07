@@ -131,6 +131,16 @@
 
     programs.steam.enable = true;
 
+    programs.thunar = {
+      enable = true;
+      plugins = with pkgs; [
+        thunar-volman
+      ];
+    };
+    programs.dconf.enable = true;
+
+    services.gvfs.enable = true;
+
     # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users."adeer" = {
       isNormalUser = true;
