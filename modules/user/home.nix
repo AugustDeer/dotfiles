@@ -33,6 +33,7 @@
 
       home.packages = with pkgs; [
         wl-clipboard
+        inputs.llm-agents.packages.${stdenv.hostPlatform.system}.opencode2
       ];
 
       home.pointerCursor = {
