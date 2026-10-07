@@ -44,7 +44,6 @@
           '';
     in
     {
-
       imports = [
         config.flake.homeModules.neovim
         config.flake.homeModules.mango
@@ -71,6 +70,14 @@
       gtk = {
         enable = true;
         colorScheme = "dark";
+        theme = {
+          name = "Breeze";
+          package = pkgs.kdePackages.breeze-gtk;
+        };
+        iconTheme = {
+          name = "breeze-dark";
+          package = pkgs.kdePackages.breeze-icons;
+        };
       };
 
       programs.home-manager.enable = true;
