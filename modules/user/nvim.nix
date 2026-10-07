@@ -24,6 +24,10 @@
 
               vimAlias = true;
 
+              options = {
+                shiftwidth = 2;
+              };
+
               mini.basics.enable = true;
 
               binds.whichKey.enable = true;
