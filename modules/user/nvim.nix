@@ -29,7 +29,9 @@
                 shiftwidth = 2;
               };
 
-              mini.basics.enable = true;
+              autocomplete.blink-cmp.enable = true;
+
+              autopairs.nvim-autopairs.enable = true;
 
               binds.whichKey.enable = true;
 
@@ -38,9 +40,7 @@
                 providers.wl-copy.enable = true;
               };
 
-              lsp.enable = true;
-
-              autocomplete.blink-cmp.enable = true;
+              git.enable = true;
 
               languages = {
                 enableTreesitter = true;
@@ -56,8 +56,20 @@
                   extensions.markview-nvim.enable = true;
                 };
               };
-            };
 
+              lsp.enable = true;
+
+              mini.basics.enable = true;
+
+              statusline.lualine.enable = true;
+
+              telescope.enable = true;
+
+              terminal.toggleterm = {
+                enable = true;
+                lazygit.enable = true;
+              };
+            };
           }
         ];
       }).neovim;
