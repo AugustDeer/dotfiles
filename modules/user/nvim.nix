@@ -45,6 +45,10 @@
                 enableExtraDiagnostics = true;
 
                 nix.enable = true;
+                markdown = {
+                  enable = true;
+                  extensions.markview-nvim.enable = true;
+                };
               };
             };
 
