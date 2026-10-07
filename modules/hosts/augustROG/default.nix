@@ -97,8 +97,10 @@
 
     # services.xserver.videoDrivers = [ "nvidia" ];
 
-    hardware.graphics.enable = true;
-    #hardware.graphics.enable32Bit = true;
+    hardware.graphics = {
+      enable = true;
+      enable32Bit = true;
+    };
 
     # Configure keymap in X11
     services.xserver.xkb = {
@@ -126,6 +128,8 @@
 
     services.displayManager.ly.enable = true;
     programs.mango.enable = true;
+
+    programs.steam.enable = true;
 
     # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users."adeer" = {
