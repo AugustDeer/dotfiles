@@ -13,6 +13,11 @@
         ]
       ));
 
+      home.sessionVariables = {
+        EDITOR = "nvim";
+        VISUAL = "nvim";
+      };
+
       home.shellAliases.cat = "bat";
 
       programs.bash.enable = true;
