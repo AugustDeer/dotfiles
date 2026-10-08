@@ -24,15 +24,8 @@
     programs.noctalia = {
       enable = true;
 
-      settings = {
-        theme = {
-          mode = "dark";
-          source = "builtin";
-          builtin = "Kanagawa";
-        };
-        widget.clock = {
-          format = "{:%-I:%M %p}";
-        };
+      settings.widget.clock = {
+        format = "{:%-I:%M %p}";
       };
     };
   };

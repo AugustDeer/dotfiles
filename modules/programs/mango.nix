@@ -1,5 +1,12 @@
-{ inputs, ... }: {
-  flake.modules.homeManager.mango = { config, ... }: {
+{ inputs, ... }:
+{
+  flake.modules.nixos.mango = {
+    imports = [ inputs.mangowm.nixosModules.mango ];
+
+    programs.mango.enable = true;
+  };
+
+  flake.modules.homeManager.mango = {
     imports = [ inputs.mangowm.hmModules.mango ];
 
     wayland.windowManager.mango = {
@@ -14,13 +21,6 @@
         ];
 
         cursor_size = 32;
-
-        root_color = "0x1f1f28ff";
-        border_color = "0x363646ff";
-        drop_color = "0x76946a80";
-        split_color = "0x7e9cd8ff";
-        focus_color = "0x76946aff";
-        urgent_color = "0xc34043ff";
 
         exec_once = "noctalia";
 

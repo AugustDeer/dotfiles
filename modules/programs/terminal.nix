@@ -2,7 +2,6 @@
   flake.modules.homeManager.terminal = {
     programs.kitty = {
       enable = true;
-      themeFile = "kanagawa";
       settings = {
         enable_audio_bell = false;
         cursor_trail = 10;

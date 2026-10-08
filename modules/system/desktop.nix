@@ -1,8 +1,5 @@
-{ inputs, ... }:
 {
   flake.modules.nixos.desktop = { pkgs, ... }: {
-    imports = [ inputs.mangowm.nixosModules.mango ];
-
     hardware.graphics = {
       enable = true;
       enable32Bit = true;
@@ -18,7 +15,6 @@
     services.libinput.enable = true;
 
     services.displayManager.ly.enable = true;
-    programs.mango.enable = true;
 
     programs.thunar = {
       enable = true;

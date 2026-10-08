@@ -17,6 +17,7 @@ in
       homeManager.opencode
       homeManager.xdg
       homeManager.mango
+      homeManager.theme
     ];
 
     home.username = "adeer";

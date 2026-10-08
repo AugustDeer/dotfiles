@@ -46,16 +46,7 @@
 
       programs.bat = {
         enable = true;
-        config = {
-          theme = "kanagawa";
-        };
         extraPackages = with pkgs.bat-extras; [ batman ];
-        themes = {
-          kanagawa = {
-            src = "${pkgs.vimPlugins.kanagawa-nvim}/extras/tmTheme/";
-            file = "kanagawa.tmTheme";
-          };
-        };
       };
 
       programs.yazi.enable = true;

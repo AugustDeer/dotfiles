@@ -17,6 +17,7 @@ in
       nixos.locale
       nixos.audio
       nixos.desktop
+      nixos.mango
       nixos.gaming
       nixos.users
       # Include the results of the hardware scan.
