@@ -1,5 +1,5 @@
 { inputs, ... }: {
-  flake.homeModules.mango = { config, ... }: {
+  flake.modules.homeManager.mango = { config, ... }: {
     imports = [ inputs.mangowm.hmModules.mango ];
 
     wayland.windowManager.mango = {

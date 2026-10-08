@@ -1,5 +1,5 @@
 { inputs, withSystem, ... }: {
-  flake.homeModules.neovim = { pkgs, lib, ... }: {
+  flake.modules.homeManager.nvim = { pkgs, lib, ... }: {
     imports = [ inputs.nvf.homeManagerModules.nvf ];
     home.packages = [
       (withSystem pkgs.stdenv.hostPlatform.system ({ config, ... }: config.packages.neovim))

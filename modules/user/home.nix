@@ -41,8 +41,8 @@
     in
     {
       imports = [
-        config.flake.homeModules.neovim
-        config.flake.homeModules.mango
+        config.flake.modules.homeManager.nvim
+        config.flake.modules.homeManager.mango
       ];
 
       home.username = "adeer";
