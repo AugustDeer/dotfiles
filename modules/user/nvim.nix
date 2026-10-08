@@ -1,6 +1,4 @@
 { inputs, withSystem, ... }: {
-  imports = [ inputs.home-manager.flakeModules.home-manager ];
-
   flake.homeModules.neovim = { pkgs, lib, ... }: {
     imports = [ inputs.nvf.homeManagerModules.nvf ];
     home.packages = [

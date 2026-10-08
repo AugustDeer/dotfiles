@@ -1,8 +1,4 @@
 { inputs, ... }: {
-  imports = [
-    inputs.home-manager.flakeModules.home-manager
-  ];
-
   flake.homeModules.mango = { config, ... }: {
     imports = [ inputs.mangowm.hmModules.mango ];
 
