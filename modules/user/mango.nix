@@ -13,20 +13,20 @@
           "WLR_DRM_NO_ATOMIC,1"
         ];
 
-        monitorrule = [
+        monitor_rule = [
           "name:^eDP-1$,width:2560,height:1600,vrr:1,scale:1.25"
         ];
 
         cursor_size = 32;
 
-        rootcolor = "0x1f1f28ff";
-        bordercolor = "0x363646ff";
-        dropcolor = "0x76946a80";
-        splitcolor = "0x7e9cd8ff";
-        focuscolor = "0x76946aff";
-        urgentcolor = "0xc34043ff";
+        root_color = "0x1f1f28ff";
+        border_color = "0x363646ff";
+        drop_color = "0x76946a80";
+        split_color = "0x7e9cd8ff";
+        focus_color = "0x76946aff";
+        urgent_color = "0xc34043ff";
 
-        exec-once = "noctalia";
+        exec_once = "noctalia";
 
         trackpad_natural_scrolling = 1;
 
