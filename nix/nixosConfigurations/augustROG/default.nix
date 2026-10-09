@@ -1,5 +1,5 @@
-{ flake, ... }: {
-  modules = with flake.outputs.nixosModules; [
+{ outputs, ... }: {
+  modules = with outputs.nixosModules; [
     boot
     nix
     packages
