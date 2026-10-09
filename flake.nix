@@ -1,13 +1,12 @@
 {
   inputs = {
-    flake-parts = {
-      url = "github:hercules-ci/flake-parts";
-      inputs.nixpkgs-lib.follows = "nixpkgs";
-    };
-    import-tree.url = "github:denful/import-tree";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    flakelight = {
+      url = "github:nix-community/flakelight";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
@@ -25,9 +24,18 @@
     llm-agents = {
       url = "github:numtide/llm-agents.nix";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-parts.follows = "flake-parts";
     };
   };
 
-  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
+  outputs =
+    { flakelight, ... }@inputs:
+    flakelight ./. {
+      inherit inputs;
+
+      systems = [ "x86_64-linux" ];
+
+      nixpkgs.config = {
+        allowUnfree = true;
+      };
+    };
 }

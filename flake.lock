@@ -53,6 +53,7 @@
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": [
+          "llm-agents",
           "nixpkgs"
         ]
       },
@@ -110,6 +111,26 @@
         "type": "github"
       }
     },
+    "flakelight": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1791234655,
+        "narHash": "sha256-TiUAy+xmhm7mq6f4e9M+emMGiJoS8Cl5ZFULXd9xSMk=",
+        "owner": "nix-community",
+        "repo": "flakelight",
+        "rev": "e4b3afcae05c52683d451a8fdbc12a3ece77a831",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "flakelight",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -130,27 +151,10 @@
         "type": "github"
       }
     },
-    "import-tree": {
-      "locked": {
-        "lastModified": 1788467110,
-        "narHash": "sha256-ljEMTXP/rH0tOvDzc9gzwww6KcHRPRnEHzd9lK48V7s=",
-        "owner": "denful",
-        "repo": "import-tree",
-        "rev": "eb1b52eaecc57f7c136d07ae8a93e724dfecac46",
-        "type": "github"
-      },
-      "original": {
-        "owner": "denful",
-        "repo": "import-tree",
-        "type": "github"
-      }
-    },
     "llm-agents": {
       "inputs": {
         "bun2nix": "bun2nix",
-        "flake-parts": [
-          "flake-parts"
-        ],
+        "flake-parts": "flake-parts",
         "nixpkgs": [
           "nixpkgs"
         ],
@@ -283,9 +287,8 @@
     },
     "root": {
       "inputs": {
-        "flake-parts": "flake-parts",
+        "flakelight": "flakelight",
         "home-manager": "home-manager",
-        "import-tree": "import-tree",
         "llm-agents": "llm-agents",
         "mangowm": "mangowm",
         "nixos-hardware": "nixos-hardware",
