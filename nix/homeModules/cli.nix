@@ -1,6 +1,4 @@
 { flake, pkgs, ... }: {
-  imports = [ ./opencode.nix ];
-
   home.packages = [
     pkgs.wl-clipboard
     flake.outputs'.packages.neovim
@@ -14,53 +12,57 @@
 
   home.shellAliases.cat = "bat";
 
-  programs.bash.enable = true;
-  programs.zsh.enable = true;
+  programs = {
+    bash.enable = true;
+    zsh.enable = true;
 
-  programs.starship = {
-    enable = true;
-    presets = [ "nerd-font-symbols" ];
-  };
+    starship = {
+      enable = true;
+      presets = [ "nerd-font-symbols" ];
+    };
 
-  programs.git = {
-    enable = true;
-    settings = {
-      user = {
-        name = "August Deer";
-        email = "august@augustdeer.com";
+    git = {
+      enable = true;
+      settings = {
+        user = {
+          name = "August Deer";
+          email = "august@augustdeer.com";
+        };
       };
     };
-  };
-  programs.gh.enable = true;
-  programs.delta = {
-    enable = true;
-    enableGitIntegration = true;
-  };
-  programs.lazygit.enable = true;
+    gh.enable = true;
+    delta = {
+      enable = true;
+      enableGitIntegration = true;
+    };
+    lazygit.enable = true;
 
-  programs.bat = {
-    enable = true;
-    extraPackages = with pkgs.bat-extras; [ batman ];
-  };
+    bat.enable = true;
 
-  programs.yazi.enable = true;
+    yazi.enable = true;
 
-  programs.fzf.enable = true;
+    fzf.enable = true;
 
-  programs.ripgrep.enable = true;
+    ripgrep.enable = true;
 
-  programs.eza = {
-    enable = true;
-    icons = "auto";
-  };
+    eza = {
+      enable = true;
+      icons = "auto";
+    };
 
-  programs.zoxide = {
-    enable = true;
-    options = [ "--cmd cd" ];
-  };
+    zoxide = {
+      enable = true;
+      options = [ "--cmd cd" ];
+    };
 
-  programs.nh = {
-    enable = true;
-    flake = "/home/adeer/dotfiles";
+    opencode = {
+      enable = true;
+      tui.theme = "kanagawa";
+    };
+
+    nh = {
+      enable = true;
+      flake = "/home/adeer/dotfiles";
+    };
   };
 }
