@@ -4,17 +4,16 @@
   modules = [
     {
       vim = {
-        extraPlugins = with pkgs.vimPlugins; {
-          kanagawa = {
-            package = kanagawa-nvim;
-            setup = /* lua */ "vim.cmd('colorscheme kanagawa')";
-          };
-        };
-
         vimAlias = true;
 
         options = {
           shiftwidth = 2;
+        };
+
+        theme = {
+          enable = true;
+          name = "kanagawa";
+          style = "wave";
         };
 
         autocomplete.blink-cmp.enable = true;
