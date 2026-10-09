@@ -16,6 +16,26 @@
           style = "wave";
         };
 
+        keymaps =
+          let
+            wincmd = k: {
+              key = "<C-${k}>";
+              mode = "n";
+              action = ":wincmd ${k}<CR>";
+            };
+          in
+          [
+            {
+              key = "<leader>n";
+              mode = "n";
+              action = ":Neotree toggle<CR>";
+            }
+            (wincmd "h")
+            (wincmd "j")
+            (wincmd "k")
+            (wincmd "l")
+          ];
+
         autocomplete.blink-cmp.enable = true;
 
         autopairs.nvim-autopairs.enable = true;
@@ -26,6 +46,8 @@
           enable = true;
           providers.wl-copy.enable = true;
         };
+
+        filetree.neo-tree.enable = true;
 
         git.enable = true;
 
@@ -49,6 +71,8 @@
         mini.basics.enable = true;
 
         statusline.lualine.enable = true;
+
+        tabline.nvimBufferline.enable = true;
 
         telescope.enable = true;
 
