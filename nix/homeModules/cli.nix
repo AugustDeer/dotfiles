@@ -56,4 +56,9 @@
     enable = true;
     options = [ "--cmd cd" ];
   };
+
+  programs.nh = {
+    enable = true;
+    flake = "/home/adeer/dotfiles";
+  };
 }
