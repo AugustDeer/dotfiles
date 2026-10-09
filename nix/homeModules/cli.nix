@@ -1,8 +1,8 @@
-{ flake, pkgs, ... }: {
+{ pkgs, ... }: {
+  imports = [ ./neovim.nix ];
+
   home.packages = [
     pkgs.wl-clipboard
-    flake.outputs'.packages.neovim
-    flake.inputs'.nvf.packages.docs-manpages
   ];
 
   home.sessionVariables = {
