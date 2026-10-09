@@ -1,11 +1,4 @@
-{
-  inputs,
-  pkgs,
-  lib,
-  config,
-  ...
-}:
-{
+{ inputs, pkgs, ... }: {
   imports = [
     ./common.nix
     inputs.mangowm.nixosModules.mango
@@ -45,15 +38,6 @@
       widget.clock.format = "%a %-I:%M %p";
     };
   };
-  services.greetd =
-    let
-      dbus-run-session = "${pkgs.dbus}/bin/dbus-run-session";
-      cage = lib.getExe pkgs.cage;
-      regreet = lib.getExe config.services.displayManager.regreet.package;
-    in
-    {
-      settings.default_session.command = "env WLR_DRM_NO_ATOMIC=1 ${dbus-run-session} ${cage} -s -d -- ${regreet}";
-    };
 
   programs.mango.enable = true;
 

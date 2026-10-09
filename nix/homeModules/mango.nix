@@ -4,10 +4,6 @@
   wayland.windowManager.mango = {
     enable = true;
     settings = {
-      env = [
-        "WLR_DRM_NO_ATOMIC,1"
-      ];
-
       monitor_rule = [
         "name:^eDP-1$,width:2560,height:1600,vrr:1,scale:1.25"
       ];

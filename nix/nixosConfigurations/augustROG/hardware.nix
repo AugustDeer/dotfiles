@@ -26,4 +26,8 @@
 
   services.asusd.enable = true;
   services.tuned.enable = true;
+
+  environment.sessionVariables = {
+    WLR_DRM_NO_ATOMIC = 1;
+  };
 }
