@@ -1,15 +1,7 @@
 { outputs, ... }: {
-  modules = with outputs.nixosModules; [
-    boot
-    nix
-    packages
-    network
-    locale
-    audio
-    desktop
-    gaming
-    users
+  modules = [
     ./hardware.nix
+    outputs.nixosModules.desktop
     {
       networking.hostName = "augustROG";
 

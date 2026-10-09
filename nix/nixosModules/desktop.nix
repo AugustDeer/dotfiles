@@ -6,7 +6,23 @@
   ...
 }:
 {
-  imports = [ inputs.mangowm.nixosModules.mango ];
+  imports = [
+    ./common.nix
+    inputs.mangowm.nixosModules.mango
+  ];
+
+  # Enable sound with pipewire.
+  services.pulseaudio.enable = false;
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
+
+  # Enable CUPS to print documents.
+  services.printing.enable = true;
 
   hardware.graphics = {
     enable = true;
@@ -58,4 +74,6 @@
   fonts.packages = with pkgs; [
     nerd-fonts.symbols-only
   ];
+
+  programs.steam.enable = true;
 }
