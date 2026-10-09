@@ -28,14 +28,20 @@
   };
 
   outputs =
-    { flakelight, ... }@inputs:
-    flakelight ./. {
-      inherit inputs;
+    { flakelight, ... }:
+    flakelight ./. (
+      { lib, ... }: {
+        systems = [ "x86_64-linux" ];
 
-      systems = [ "x86_64-linux" ];
+        nixpkgs.config.allowUnfreePredicate =
+          pkg:
+          builtins.elem (lib.getName pkg) [
+            "nvidia-x11"
+            "nvidia-settings"
 
-      nixpkgs.config = {
-        allowUnfree = true;
-      };
-    };
+            "steam"
+            "steam-unwrapped"
+          ];
+      }
+    );
 }
