@@ -2,12 +2,7 @@
   system = "x86_64-linux";
   modules = with config.homeModules; [
     cli
-    terminal
-    desktop-apps
     desktop
-    opencode
-    xdg
-    mango
     theme
     {
       home.username = "adeer";

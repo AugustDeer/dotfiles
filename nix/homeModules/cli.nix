@@ -1,4 +1,6 @@
 { flake, pkgs, ... }: {
+  imports = [ ./opencode.nix ];
+
   home.packages = [
     pkgs.wl-clipboard
     flake.outputs'.packages.neovim
