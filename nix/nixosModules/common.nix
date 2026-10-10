@@ -53,14 +53,8 @@
 
   programs.nix-ld.enable = true;
 
-  nix.settings = {
-    trusted-users = [
-      "root"
-      "@wheel"
-    ];
-    experimental-features = [
-      "flakes"
-      "nix-command"
-    ];
-  };
+  nix.settings.experimental-features = [
+    "flakes"
+    "nix-command"
+  ];
 }
