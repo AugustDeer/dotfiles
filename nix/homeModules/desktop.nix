@@ -1,8 +1,5 @@
 { pkgs, ... }: {
-  imports = [
-    ./mango.nix
-    ./hyprland.nix
-  ];
+  imports = [ ./mango.nix ];
 
   xdg.userDirs = {
     enable = true;

@@ -74,8 +74,6 @@
         "NONE,XF86AudioMute,spawn,noctalia msg volume-mute"
         "NONE,XF86MonBrightnessUp,spawn,noctalia msg brightness-up"
         "NONE,XF86MonBrightnessDown,spawn,noctalia msg brightness-down"
-
-        "SUPER+SHIFT,S,spawn,noctalia msg screenshot-region"
       ];
 
       mousebind = [
