@@ -66,7 +66,7 @@
         end)
 
         hl.curve("quick", {type = "bezier", points = {{0.15, 0}, {0.1, 1}}})
-        hl.curve("easy", {type = "spring", mass = 1, stiffness = 121, dampening = 18})
+        hl.curve("easy", {type = "spring", mass = 1, stiffness = 256, dampening = 26})
 
         hl.animation({leaf = "global", enabled = true, speed = 5, spring = "easy"})
 
