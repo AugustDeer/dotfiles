@@ -39,6 +39,7 @@
   programs.kitty = {
     enable = true;
     settings = {
+      font_family = "FiraCode Nerd Font";
       background_opacity = 0.85;
       enable_audio_bell = false;
       cursor_trail = 10;

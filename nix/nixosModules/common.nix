@@ -35,6 +35,7 @@
     wget
     file
     jq
+    unzip
   ];
 
   users.defaultUserShell = pkgs.zsh;

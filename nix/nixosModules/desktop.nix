@@ -49,6 +49,7 @@
   };
   programs.dconf.enable = true;
   services.gvfs.enable = true;
+  services.tumbler.enable = true;
 
   environment.systemPackages = with pkgs; [
     brightnessctl
@@ -57,6 +58,7 @@
   fonts.enableDefaultPackages = true;
   fonts.packages = with pkgs; [
     nerd-fonts.symbols-only
+    nerd-fonts.fira-code
   ];
 
   programs.steam.enable = true;
