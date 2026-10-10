@@ -33,6 +33,8 @@
   environment.systemPackages = with pkgs; [
     vim
     wget
+    file
+    jq
   ];
 
   users.defaultUserShell = pkgs.zsh;
