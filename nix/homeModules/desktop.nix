@@ -38,6 +38,7 @@
   programs.kitty = {
     enable = true;
     settings = {
+      background_opacity = 0.85;
       enable_audio_bell = false;
       cursor_trail = 10;
       cursor_trail_decay = "0.05 0.2";

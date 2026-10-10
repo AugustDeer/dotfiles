@@ -4,6 +4,8 @@
     settings = {
       config = {
         general = {
+          gaps_in = 5;
+          gaps_out = 10;
           border_size = 2;
           layout = "dwindle";
         };
@@ -11,6 +13,9 @@
         misc.force_default_wallpaper = 0;
         decoration = {
           rounding = 10;
+          dim_inactive = true;
+          dim_strength = 0.1;
+          blur.passes = 2;
         };
         input.touchpad.natural_scroll = true;
       };
@@ -53,6 +58,18 @@
           };
           float = true;
           size = lib.mkLuaInline /* lua */ "{1080, 920}";
+        }
+      ];
+      layer_rule = [
+        {
+          name = "noctalia";
+          match = {
+            namespace = "^noctalia-(bar-.+|notification|dock|panel|attached-panel|osd|window-switcher)$";
+          };
+          no_anim = true;
+          ignore_alpha = 0.5;
+          blur = true;
+          blur_popups = true;
         }
       ];
     };
