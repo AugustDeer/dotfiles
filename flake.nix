@@ -17,7 +17,13 @@
       url = "github:NotAShelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyprland.url = "github:hyprwm/Hyprland";
   };
+
+  nixConfig.extra-substituters = [ "https://hyprland.cachix.org" ];
+  nixConfig.extra-trusted-public-keys = [
+    "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+  ];
 
   outputs =
     { flakelight, ... }:

@@ -1,6 +1,8 @@
 { pkgs, lib, ... }: {
   wayland.windowManager.hyprland = {
     enable = true;
+    package = null;
+    portalPackage = null;
     settings = {
       config = {
         general = {
@@ -15,6 +17,7 @@
           rounding = 10;
           dim_inactive = true;
           dim_strength = 0.1;
+          blur.variant = "frost";
           blur.passes = 2;
         };
         input.touchpad.natural_scroll = true;
