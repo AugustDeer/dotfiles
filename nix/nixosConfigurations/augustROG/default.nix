@@ -1,4 +1,4 @@
-{ outputs, ... }: {
+{ inputs, outputs, ... }: {
   modules = [
     ./hardware.nix
     outputs.nixosModules.desktop
@@ -9,6 +9,15 @@
         "/dev/disk/by-uuid/f785ec98-a216-429b-85ae-94f440a19e62";
 
       system.stateVersion = "26.05";
+    }
+    inputs.home-manager.nixosModules.default
+    {
+      home-manager = {
+        useGlobalPkgs = true;
+        useUserPackages = true;
+        extraSpecialArgs = { inherit inputs; };
+        users.adeer = outputs.homeModules.adeer;
+      };
     }
   ];
 }
