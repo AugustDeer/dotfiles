@@ -1,5 +1,8 @@
 { inputs, pkgs, ... }: {
-  imports = [ ./common.nix ];
+  imports = [
+    ./common.nix
+    inputs.mangowm.nixosModules.mango
+  ];
 
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
@@ -36,6 +39,7 @@
     };
   };
 
+  programs.mango.enable = true;
   programs.hyprland.enable = true;
 
   programs.thunar = {
