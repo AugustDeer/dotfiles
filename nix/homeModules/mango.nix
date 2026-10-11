@@ -44,6 +44,10 @@ in
       scroller_default_proportion = 0.5;
       scroller_proportion_preset = "1.0,0.8,0.5";
 
+      tag_rule = [
+        "id:*,layout_name:dwindle"
+      ];
+
       bind = [
         "SUPER+SHIFT,R,reload_config"
 

@@ -65,6 +65,11 @@
           enable = true;
           extensions.markview-nvim.enable = true;
         };
+
+        ocaml = {
+          enable = true;
+          format.enable = true;
+        };
       };
 
       lsp.enable = true;
