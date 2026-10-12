@@ -145,6 +145,8 @@
       tui.theme = "kanagawa";
     };
 
+    pi-coding-agent.enable = true;
+
     nh = {
       enable = true;
       flake = "/home/adeer/dotfiles";
