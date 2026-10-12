@@ -25,10 +25,11 @@
       enable = true;
       settings = {
         logo = {
-          type = "kitty-direct";
-          source = flake.src + "/assets/pfp.png";
-          width = 43;
+          type = "kitty";
+          source = flake.src + "/assets/pfp_transparent.png";
           height = 21;
+          padding.top = 1;
+          padding.left = 2;
         };
         display = {
           size = {
