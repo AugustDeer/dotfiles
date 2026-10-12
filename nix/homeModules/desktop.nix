@@ -1,9 +1,20 @@
 { pkgs, ... }: {
   imports = [ ./mango.nix ];
 
+  home.packages = with pkgs; [
+    inkscape
+  ];
+
   xdg.userDirs = {
     enable = true;
     createDirectories = true;
+  };
+
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplicationPackages = with pkgs; [
+      xarchiver
+    ];
   };
 
   home.pointerCursor = {

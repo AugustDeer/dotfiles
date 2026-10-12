@@ -45,6 +45,7 @@
     enable = true;
     plugins = with pkgs; [
       thunar-volman
+      thunar-archive-plugin
     ];
   };
   programs.dconf.enable = true;
@@ -53,6 +54,7 @@
 
   environment.systemPackages = with pkgs; [
     brightnessctl
+    xarchiver
   ];
 
   fonts.enableDefaultPackages = true;
