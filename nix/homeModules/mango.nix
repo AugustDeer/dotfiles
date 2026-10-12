@@ -15,7 +15,7 @@ in
     enable = true;
     settings = {
       monitor_rule = [
-        "name:^eDP-1$,width:2560,height:1600,vrr:1,scale:1.25"
+        "name:^eDP-1$,width:2560,height:1600,refresh:240,vrr:1,scale:1.25"
       ];
 
       cursor_size = config.home.pointerCursor.size;
