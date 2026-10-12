@@ -1,10 +1,12 @@
 { pkgs, flake, ... }: {
   imports = [ ./mango.nix ];
 
-  home.packages = with pkgs; [
-    inkscape
-    flake.outputs'.packages.SMB1R-bin
-  ];
+  home.packages =
+    (with pkgs; [
+      inkscape
+      dolphin-emu
+    ])
+    ++ [ flake.outputs'.packages.SMB1R-bin ];
 
   xdg.userDirs = {
     enable = true;
@@ -15,6 +17,7 @@
     enable = true;
     defaultApplicationPackages = with pkgs; [
       xarchiver
+      vesktop
     ];
   };
 
