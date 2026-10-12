@@ -72,6 +72,11 @@ stdenv.mkDerivation rec {
       name = "SMB1R";
       desktopName = "SMB1R";
       exec = "SMB1R";
+      categories = [ "Game" ];
+      icon = fetchurl {
+        url = "https://raw.githubusercontent.com/JHDev2006/Super-Mario-Bros.-Remastered-Public/${version}/icon.png";
+        hash = "sha256-/PZoiX/d8NqxnB7TdqG2qUCD+0KfnoeQAgLmN1aTF48=";
+      };
     })
   ];
 
