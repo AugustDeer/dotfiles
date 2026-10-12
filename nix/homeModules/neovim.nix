@@ -15,6 +15,7 @@
         enable = true;
         name = "kanagawa";
         style = "wave";
+        transparent = true;
       };
 
       keymaps =

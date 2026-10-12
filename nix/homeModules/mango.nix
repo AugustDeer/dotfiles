@@ -6,6 +6,7 @@
   ...
 }:
 let
+  ghostty = lib.getExe pkgs.ghostty;
   noctalia = lib.getExe pkgs.noctalia;
 in
 {
@@ -51,7 +52,7 @@ in
       bind = [
         "SUPER+SHIFT,R,reload_config"
 
-        "SUPER,RETURN,spawn,kitty"
+        "SUPER,RETURN,spawn,${ghostty}"
         "SUPER+SHIFT,Return,spawn,firefox"
         "SUPER+CTRL,Return,spawn,thunar"
 
