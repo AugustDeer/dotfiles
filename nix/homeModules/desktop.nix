@@ -1,8 +1,9 @@
-{ pkgs, ... }: {
+{ pkgs, flake, ... }: {
   imports = [ ./mango.nix ];
 
   home.packages = with pkgs; [
     inkscape
+    flake.outputs'.packages.SMB1R-bin
   ];
 
   xdg.userDirs = {
