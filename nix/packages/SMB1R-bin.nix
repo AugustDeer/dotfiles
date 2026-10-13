@@ -24,11 +24,11 @@
 let
   inherit (gccNGPackages) libstdcxx;
 in
-stdenv.mkDerivation rec {
+stdenv.mkDerivation (finalAttrs: {
   pname = "SMB1R-bin";
   version = "1.1-stable";
   src = fetchurl {
-    url = "https://github.com/JHDev2006/Super-Mario-Bros.-Remastered-Public/releases/download/${version}/Linux.zip";
+    url = "https://github.com/JHDev2006/Super-Mario-Bros.-Remastered-Public/releases/download/${finalAttrs.version}/Linux.zip";
     hash = "sha256-EuwkE3Nbj8g86FCE7BJoUrH5IlWc0BPSexCdJGO1vNc=";
   };
   nativeBuildInputs = [
@@ -70,17 +70,29 @@ stdenv.mkDerivation rec {
   desktopItems = [
     (makeDesktopItem {
       name = "SMB1R";
-      desktopName = "SMB1R";
+      desktopName = "Super Mario Bros. Remastered";
+      comment = "Remake / Celebration of the original 'Super Mario Bros.' games";
       exec = "SMB1R";
-      categories = [ "Game" ];
+      categories = [
+        "Game"
+        "ActionGame"
+      ];
+      keywords = [
+        "Mario"
+        "Bros"
+        "Remastered"
+        "Remake"
+        "Godot"
+      ];
       icon = fetchurl {
-        url = "https://raw.githubusercontent.com/JHDev2006/Super-Mario-Bros.-Remastered-Public/${version}/icon.png";
+        url = "https://raw.githubusercontent.com/JHDev2006/Super-Mario-Bros.-Remastered-Public/${finalAttrs.version}/icon.png";
         hash = "sha256-/PZoiX/d8NqxnB7TdqG2qUCD+0KfnoeQAgLmN1aTF48=";
       };
     })
   ];
 
   meta = {
+    description = "Remake / Celebration of the original 'Super Mario Bros.' games";
     homepage = "https://github.com/JHDev2006/Super-Mario-Bros.-Remastered-Public";
     downloadPage = "https://github.com/JHDev2006/Super-Mario-Bros.-Remastered-Public/releases";
     license = lib.licenses.gpl3Only;
@@ -88,4 +100,4 @@ stdenv.mkDerivation rec {
     mainProgram = "SMB1R";
     platforms = [ "x86_64-linux" ];
   };
-}
+})
