@@ -5,7 +5,9 @@
     ./theme.nix
   ];
 
-  home.username = "adeer";
-  home.homeDirectory = "/home/adeer";
-  home.stateVersion = "26.05";
+  home = {
+    username = "adeer";
+    homeDirectory = "/home/adeer";
+    stateVersion = "26.05";
+  };
 }

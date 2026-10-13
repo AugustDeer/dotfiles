@@ -1,16 +1,18 @@
 { pkgs, flake, ... }: {
   imports = [ ./neovim.nix ];
 
-  home.packages = [
-    pkgs.wl-clipboard
-  ];
+  home = {
+    packages = [
+      pkgs.wl-clipboard
+    ];
 
-  home.sessionVariables = {
-    EDITOR = "nvim";
-    VISUAL = "nvim";
+    sessionVariables = {
+      EDITOR = "nvim";
+      VISUAL = "nvim";
+    };
+
+    shellAliases.cat = "bat";
   };
-
-  home.shellAliases.cat = "bat";
 
   programs = {
     bash.enable = true;

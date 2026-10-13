@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 let
   autumnGreen = "0x76946a";
   autumnRed = "0xc34043";
@@ -5,31 +6,33 @@ let
   sumiInk1 = "0x1f1f28";
   sumiInk3 = "0x363646";
 in
-{ pkgs, ... }: {
-  programs.bat = {
-    config.theme = "kanagawa";
-    themes.kanagawa = {
-      src = "${pkgs.vimPlugins.kanagawa-nvim}/extras/tmTheme/";
-      file = "kanagawa.tmTheme";
+{
+  programs = {
+    bat = {
+      config.theme = "kanagawa";
+      themes.kanagawa = {
+        src = "${pkgs.vimPlugins.kanagawa-nvim}/extras/tmTheme/";
+        file = "kanagawa.tmTheme";
+      };
     };
+
+    nvf.settings.vim.theme = {
+      enable = true;
+      name = "kanagawa";
+      style = "wave";
+      transparent = true;
+    };
+
+    kitty.themeFile = "kanagawa";
+
+    noctalia.settings.theme = {
+      mode = "dark";
+      source = "builtin";
+      builtin = "Kanagawa";
+    };
+
+    opencode.tui.theme = "kanagawa";
   };
-
-  programs.nvf.theme = {
-    enable = true;
-    name = "kanagawa";
-    style = "wave";
-    transparent = true;
-  };
-
-  programs.kitty.themeFile = "kanagawa";
-
-  programs.noctalia.settings.theme = {
-    mode = "dark";
-    source = "builtin";
-    builtin = "Kanagawa";
-  };
-
-  programs.opencode.tui.theme = "kanagawa";
 
   wayland.windowManager.mango.settings = {
     root_color = "${sumiInk1}ff";
