@@ -11,13 +11,6 @@
         shiftwidth = 2;
       };
 
-      theme = {
-        enable = true;
-        name = "kanagawa";
-        style = "wave";
-        transparent = true;
-      };
-
       keymaps =
         let
           wincmd = k: {

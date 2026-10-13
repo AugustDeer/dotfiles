@@ -14,6 +14,13 @@ in
     };
   };
 
+  programs.nvf.theme = {
+    enable = true;
+    name = "kanagawa";
+    style = "wave";
+    transparent = true;
+  };
+
   programs.kitty.themeFile = "kanagawa";
 
   programs.noctalia.settings.theme = {
@@ -21,6 +28,8 @@ in
     source = "builtin";
     builtin = "Kanagawa";
   };
+
+  programs.opencode.tui.theme = "kanagawa";
 
   wayland.windowManager.mango.settings = {
     root_color = "${sumiInk1}ff";

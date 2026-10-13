@@ -141,10 +141,7 @@
       options = [ "--cmd cd" ];
     };
 
-    opencode = {
-      enable = true;
-      tui.theme = "kanagawa";
-    };
+    opencode.enable = true;
 
     pi-coding-agent.enable = true;
 
