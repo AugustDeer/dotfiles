@@ -1,9 +1,14 @@
-{ pkgs, flake, ... }: {
+{ pkgs, flake, ... }:
+let
+  llm-pkgs = flake.inputs'.llm-agents.packages;
+in
+{
   imports = [ ./neovim.nix ];
 
   home = {
     packages = [
       pkgs.wl-clipboard
+      llm-pkgs.opencode2
     ];
 
     sessionVariables = {
@@ -142,10 +147,6 @@
       enable = true;
       options = [ "--cmd cd" ];
     };
-
-    opencode.enable = true;
-
-    pi-coding-agent.enable = true;
 
     nh = {
       enable = true;

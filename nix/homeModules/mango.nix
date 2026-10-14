@@ -19,6 +19,8 @@ in
         "name:^eDP-1$,width:2560,height:1600,refresh:240,vrr:1,scale:1.25"
       ];
 
+      window_rule = [ "is_fake_fullscreen:1,app_id:com.anthropic.Claude" ];
+
       cursor_size = config.home.pointerCursor.size;
       cursor_theme = config.home.pointerCursor.name;
 

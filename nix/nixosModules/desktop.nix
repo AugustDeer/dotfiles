@@ -36,6 +36,8 @@
     };
     gvfs.enable = true;
     tumbler.enable = true;
+
+    gnome.gnome-keyring.enable = true;
   };
 
   security.rtkit.enable = true;

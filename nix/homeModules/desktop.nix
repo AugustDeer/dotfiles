@@ -2,11 +2,17 @@
   imports = [ ./mango.nix ];
 
   home.packages =
-    (with pkgs; [
-      inkscape
-      dolphin-emu
-    ])
-    ++ [ flake.outputs'.packages.SMB1R-bin ];
+    let
+      llm-pkgs = flake.inputs'.llm-agents.packages;
+    in
+    [
+      pkgs.inkscape
+      pkgs.dolphin-emu
+      flake.outputs'.packages.SMB1R-bin
+      llm-pkgs.opencode2-desktop
+      llm-pkgs.claude-desktop
+      pkgs.qemu_kvm # undeclared dependency of claude-desktop
+    ];
 
   xdg.userDirs = {
     enable = true;
