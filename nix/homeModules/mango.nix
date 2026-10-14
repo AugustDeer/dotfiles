@@ -6,7 +6,9 @@
   ...
 }:
 let
-  ghostty = lib.getExe pkgs.ghostty;
+  term = lib.getExe pkgs.ghostty;
+  browser = lib.getExe pkgs.firefox;
+  files = lib.getExe pkgs.thunar;
   noctalia = lib.getExe pkgs.noctalia;
 in
 {
@@ -52,11 +54,9 @@ in
       ];
 
       bind = [
-        "SUPER+SHIFT,R,reload_config"
-
-        "SUPER,RETURN,spawn,${ghostty}"
-        "SUPER+SHIFT,Return,spawn,firefox"
-        "SUPER+CTRL,Return,spawn,thunar"
+        "SUPER,RETURN,spawn,${term}"
+        "SUPER+SHIFT,Return,spawn,${browser}"
+        "SUPER+CTRL,Return,spawn,${files}"
 
         "SUPER,M,quit"
         "SUPER,Q,killclient,"
