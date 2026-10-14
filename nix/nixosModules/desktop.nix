@@ -62,7 +62,7 @@
 
   environment.systemPackages = with pkgs; [
     brightnessctl
-    xarchiver
+    file-roller
   ];
 
   fonts.enableDefaultPackages = true;
