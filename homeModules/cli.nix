@@ -30,7 +30,7 @@
       settings = {
         logo = {
           type = "kitty";
-          source = ../../assets/pfp_transparent.png;
+          source = ../assets/pfp_transparent.png;
           height = 21;
           padding.top = 1;
           padding.left = 2;

@@ -28,7 +28,7 @@
     displayManager.regreet = {
       enable = true;
       settings = {
-        background.path = ../../assets/AugustWallpaperBackground.png;
+        background.path = ../assets/AugustWallpaperBackground.png;
         GTK.application_prefer_dark_theme = true;
         widget.clock.format = "%a %-I:%M %p";
       };

@@ -48,7 +48,7 @@
         };
 
       smb1rOverlay = final: _prev: {
-        SMB1R-bin = final.callPackage ./nix/packages/SMB1R-bin.nix { };
+        SMB1R-bin = final.callPackage ./packages/SMB1R-bin.nix { };
       };
 
       nixosOverlays = [
@@ -103,7 +103,7 @@
       nixosConfigurations.augustROG = lib.nixosSystem {
         specialArgs = { inherit inputs; };
         modules = [
-          ./nix/nixosConfigurations/augustROG
+          ./nixosConfigurations/augustROG
           {
             nixpkgs.config = nixpkgsConfig;
             nixpkgs.overlays = nixosOverlays;
