@@ -71,26 +71,6 @@
         "type": "github"
       }
     },
-    "flakelight": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1791839182,
-        "narHash": "sha256-fdfYbXpswZbj1BwUovewADBdsoSv49daAr4DIdSUxnk=",
-        "owner": "nix-community",
-        "repo": "flakelight",
-        "rev": "a0369b437a351682d29389ae4162971edb1ee74b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "flakelight",
-        "type": "github"
-      }
-    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -207,7 +187,6 @@
     },
     "root": {
       "inputs": {
-        "flakelight": "flakelight",
         "home-manager": "home-manager",
         "llm-agents": "llm-agents",
         "nixos-hardware": "nixos-hardware",

@@ -1,14 +1,11 @@
-{ pkgs, flake, ... }:
-let
-  llm-pkgs = flake.inputs'.llm-agents.packages;
-in
+{ pkgs, ... }:
 {
   imports = [ ./neovim.nix ];
 
   home = {
     packages = [
       pkgs.wl-clipboard
-      llm-pkgs.opencode2
+      pkgs.llm-agents.opencode2
     ];
 
     sessionVariables = {
@@ -33,7 +30,7 @@ in
       settings = {
         logo = {
           type = "kitty";
-          source = flake.src + "/assets/pfp_transparent.png";
+          source = ../../assets/pfp_transparent.png;
           height = 21;
           padding.top = 1;
           padding.left = 2;

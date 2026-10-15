@@ -38,23 +38,25 @@
     unzip
   ];
 
-  users.defaultUserShell = pkgs.zsh;
-  programs.zsh.enable = true;
-
-  programs.gnupg.agent.enable = true;
-
-  users.users."adeer" = {
-    isNormalUser = true;
-    description = "August Deer";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-      "video"
-      "render"
-    ];
+  users = {
+    defaultUserShell = pkgs.zsh;
+    users."adeer" = {
+      isNormalUser = true;
+      description = "August Deer";
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+        "video"
+        "render"
+      ];
+    };
   };
 
-  programs.nix-ld.enable = true;
+  programs = {
+    zsh.enable = true;
+    gnupg.agent.enable = true;
+    nix-ld.enable = true;
+  };
 
   nix.settings.experimental-features = [
     "flakes"
