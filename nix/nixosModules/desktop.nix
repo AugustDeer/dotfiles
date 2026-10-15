@@ -1,7 +1,6 @@
 { inputs, pkgs, ... }: {
   imports = [
     ./common.nix
-    inputs.mangowm.nixosModules.mango
   ];
 
   services = {
