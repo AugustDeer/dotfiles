@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   imports = [
     ./common.nix
+    ./flatpak.nix
   ];
 
   services = {
