@@ -26,10 +26,11 @@
   }: let
     inherit (nixpkgs) lib;
 
+    pkgsDir = ./packages;
     myPackages = pkgs:
       lib.packagesFromDirectoryRecursive {
         inherit (pkgs) callPackage;
-        directory = ./packages;
+        directory = pkgsDir;
       };
 
     systems = ["x86_64-linux"];
@@ -56,19 +57,22 @@
       };
 
     forAllSystems = f: lib.genAttrs systems (system: f (pkgsFor system));
+
+    hostsDir = ./nixosConfigurations;
+    hosts = builtins.attrNames (lib.filterAttrs (_name: type: type == "directory") (builtins.readDir hostsDir));
+    mkHost = name:
+      lib.nixosSystem {
+        specialArgs = {inherit inputs;};
+        modules = [
+          (hostsDir + "/${name}")
+          {nixpkgs = {inherit config overlays;};}
+        ];
+      };
   in {
     packages = forAllSystems myPackages;
 
     formatter = forAllSystems (pkgs: pkgs.alejandra);
 
-    nixosConfigurations.augustROG = lib.nixosSystem {
-      specialArgs = {inherit inputs;};
-      modules = [
-        ./nixosConfigurations/augustROG
-        {
-          nixpkgs = {inherit config overlays;};
-        }
-      ];
-    };
+    nixosConfigurations = lib.genAttrs hosts mkHost;
   };
 }
