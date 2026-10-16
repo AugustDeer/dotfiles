@@ -16,7 +16,7 @@
     useUserPackages = true;
     extraSpecialArgs = {inherit inputs;};
     users.adeer = {
-      imports = [../../homeModules/adeer.nix];
+      imports = [../../homeModules];
     };
   };
 }
