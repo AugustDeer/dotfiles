@@ -25,8 +25,6 @@
     ...
   }: let
     inherit (nixpkgs) lib;
-    systems = ["x86_64-linux"];
-    forAllSystems = lib.genAttrs systems;
 
     # Flake-wide nixpkgs policy, shared by the flake's own outputs and by
     # every NixOS configuration.
@@ -41,12 +39,6 @@
         ];
     };
 
-    pkgsFor = system:
-      import nixpkgs {
-        inherit system;
-        config = nixpkgsConfig;
-      };
-
     myOverlay = final: _prev: {
       SMB1R-bin = final.callPackage ./packages/SMB1R-bin.nix {};
     };
@@ -55,16 +47,19 @@
       myOverlay
       llm-agents.overlays.shared-nixpkgs
     ];
-  in {
-    packages = forAllSystems (
-      system: let
-        pkgs = (pkgsFor system).extend myOverlay;
-      in {
-        inherit (pkgs) SMB1R-bin;
-      }
-    );
 
-    formatter = forAllSystems (system: (pkgsFor system).alejandra);
+    systems = ["x86_64-linux"];
+    pkgsFor = system:
+      import nixpkgs {
+        inherit system;
+        config = nixpkgsConfig;
+        overlays = nixosOverlays;
+      };
+    forAllSystems = f: lib.genAttrs systems (system: f (pkgsFor system));
+  in {
+    packages = forAllSystems (pkgs: {inherit (pkgs) SMB1R-bin;});
+
+    formatter = forAllSystems (pkgs: pkgs.alejandra);
 
     nixosConfigurations.augustROG = lib.nixosSystem {
       specialArgs = {inherit inputs;};
