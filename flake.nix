@@ -26,9 +26,15 @@
   }: let
     inherit (nixpkgs) lib;
 
-    # Flake-wide nixpkgs policy, shared by the flake's own outputs and by
-    # every NixOS configuration.
-    nixpkgsConfig = {
+    myPackages = pkgs:
+      lib.packagesFromDirectoryRecursive {
+        inherit (pkgs) callPackage;
+        directory = ./packages;
+      };
+
+    systems = ["x86_64-linux"];
+
+    config = {
       allowUnfreePredicate = pkg:
         builtins.elem (lib.getName pkg) [
           "nvidia-x11"
@@ -39,25 +45,19 @@
         ];
     };
 
-    myOverlay = final: _prev: {
-      SMB1R-bin = final.callPackage ./packages/SMB1R-bin.nix {};
-    };
-
-    nixosOverlays = [
-      myOverlay
+    overlays = [
+      (final: _prev: myPackages final)
       llm-agents.overlays.shared-nixpkgs
     ];
 
-    systems = ["x86_64-linux"];
     pkgsFor = system:
       import nixpkgs {
-        inherit system;
-        config = nixpkgsConfig;
-        overlays = nixosOverlays;
+        inherit system config overlays;
       };
+
     forAllSystems = f: lib.genAttrs systems (system: f (pkgsFor system));
   in {
-    packages = forAllSystems (pkgs: {inherit (pkgs) SMB1R-bin;});
+    packages = forAllSystems myPackages;
 
     formatter = forAllSystems (pkgs: pkgs.alejandra);
 
@@ -66,8 +66,7 @@
       modules = [
         ./nixosConfigurations/augustROG
         {
-          nixpkgs.config = nixpkgsConfig;
-          nixpkgs.overlays = nixosOverlays;
+          nixpkgs = {inherit config overlays;};
         }
       ];
     };
