@@ -3,6 +3,7 @@
 
   home.packages = [
     pkgs.inkscape
+    pkgs.heroic
     pkgs.dolphin-emu
     pkgs.SMB1R-bin
     pkgs.llm-agents.opencode2-desktop
