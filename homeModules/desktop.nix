@@ -50,13 +50,21 @@
     noctalia = {
       enable = true;
 
-      settings.widget.clock = {
-        format = "{:%-I:%M %p}";
+      settings = {
+        theme = {
+          mode = "dark";
+          source = "builtin";
+          builtin = "Kanagawa";
+        };
+        widget.clock = {
+          format = "{:%-I:%M %p}";
+        };
       };
     };
 
     kitty = {
       enable = true;
+      themeFile = "kanagawa";
       settings = {
         font_family = "FiraCode Nerd Font";
         background_opacity = 0.85;

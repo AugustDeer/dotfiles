@@ -126,7 +126,14 @@
     };
     lazygit.enable = true;
 
-    bat.enable = true;
+    bat = {
+      enable = true;
+      config.theme = "kanagawa";
+      themes.kanagawa = {
+        src = "${pkgs.vimPlugins.kanagawa-nvim}/extras/tmTheme/";
+        file = "kanagawa.tmTheme";
+      };
+    };
 
     yazi.enable = true;
 

@@ -2,7 +2,6 @@
   imports = [
     ./cli.nix
     ./desktop.nix
-    ./theme.nix
   ];
 
   home = {

@@ -7,6 +7,13 @@
     settings.vim = {
       vimAlias = true;
 
+      theme = {
+        enable = true;
+        name = "kanagawa";
+        style = "wave";
+        transparent = true;
+      };
+
       options = {
         shiftwidth = 2;
       };
