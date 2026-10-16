@@ -1,5 +1,5 @@
-{ pkgs, ... }: {
-  imports = [ ./mango.nix ];
+{pkgs, ...}: {
+  imports = [./mango.nix];
 
   home.packages = [
     pkgs.inkscape
@@ -65,22 +65,20 @@
         custom_shaders = "cursor-trail-motion-blur";
       };
     };
-    ghostty =
-      let
-        cursor_warp = pkgs.fetchurl {
-          url = "https://raw.githubusercontent.com/sahaj-b/cursor-shaders/9ad9158a93c0de0c045e1c6b27df37da698bc8af/ghostty/cursor_warp.glsl";
-          hash = "sha256-WJ9x9TfO6JCgfkCPE9Bi/32T3m2fdCyE5L3mEExdUfs=";
-        };
-      in
-      {
-        enable = true;
-        settings = {
-          theme = "Kanagawa Wave";
-          font-family = "FiraCode Nerd Font";
-          background-opacity = 0.85;
-          custom-shader = "${cursor_warp}";
-        };
+    ghostty = let
+      cursor_warp = pkgs.fetchurl {
+        url = "https://raw.githubusercontent.com/sahaj-b/cursor-shaders/9ad9158a93c0de0c045e1c6b27df37da698bc8af/ghostty/cursor_warp.glsl";
+        hash = "sha256-WJ9x9TfO6JCgfkCPE9Bi/32T3m2fdCyE5L3mEExdUfs=";
       };
+    in {
+      enable = true;
+      settings = {
+        theme = "Kanagawa Wave";
+        font-family = "FiraCode Nerd Font";
+        background-opacity = 0.85;
+        custom-shader = "${cursor_warp}";
+      };
+    };
 
     firefox.enable = true;
 

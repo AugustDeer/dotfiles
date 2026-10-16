@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   boot = {
     # Use the systemd-boot EFI boot loader.
     loader.systemd-boot.enable = true;

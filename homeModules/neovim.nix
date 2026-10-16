@@ -1,5 +1,5 @@
-{ inputs, ... }: {
-  imports = [ inputs.nvf.homeManagerModules.default ];
+{inputs, ...}: {
+  imports = [inputs.nvf.homeManagerModules.default];
 
   programs.nvf = {
     enable = true;
@@ -11,25 +11,23 @@
         shiftwidth = 2;
       };
 
-      keymaps =
-        let
-          wincmd = k: {
-            key = "<C-${k}>";
-            mode = "n";
-            action = ":wincmd ${k}<CR>";
-          };
-        in
-        [
-          {
-            key = "<leader>n";
-            mode = "n";
-            action = ":Neotree toggle<CR>";
-          }
-          (wincmd "h")
-          (wincmd "j")
-          (wincmd "k")
-          (wincmd "l")
-        ];
+      keymaps = let
+        wincmd = k: {
+          key = "<C-${k}>";
+          mode = "n";
+          action = ":wincmd ${k}<CR>";
+        };
+      in [
+        {
+          key = "<leader>n";
+          mode = "n";
+          action = ":Neotree toggle<CR>";
+        }
+        (wincmd "h")
+        (wincmd "j")
+        (wincmd "k")
+        (wincmd "l")
+      ];
 
       autocomplete.blink-cmp.enable = true;
 
@@ -53,8 +51,7 @@
 
         nix = {
           enable = true;
-          format.type = [ "nixfmt" ];
-          lsp.servers = [ "nixd" ];
+          lsp.servers = ["nixd"];
         };
         markdown = {
           enable = true;

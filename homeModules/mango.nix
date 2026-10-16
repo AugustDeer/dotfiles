@@ -3,8 +3,7 @@
   pkgs,
   lib,
   ...
-}:
-let
+}: let
   autumnGreen = "0x76946a";
   autumnRed = "0xc34043";
   crystalBlue = "0x7e9cd8";
@@ -29,7 +28,7 @@ let
       "name:^eDP-1$,width:2560,height:1600,refresh:240,vrr:1,scale:1.25"
     ];
 
-    window_rule = [ "is_fake_fullscreen:1,app_id:com.anthropic.Claude" ];
+    window_rule = ["is_fake_fullscreen:1,app_id:com.anthropic.Claude"];
 
     cursor_size = config.home.pointerCursor.size;
     cursor_theme = config.home.pointerCursor.name;
@@ -142,13 +141,12 @@ let
     ];
   };
 
-  configText = lib.generators.toKeyValue { listsAsDuplicateKeys = true; } settings;
+  configText = lib.generators.toKeyValue {listsAsDuplicateKeys = true;} settings;
 
-  validatedConfig = pkgs.runCommand "mango-config.conf" { } ''
+  validatedConfig = pkgs.runCommand "mango-config.conf" {} ''
     cp ${pkgs.writeText "mango-config.conf" configText} "$out"
     ${lib.getExe pkgs.mango} -c $out -p || exit 1
   '';
-in
-{
+in {
   xdg.configFile."mango/config.conf".source = validatedConfig;
 }

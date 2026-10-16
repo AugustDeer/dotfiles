@@ -1,6 +1,5 @@
-{ pkgs, ... }:
-{
-  imports = [ ./neovim.nix ];
+{pkgs, ...}: {
+  imports = [./neovim.nix];
 
   home = {
     packages = [
@@ -22,7 +21,7 @@
 
     starship = {
       enable = true;
-      presets = [ "nerd-font-symbols" ];
+      presets = ["nerd-font-symbols"];
     };
 
     fastfetch = {
@@ -142,7 +141,7 @@
 
     zoxide = {
       enable = true;
-      options = [ "--cmd cd" ];
+      options = ["--cmd cd"];
     };
 
     nh = {
