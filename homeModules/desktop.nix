@@ -1,14 +1,15 @@
 {pkgs, ...}: {
   imports = [./mango.nix];
 
-  home.packages = [
-    pkgs.inkscape
-    pkgs.heroic
-    pkgs.dolphin-emu
-    pkgs.SMB1R-bin
-    pkgs.llm-agents.opencode2-desktop
-    pkgs.llm-agents.claude-desktop
-    pkgs.qemu_kvm # undeclared dependency of claude-desktop
+  home.packages = with pkgs; [
+    inkscape
+    heroic
+    dolphin-emu
+    SMB1R-bin
+    prismlauncher
+    llm-agents.opencode2-desktop
+    llm-agents.claude-desktop
+    qemu_kvm # undeclared dependency of claude-desktop
   ];
 
   xdg.userDirs = {
