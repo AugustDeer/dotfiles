@@ -85,3 +85,5 @@ Portions of this configuration were written with LLM assistance (primarily via
 the [opencode](https://github.com/anomalyco/opencode) agent). At all points, the
 goal is my own education. No code has been committed which I myself do not
 understand and cannot explain.
+
+All documentation (including this README) is human-written.
