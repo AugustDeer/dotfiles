@@ -1,8 +1,4 @@
-{
-  pkgs,
-  inputs,
-  ...
-}: {
+{pkgs, ...}: {
   boot = {
     # Use the systemd-boot EFI boot loader.
     loader.systemd-boot.enable = true;
@@ -62,9 +58,6 @@
     nix-ld.enable = true;
   };
 
-  nix.registry = {
-    nixpkgs.flake = inputs.nixpkgs;
-  };
   nix.settings.experimental-features = [
     "flakes"
     "nix-command"
