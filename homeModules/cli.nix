@@ -3,7 +3,6 @@
 
   home = {
     packages = [
-      pkgs.wl-clipboard
       pkgs.llm-agents.opencode2
     ];
 

@@ -2,6 +2,7 @@
   imports = [./mango.nix];
 
   home.packages = with pkgs; [
+    wl-clipboard
     inkscape
     heroic
     dolphin-emu
