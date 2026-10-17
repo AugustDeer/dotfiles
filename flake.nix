@@ -58,7 +58,7 @@
 
     forAllSystems = f: lib.genAttrs systems (system: f (pkgsFor system));
 
-    hostsDir = ./nixosConfigurations;
+    hostsDir = ./hosts;
     hosts = builtins.attrNames (lib.filterAttrs (_name: type: type == "directory") (builtins.readDir hostsDir));
     mkHost = name:
       lib.nixosSystem {

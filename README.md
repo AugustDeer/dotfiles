@@ -38,7 +38,8 @@ nixpkgs and other inputs, include the `--update` flag. Also include
 `--commit-lock-file` to commit the updated inputs.
 
 > [!CAUTION]
-> Nix ignores files which are untracked by git. `git add` any new files before rebuilding.
+> Nix ignores files which are untracked by git. `git add` any new files before
+> rebuilding.
 
 ## Layout
 
@@ -48,8 +49,8 @@ nixpkgs and other inputs, include the `--update` flag. Also include
   at the moment) are imported from `<name>/package.nix`.
 - `nixosModules/`: Reusable system configurations. Either import `common.nix`
   for base system config, or `desktop.nix` for additional gui-specific settings.
-- `nixosConfigurations/`: Device-specific system configuration. Each host is
-  auto-imported from `<hostname>/default.nix`.
+- `hosts/`: Device-specific system configuration. Each host is auto-imported
+  from `<hostname>/default.nix`.
 - `homeModules/`: User configuration via Home-Manager. Imported as a NixOS
   module, so not necessary to use directly.
 - `assets/`: Non-nix assets.
@@ -59,7 +60,7 @@ nixpkgs and other inputs, include the `--update` flag. Also include
 Create a new default configuration with this command:
 
 ```sh
-nixos-generate-config --dir ./nixosConfigurations/<hostname>/
+nixos-generate-config --dir ./hosts/<hostname>/
 ```
 
 This will create a default `configuration.nix` and `hardware-configuration.nix`.
