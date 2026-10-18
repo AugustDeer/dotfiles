@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   imports = [./neovim.nix];
 
   home = {
@@ -152,7 +156,7 @@
 
     nh = {
       enable = true;
-      flake = "/home/adeer/dotfiles";
+      flake = "${config.home.homeDirectory}/dotfiles";
     };
   };
 }

@@ -64,8 +64,12 @@
       lib.nixosSystem {
         specialArgs = {inherit inputs;};
         modules = [
+          ./nixosModules
           (hostsDir + "/${name}")
-          {nixpkgs = {inherit config overlays;};}
+          {
+            networking.hostName = name;
+            nixpkgs = {inherit config overlays;};
+          }
         ];
       };
   in {

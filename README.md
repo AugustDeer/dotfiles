@@ -47,8 +47,7 @@ nixpkgs and other inputs, include the `--update` flag. Also include
   auto-imported and overlayed onto nixpkgs, available under `pkgs.<name>`.
   Single-file packages are imported from `<name>.nix`, multi-file packages (none
   at the moment) are imported from `<name>/package.nix`.
-- `nixosModules/`: Reusable system configurations. Either import `common.nix`
-  for base system config, or `desktop.nix` for additional gui-specific settings.
+- `nixosModules/`: Reusable system modules. Auto-imported into each NixOS configuration.
 - `hosts/`: Device-specific system configuration. Each host is auto-imported
   from `<hostname>/default.nix`.
 - `homeModules/`: User configuration via Home-Manager. Imported as a NixOS
@@ -65,9 +64,10 @@ nixos-generate-config --dir ./hosts/<hostname>/
 
 This will create a default `configuration.nix` and `hardware-configuration.nix`.
 Rename `configuration.nix` to `default.nix` so it is imported correctly, and
-make any desired changes. Ensure you import `nixosModules/common.nix` or
-`nixosModules/desktop.nix` to use the common configuration options, and include
-the home-manager NixOS module for user dotfiles and programs.
+make any desired changes. Note that most settings can be deleted: the hostname
+is automatically set based on the folder name, and sensible defaults are
+automatically set by `./nixosModules/common.nix`. Set `my.desktop.enable = true;`
+for gui-specific tools.
 
 > [!NOTE]
 > Remember to `git add` all new files, and commit + push your changes.

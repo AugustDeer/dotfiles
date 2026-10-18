@@ -1,65 +1,80 @@
-{pkgs, ...}: {
-  boot = {
-    # Use the systemd-boot EFI boot loader.
-    loader.systemd-boot.enable = true;
-    loader.efi.canTouchEfiVariables = true;
-
-    # Use latest kernel.
-    kernelPackages = pkgs.linuxPackages_latest;
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: let
+  cfg = config.my.common;
+in {
+  options.my.common.enable = lib.mkOption {
+    default = true;
+    description = "Enable general system configuration";
+    type = lib.types.bool;
   };
 
-  # Set your time zone.
-  time.timeZone = "America/Chicago";
+  config = lib.mkIf cfg.enable {
+    boot = {
+      # Use the systemd-boot EFI boot loader.
+      loader.systemd-boot.enable = true;
+      loader.efi.canTouchEfiVariables = true;
 
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_US.UTF-8";
-    LC_IDENTIFICATION = "en_US.UTF-8";
-    LC_MEASUREMENT = "en_US.UTF-8";
-    LC_MONETARY = "en_US.UTF-8";
-    LC_NAME = "en_US.UTF-8";
-    LC_NUMERIC = "en_US.UTF-8";
-    LC_PAPER = "en_US.UTF-8";
-    LC_TELEPHONE = "en_US.UTF-8";
-    LC_TIME = "en_US.UTF-8";
-  };
-
-  networking.networkmanager.enable = true;
-
-  hardware.bluetooth.enable = true;
-
-  environment.systemPackages = with pkgs; [
-    vim
-    wget
-    file
-    jq
-    unzip
-  ];
-
-  users = {
-    defaultUserShell = pkgs.zsh;
-    users."adeer" = {
-      isNormalUser = true;
-      description = "August Deer";
-      extraGroups = [
-        "networkmanager"
-        "wheel"
-        "video"
-        "render"
-      ];
+      # Use latest kernel.
+      kernelPackages = pkgs.linuxPackages_latest;
     };
-  };
 
-  programs = {
-    zsh.enable = true;
-    gnupg.agent.enable = true;
-    nix-ld.enable = true;
-  };
+    # Set your time zone.
+    time.timeZone = "America/Chicago";
 
-  nix.settings.experimental-features = [
-    "flakes"
-    "nix-command"
-  ];
+    # Select internationalisation properties.
+    i18n.defaultLocale = "en_US.UTF-8";
+
+    i18n.extraLocaleSettings = {
+      LC_ADDRESS = "en_US.UTF-8";
+      LC_IDENTIFICATION = "en_US.UTF-8";
+      LC_MEASUREMENT = "en_US.UTF-8";
+      LC_MONETARY = "en_US.UTF-8";
+      LC_NAME = "en_US.UTF-8";
+      LC_NUMERIC = "en_US.UTF-8";
+      LC_PAPER = "en_US.UTF-8";
+      LC_TELEPHONE = "en_US.UTF-8";
+      LC_TIME = "en_US.UTF-8";
+    };
+
+    networking.networkmanager.enable = true;
+
+    hardware.bluetooth.enable = true;
+
+    environment.systemPackages = with pkgs; [
+      vim
+      wget
+      file
+      jq
+      unzip
+    ];
+
+    users = {
+      defaultUserShell = pkgs.zsh;
+      users."${config.my.userName}" = {
+        isNormalUser = true;
+        description = "August Deer";
+        extraGroups = [
+          "networkmanager"
+          "wheel"
+          "video"
+          "render"
+        ];
+      };
+    };
+
+    programs = {
+      zsh.enable = true;
+      gnupg.agent.enable = true;
+      nix-ld.enable = true;
+    };
+
+    nix.settings.experimental-features = [
+      "flakes"
+      "nix-command"
+    ];
+  };
 }
