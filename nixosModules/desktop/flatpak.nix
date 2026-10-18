@@ -5,7 +5,11 @@
 }: let
   cfg = config.my.desktop;
 in {
-  options.my.desktop.flatpak = lib.mkEnableOption "Enable flatpaks";
+  options.my.desktop.flatpak = lib.mkOption {
+    type = lib.types.bool;
+    default = cfg.enable;
+    description = "Whether to enable flatpak support";
+  };
 
   config = lib.mkIf cfg.flatpak {
     services.flatpak.enable = true;

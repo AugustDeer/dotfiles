@@ -6,22 +6,19 @@
 }: let
   cfg = config.my.desktop;
 in {
-  imports = [./flatpak.nix];
+  imports = [./flatpak.nix ./gaming.nix];
 
   options.my.desktop = {
     enable = lib.mkEnableOption "Enable desktop/gui-specific settings";
   };
 
   config = lib.mkIf cfg.enable {
-    my.desktop.flatpak = lib.mkDefault true;
-
     services = {
       # Enable sound with pipewire.
       pulseaudio.enable = false;
       pipewire = {
         enable = true;
         alsa.enable = true;
-        alsa.support32Bit = true;
         pulse.enable = true;
       };
 
