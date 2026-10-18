@@ -47,6 +47,10 @@
       package = pkgs.kdePackages.breeze-icons;
     };
   };
+  qt = {
+    enable = true;
+    platformTheme.name = "gtk3";
+  };
 
   programs = {
     noctalia = {
