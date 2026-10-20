@@ -1,4 +1,10 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: let
+  inherit (pkgs.stdenv.hostPlatform) system;
+in {
   imports = [./mango.nix];
 
   home.packages = with pkgs; [
@@ -6,10 +12,10 @@
     inkscape
     heroic
     dolphin-emu
-    SMB1R-bin
     prismlauncher
-    llm-agents.opencode2-desktop
-    llm-agents.claude-desktop
+    inputs.self.packages.${system}.SMB1R-bin
+    inputs.llm-agents.packages.${system}.opencode2-desktop
+    inputs.llm-agents.packages.${system}.claude-desktop
     qemu_kvm # undeclared dependency of claude-desktop
   ];
 

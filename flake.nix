@@ -19,19 +19,8 @@
     };
   };
 
-  outputs = inputs @ {
-    nixpkgs,
-    llm-agents,
-    ...
-  }: let
+  outputs = inputs @ {nixpkgs, ...}: let
     inherit (nixpkgs) lib;
-
-    pkgsDir = ./packages;
-    myPackages = pkgs:
-      lib.packagesFromDirectoryRecursive {
-        inherit (pkgs) callPackage;
-        directory = pkgsDir;
-      };
 
     systems = ["x86_64-linux"];
 
@@ -46,14 +35,9 @@
         ];
     };
 
-    overlays = [
-      (final: _prev: myPackages final)
-      llm-agents.overlays.shared-nixpkgs
-    ];
-
     pkgsFor = system:
       import nixpkgs {
-        inherit system config overlays;
+        inherit system config;
       };
 
     forAllSystems = f: lib.genAttrs systems (system: f (pkgsFor system));
@@ -67,13 +51,17 @@
           ./nixosModules
           (hostsDir + "/${name}")
           {
-            networking.hostName = name;
-            nixpkgs = {inherit config overlays;};
+            networking.hostName = lib.mkDefault name;
+            nixpkgs = {inherit config;};
           }
         ];
       };
   in {
-    packages = forAllSystems myPackages;
+    packages = forAllSystems (pkgs:
+      lib.packagesFromDirectoryRecursive {
+        inherit (pkgs) callPackage;
+        directory = ./packages;
+      });
 
     formatter = forAllSystems (pkgs: pkgs.alejandra);
 
