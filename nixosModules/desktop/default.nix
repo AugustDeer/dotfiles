@@ -50,10 +50,7 @@ in {
 
     security.rtkit.enable = true;
 
-    hardware.graphics = {
-      enable = true;
-      enable32Bit = true;
-    };
+    hardware.graphics.enable = true;
 
     programs = {
       mango.enable = true;
@@ -66,8 +63,6 @@ in {
         ];
       };
       dconf.enable = true;
-
-      steam.enable = true;
     };
 
     environment.systemPackages = with pkgs; [
