@@ -118,6 +118,8 @@
           name = "August Deer";
           email = "august@augustdeer.com";
         };
+        commit.gpgSign = true;
+        tag.gpgSign = true;
       };
     };
     gh.enable = true;
