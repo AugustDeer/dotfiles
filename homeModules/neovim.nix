@@ -28,7 +28,7 @@
         {
           key = "<leader>n";
           mode = "n";
-          action = ":Neotree toggle<CR>";
+          action = ":NvimTreeToggle<CR>";
         }
         (wincmd "h")
         (wincmd "j")
@@ -47,7 +47,10 @@
         providers.wl-copy.enable = true;
       };
 
-      filetree.neo-tree.enable = true;
+      filetree.nvimTree = {
+        enable = true;
+        setupOpts.disable_netrw = true;
+      };
 
       git.enable = true;
 
@@ -56,10 +59,8 @@
         enableFormat = true;
         enableExtraDiagnostics = true;
 
-        nix = {
-          enable = true;
-          lsp.servers = ["nixd"];
-        };
+        nix.enable = true;
+
         markdown = {
           enable = true;
           extensions.markview-nvim.enable = true;
