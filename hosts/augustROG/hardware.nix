@@ -1,4 +1,8 @@
-{inputs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = with inputs.nixos-hardware.nixosModules;
     [
       common-cpu-amd
@@ -14,13 +18,23 @@
       ./hardware-configuration.nix
     ];
 
-  hardware.nvidia = {
-    prime = {
-      amdgpuBusId = "PCI:65@0:0:0";
-      nvidiaBusId = "PCI:64@0:0:0";
+  hardware = {
+    nvidia = {
+      prime = {
+        amdgpuBusId = "PCI:65@0:0:0";
+        nvidiaBusId = "PCI:64@0:0:0";
+      };
+
+      dynamicBoost.enable = true;
     };
 
-    dynamicBoost.enable = true;
+    display.edid.packages = [
+      (pkgs.runCommand "edid-ATNA60DL04" {} ''
+        mkdir -p "$out/lib/firmware/edid"
+        cp ${./edid-patched-hdr.bin} "$out/lib/firmware/edid/ATNA60DL04-patched.bin"
+      '')
+    ];
+    display.outputs."eDP-1".edid = "ATNA60DL04-patched.bin";
   };
 
   services.asusd.enable = true;
