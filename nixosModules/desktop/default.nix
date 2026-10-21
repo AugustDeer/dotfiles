@@ -68,6 +68,7 @@ in {
     environment.systemPackages = with pkgs; [
       brightnessctl
       file-roller
+      hyprshutdown
     ];
 
     fonts.enableDefaultPackages = true;
