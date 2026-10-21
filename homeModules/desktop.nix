@@ -14,9 +14,6 @@ in {
     dolphin-emu
     prismlauncher
     inputs.self.packages.${system}.smb1r
-    opencode-desktop
-    inputs.llm-agents.packages.${system}.claude-desktop
-    qemu_kvm # undeclared dependency of claude-desktop
   ];
 
   xdg.userDirs = {
