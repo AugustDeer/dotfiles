@@ -71,7 +71,15 @@ hl.bind(mod .. " + SHIFT + J", hl.dsp.window.move({ direction = "down" }))
 hl.bind(mod .. " + V", hl.dsp.window.float())
 hl.bind(mod .. " + F", hl.dsp.window.fullscreen())
 
-hl.bind(mod .. " + I", hl.dsp.window.move({ workspace = "special:minimized" }))
+hl.bind(mod .. " + I", function ()
+    if hl.get_workspace("special:minimized") then
+        hl.dispatch(hl.dsp.window.move({ workspace = hl.get_active_workspace(), window = "tag:minimized" }))
+        hl.dispatch(hl.dsp.window.clear_tags({ window = "tag:minimized" }))
+    else
+        hl.dispatch(hl.dsp.window.tag({ tag = "minimized", window = hl.get_active_window() }))
+        hl.dispatch(hl.dsp.window.move({ workspace = "special:minimized", follow = false }))
+    end
+end)
 hl.bind(mod .. " + S", hl.dsp.workspace.toggle_special("minimized"))
 
 for i = 1, 10 do
@@ -80,18 +88,17 @@ for i = 1, 10 do
 end
 
 hl.bind(mod .. " + N", function()
-  local layouts = { "dwindle", "scrolling", "monocle" }
   local workspace = hl.get_active_workspace()
   if hl.get_active_special_workspace() then
     workspace = hl.get_active_special_workspace()
   end
-
-  local next_layout = "dwindle"
-
   if not workspace then
     return
   end
 
+  local layouts = { "dwindle", "scrolling", "monocle" }
+
+  local next_layout = "dwindle"
   for i = 1, #layouts do
     if layouts[i] == workspace.tiled_layout then
       local next_layout_idx = (i % #layouts) + 1
