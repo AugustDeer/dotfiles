@@ -63,6 +63,8 @@
           extensions.markview-nvim.enable = true;
         };
 
+        lua.enable = true;
+
         ocaml = {
           enable = true;
           format.enable = true;
