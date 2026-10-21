@@ -71,14 +71,14 @@ hl.bind(mod .. " + SHIFT + J", hl.dsp.window.move({ direction = "down" }))
 hl.bind(mod .. " + V", hl.dsp.window.float())
 hl.bind(mod .. " + F", hl.dsp.window.fullscreen())
 
-hl.bind(mod .. " + I", function ()
-    if hl.get_workspace("special:minimized") then
-        hl.dispatch(hl.dsp.window.move({ workspace = hl.get_active_workspace(), window = "tag:minimized" }))
-        hl.dispatch(hl.dsp.window.clear_tags({ window = "tag:minimized" }))
-    else
-        hl.dispatch(hl.dsp.window.tag({ tag = "minimized", window = hl.get_active_window() }))
-        hl.dispatch(hl.dsp.window.move({ workspace = "special:minimized", follow = false }))
-    end
+hl.bind(mod .. " + I", function()
+  if hl.get_workspace("special:minimized") then
+    hl.dispatch(hl.dsp.window.move({ workspace = hl.get_active_workspace(), window = "tag:minimized" }))
+    hl.dispatch(hl.dsp.window.clear_tags({ window = "tag:minimized" }))
+  else
+    hl.dispatch(hl.dsp.window.tag({ tag = "minimized", window = hl.get_active_window() }))
+    hl.dispatch(hl.dsp.window.move({ workspace = "special:minimized", follow = false }))
+  end
 end)
 hl.bind(mod .. " + S", hl.dsp.workspace.toggle_special("minimized"))
 
@@ -138,3 +138,35 @@ hl.window_rule({
   float = true,
   size = { 1080, 920 },
 })
+
+---@param w HL.Window
+hl.on("window.open", function(w)
+  if w.class ~= "firefox" then return end
+  if w.initial_title ~= "Mozilla Firefox" then return end
+
+  local ff_windows = hl.get_windows({ class = "firefox" })
+  if #ff_windows <= 1 then return end
+
+  hl.dispatch(hl.dsp.window.float({ action = "set", window = w }))
+
+  local sub
+  sub = hl.on("window.title", function(tw)
+    if tw.address ~= w.address then return end
+    if tw.title == ""
+        or tw.title == "Mozilla Firefox"
+        or tw.title == "about:blank"
+        or tw.title:match("^about:.*Mozilla Firefox$") then
+      return
+    end
+
+    sub:remove()
+
+    if tw.title:match("^Extension:") then
+      hl.dispatch(hl.dsp.window.resize({ x = 800, y = 600, window = tw }))
+      hl.dispatch(hl.dsp.window.center({ window = tw }))
+      hl.dispatch(hl.dsp.focus({ window = tw }))
+    else
+      hl.dispatch(hl.dsp.window.float({ action = "unset", window = tw }))
+    end
+  end)
+end)
