@@ -14,7 +14,7 @@ in {
     dolphin-emu
     prismlauncher
     inputs.self.packages.${system}.smb1r
-    inputs.llm-agents.packages.${system}.opencode2-desktop
+    opencode-desktop
     inputs.llm-agents.packages.${system}.claude-desktop
     qemu_kvm # undeclared dependency of claude-desktop
   ];

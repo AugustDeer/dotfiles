@@ -1,6 +1,5 @@
 {
   pkgs,
-  inputs,
   config,
   ...
 }: {
@@ -8,7 +7,7 @@
 
   home = {
     packages = [
-      inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.opencode2
+      pkgs.opencode
     ];
 
     sessionVariables = {
