@@ -42,6 +42,8 @@ in {
 
     networking.networkmanager.enable = true;
 
+    services.tailscale.enable = true;
+
     hardware.bluetooth.enable = true;
 
     environment.systemPackages = with pkgs; [
