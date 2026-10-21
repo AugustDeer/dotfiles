@@ -53,7 +53,7 @@ in {
     hardware.graphics.enable = true;
 
     programs = {
-      mango.enable = true;
+      hyprland.enable = true;
 
       thunar = {
         enable = true;

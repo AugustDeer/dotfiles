@@ -5,7 +5,7 @@
 }: let
   inherit (pkgs.stdenv.hostPlatform) system;
 in {
-  imports = [./mango.nix];
+  imports = [./hyprland.nix];
 
   home.packages = with pkgs; [
     wl-clipboard

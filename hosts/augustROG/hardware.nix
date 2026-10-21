@@ -24,8 +24,6 @@
         amdgpuBusId = "PCI:65@0:0:0";
         nvidiaBusId = "PCI:64@0:0:0";
       };
-
-      dynamicBoost.enable = true;
     };
 
     display.edid.packages = [
