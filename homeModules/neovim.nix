@@ -28,7 +28,7 @@
         {
           key = "<leader>n";
           mode = "n";
-          action = ":NvimTreeToggle<CR>";
+          action = ":Neotree toggle<CR>";
         }
         (wincmd "h")
         (wincmd "j")
@@ -47,10 +47,7 @@
         providers.wl-copy.enable = true;
       };
 
-      filetree.nvimTree = {
-        enable = true;
-        setupOpts.disable_netrw = true;
-      };
+      filetree.neo-tree.enable = true;
 
       git.enable = true;
 
