@@ -22,6 +22,8 @@
   luaConfig =
     # lua
     ''
+      hl.env("AQ_DRM_DEVICES", "/dev/dri/card2:/dev/dri/card1")
+
       hl.monitor({
         output   = "eDP-1",
         mode     = "2560x1600@240",
@@ -29,9 +31,6 @@
         scale    = 1.25,
         vrr      = 1,
       })
-
-      hl.env("XCURSOR_THEME", "${cursorName}")
-      hl.env("XCURSOR_SIZE", "${cursorSize}")
 
       hl.on("hyprland.start", function()
         hl.exec_cmd("${noctalia}")
@@ -41,6 +40,7 @@
 
       hl.config({
         general = {
+          border_size = 2,
           layout = "dwindle",
           col = {
             active_border   = "rgb(${autumnGreen})",
@@ -57,9 +57,7 @@
         },
         decoration = {
           rounding     = 10,
-          dim_inactive = true,
-          dim_strength = 0.13, -- 0x22 alpha
-          blur = { enabled = true, passes = 2 },
+          blur = { enabled = true },
         },
         animations = { enabled = true },
         input = { touchpad = { natural_scroll = true } },
@@ -70,7 +68,7 @@
         },
       })
 
-      hl.animation({ leaf = "global", enabled = true, speed = 4, bezier = "default" })
+      hl.animation({ leaf = "global", enabled = true, speed = 3, spring = "default" })
 
       local mod = "SUPER"
 
@@ -98,9 +96,9 @@
       hl.bind(mod .. " + I", hl.dsp.window.move({ workspace = "special:minimized" }))
       hl.bind(mod .. " + S", hl.dsp.workspace.toggle_special("minimized"))
 
-      for i = 1, 9 do
-        hl.bind(mod .. " + " .. i,            hl.dsp.focus({ workspace = i }))
-        hl.bind(mod .. " + SHIFT + " .. i,    hl.dsp.window.move({ workspace = i }))
+      for i = 1, 10 do
+        hl.bind(mod .. " + " .. i % 10,            hl.dsp.focus({ workspace = i }))
+        hl.bind(mod .. " + SHIFT + " .. i % 10,    hl.dsp.window.move({ workspace = i }))
       end
 
       hl.bind(mod .. " + N", function ()
@@ -145,6 +143,12 @@
       hl.bind(mod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
       hl.gesture({ fingers = 3, direction = "horizontal", action = "workspace" })
+
+      hl.window_rule({
+        match = { class = "dev.noctalia.Noctalia" },
+        float = true,
+        size = { 1080, 920 },
+      })
     '';
 in {
   wayland.windowManager.hyprland = {
