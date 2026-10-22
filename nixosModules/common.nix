@@ -3,11 +3,9 @@
   lib,
   config,
   ...
-}:
-let
+}: let
   cfg = config.my.common;
-in
-{
+in {
   options.my.common.enable = lib.mkOption {
     default = true;
     description = "Enable general system configuration";

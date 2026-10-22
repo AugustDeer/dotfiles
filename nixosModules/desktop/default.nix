@@ -8,7 +8,10 @@
   hyprpkgs = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system};
   cfg = config.my.desktop;
 in {
-  imports = [./flatpak.nix ./gaming.nix];
+  imports = [
+    ./flatpak.nix
+    ./gaming.nix
+  ];
 
   options.my.desktop = {
     enable = lib.mkEnableOption "Enable desktop/gui-specific settings";
@@ -36,13 +39,7 @@ in {
       # Enable touchpad support (enabled default in most desktopManager).
       libinput.enable = true;
 
-      displayManager.noctalia-greeter = {
-        enable = true;
-        settings = {
-          appearance.wallpaper.path = ../../assets/AugustWallpaperBackground.png;
-          appearance.wallpapers.eDP-1.path = ../../assets/AugustWallpaperBackground.png;
-        };
-      };
+      displayManager.noctalia-greeter.enable = true;
 
       gvfs.enable = true;
       tumbler.enable = true;
