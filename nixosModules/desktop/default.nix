@@ -34,14 +34,14 @@ in {
       # Enable touchpad support (enabled default in most desktopManager).
       libinput.enable = true;
 
-      displayManager.regreet = {
+      displayManager.noctalia-greeter = {
         enable = true;
         settings = {
-          background.path = ../../assets/AugustWallpaperBackground.png;
-          GTK.application_prefer_dark_theme = true;
-          widget.clock.format = "%a %-I:%M %p";
+          appearance.wallpaper.path = ../../assets/AugustWallpaperBackground.png;
+          appearance.wallpapers.eDP-1.path = ../../assets/AugustWallpaperBackground.png;
         };
       };
+
       gvfs.enable = true;
       tumbler.enable = true;
 
