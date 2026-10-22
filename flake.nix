@@ -13,6 +13,7 @@
       url = "github:NotAShelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyprland.url = "github:hyprwm/Hyprland";
   };
 
   outputs = inputs @ {nixpkgs, ...}: let
@@ -39,7 +40,9 @@
     forAllSystems = f: lib.genAttrs systems (system: f (pkgsFor system));
 
     hostsDir = ./hosts;
-    hosts = builtins.attrNames (lib.filterAttrs (_name: type: type == "directory") (builtins.readDir hostsDir));
+    hosts = builtins.attrNames (
+      lib.filterAttrs (_name: type: type == "directory") (builtins.readDir hostsDir)
+    );
     mkHost = name:
       lib.nixosSystem {
         specialArgs = {inherit inputs;};
@@ -53,11 +56,13 @@
         ];
       };
   in {
-    packages = forAllSystems (pkgs:
-      lib.packagesFromDirectoryRecursive {
-        inherit (pkgs) callPackage;
-        directory = ./packages;
-      });
+    packages = forAllSystems (
+      pkgs:
+        lib.packagesFromDirectoryRecursive {
+          inherit (pkgs) callPackage;
+          directory = ./packages;
+        }
+    );
 
     formatter = forAllSystems (pkgs: pkgs.alejandra);
 

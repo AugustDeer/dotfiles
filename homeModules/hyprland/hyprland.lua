@@ -35,7 +35,10 @@ hl.config({
   },
   decoration = {
     rounding = 10,
-    blur = { enabled = true },
+    blur = {
+      enabled = true,
+      variant = "frost",
+    },
   },
   animations = { enabled = true },
   input = { touchpad = { natural_scroll = true } },

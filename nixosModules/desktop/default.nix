@@ -2,8 +2,10 @@
   pkgs,
   lib,
   config,
+  inputs,
   ...
 }: let
+  hyprpkgs = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system};
   cfg = config.my.desktop;
 in {
   imports = [./flatpak.nix ./gaming.nix];
@@ -53,7 +55,11 @@ in {
     hardware.graphics.enable = true;
 
     programs = {
-      hyprland.enable = true;
+      hyprland = {
+        enable = true;
+        package = hyprpkgs.hyprland;
+        portalPackage = hyprpkgs.xdg-desktop-portal-hyprland;
+      };
 
       thunar = {
         enable = true;
