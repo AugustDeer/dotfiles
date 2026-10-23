@@ -16,17 +16,22 @@ in {
     inputs.self.packages.${system}.smb1r
   ];
 
-  xdg.userDirs = {
-    enable = true;
-    createDirectories = true;
-  };
-
-  xdg.mimeApps = {
-    enable = true;
-    defaultApplicationPackages = with pkgs; [
-      xarchiver
-      vesktop
-    ];
+  xdg = {
+    userDirs = {
+      enable = true;
+      createDirectories = true;
+    };
+    mimeApps = {
+      enable = true;
+      defaultApplicationPackages = with pkgs; [
+        xarchiver
+        firefox
+        vesktop
+      ];
+    };
+    configFile."xfce4/helpers.rc".text = ''
+      TerminalEmulator=ghostty
+    '';
   };
 
   home.pointerCursor = {
