@@ -50,7 +50,10 @@ in {
     hardware.graphics.enable = true;
 
     programs = {
-      hyprland.enable = true;
+      hyprland = {
+        enable = true;
+        withUWSM = false;
+      };
 
       thunar = {
         enable = true;

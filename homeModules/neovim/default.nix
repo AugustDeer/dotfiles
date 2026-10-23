@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs, lib, config, ...}: {
   programs.neovim = {
     enable = true;
     viAlias = true;
@@ -17,6 +17,12 @@
       which-key-nvim
     ];
 
-    initLua = builtins.readFile ./init.lua;
+    sideloadInitLua = true;
+  };
+
+  xdg.configFile."nvim/init.lua" = {
+    enable = lib.mkForce true;
+    text = lib.mkForce null;
+    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/homeModules/neovim/init.lua";
   };
 }

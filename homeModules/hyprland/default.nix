@@ -1,8 +1,10 @@
-{
+{config, ...}: {
   wayland.windowManager.hyprland = {
     enable = true;
     package = null;
     portalPackage = null;
-    extraConfig = builtins.readFile ./hyprland.lua;
+    extraLuaFiles = {
+      "init".content = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/homeModules/hyprland/init.lua";
+    };
   };
 }
