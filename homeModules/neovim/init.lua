@@ -114,7 +114,7 @@ lz.load({
 vim.lsp.config('nixd', {
   settings = {
     nixd = {
-      formatting = { command = { "nix fmt" } },
+      formatting = { command = { "alejandra" } },
       options = {
         nixos = {
           expr = "(builtins.getFlake (builtins.toString ./.)).nixosConfigurations.augustROG.options"
