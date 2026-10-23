@@ -18,6 +18,8 @@ end)
 
 hl.config({
   general = {
+    gaps_in = 5,
+    gaps_out = 10,
     border_size = 2,
     layout = "dwindle",
     col = {
@@ -31,21 +33,22 @@ hl.config({
     vrr = 1,
   },
   group = {
-    col = { border_active = "rgb(7e9cd8)" },
+    col = { border_active = "rgb(7e9cd8)", border_inactive = "rgb(363646)" },
   },
   decoration = {
-    rounding = 10,
+    rounding = 6,
     blur = {
       enabled = true,
-      variant = "frost",
     },
   },
   animations = { enabled = true },
   input = { touchpad = { natural_scroll = true } },
-  dwindle = { force_split = 0, preserve_split = true },
+  dwindle = {
+    force_split = 0,
+    preserve_split = true
+  },
   scrolling = {
     column_width = 0.5,
-    explicit_column_widths = "0.5, 0.8, 1.0",
   },
 })
 
