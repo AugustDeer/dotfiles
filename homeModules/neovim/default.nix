@@ -14,7 +14,6 @@
       lz-n
       mini-nvim
       nvim-lspconfig
-      telescope-nvim
       which-key-nvim
     ];
 

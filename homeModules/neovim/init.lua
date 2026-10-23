@@ -1,6 +1,9 @@
-vim.opt.expandtab = true
-vim.opt.number = true
-vim.opt.shiftwidth = 2
+vim.o.expandtab = true
+vim.o.number = true
+vim.o.relativenumber = true
+vim.o.shiftwidth = 2
+
+vim.api.nvim_create_autocmd({ 'TextYankPost' }, { callback = function() vim.hl.on_yank { higroup = 'Visual' } end })
 
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
@@ -8,6 +11,20 @@ vim.g.maplocalleader = ' '
 for _, c in ipairs({ 'h', 'j', 'k', 'l' }) do
   vim.keymap.set('n', '<C-' .. c .. '>', '<cmd>wincmd ' .. c .. '<CR>')
 end
+
+vim.keymap.set({ 'n', 'v' }, '<leader>la', vim.lsp.buf.code_action, { desc = "Code action" })
+vim.keymap.set('n', '<leader>ld', vim.diagnostic.open_float, { desc = "Display diagnostics" })
+vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format, { desc = "Format buffer" })
+vim.keymap.set('n', '<leader>li', vim.lsp.buf.implementation, { desc = "Show implementation" })
+vim.keymap.set('n', '<leader>ln', vim.lsp.buf.rename, { desc = "Rename symbol" })
+
+
+require('mini.pick').setup()
+vim.keymap.set('n', '<leader>ff', '<cmd>Pick files<CR>', { desc = 'Files' })
+vim.keymap.set('n', '<leader>fg', '<cmd>Pick grep_live<CR>', { desc = 'Grep live' })
+vim.keymap.set('n', '<leader>fb', '<cmd>Pick buffers<CR>', { desc = 'Buffers' })
+vim.keymap.set('n', '<leader>fh', '<cmd>Pick help<CR>', { desc = 'Help tags' })
+
 
 
 local lz = require('lz.n')
@@ -19,11 +36,11 @@ require('kanagawa').setup({
 vim.cmd.colorscheme('kanagawa')
 
 
-require 'mini.icons'.setup()
+require('mini.icons').setup()
 require('mini.icons').mock_nvim_web_devicons()
 
 
-require('lualine').setup()
+require('lualine').setup {}
 
 
 lz.load({
@@ -91,21 +108,16 @@ lz.load({
 })
 
 
-lz.load({
-  'telescope',
-  after = function() require('telescope').setup() end,
-  cmd = 'Telescope',
-  keys = {
-    { '<leader>ff', '<cmd>Telescope find_files<CR>', desc = 'Telescope find files' },
-    { '<leader>fg', '<cmd>Telescope live_grep<CR>',  desc = 'Telescope live grep' },
-    { '<leader>fb', '<cmd>Telescope buffers<CR>',    desc = 'Telescope buffers' },
-  }
-})
-
 
 lz.load({
   'which-key-nvim',
-  after = function() require('which-key').setup() end,
+  after = function()
+    require('which-key').add({
+      { '<leader>f', group = 'Find' },
+      { '<leader>h', group = 'Hunk' },
+      { '<leader>l', group = 'LSP' },
+    })
+  end,
   cmd = "WhichKey",
   event = "DeferredUIEnter"
 })

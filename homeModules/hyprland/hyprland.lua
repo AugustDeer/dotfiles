@@ -10,6 +10,8 @@ hl.monitor({
   position = "0x0",
   scale = 1.25,
   vrr = 1,
+  bitdepth = 10,
+  cm = "auto",
 })
 
 hl.on("hyprland.start", function()
@@ -33,12 +35,9 @@ hl.config({
     vrr = 1,
   },
   group = {
-    col = { border_active = "rgb(7e9cd8)", border_inactive = "rgb(363646)" },
-  },
-  decoration = {
-    rounding = 6,
-    blur = {
-      enabled = true,
+    col = {
+      border_active = "rgb(7e9cd8)",
+      border_inactive = "rgb(363646)"
     },
   },
   animations = { enabled = true },
