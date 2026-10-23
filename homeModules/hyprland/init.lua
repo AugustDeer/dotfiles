@@ -8,7 +8,7 @@ hl.monitor({
   output = "eDP-1",
   mode = "2560x1600@240",
   position = "0x0",
-  scale = 1.25,
+  scale = 1,
   vrr = 1,
   bitdepth = 10,
   cm = "auto",
@@ -51,9 +51,8 @@ hl.config({
   },
 })
 
---- Animation config taken from caelestia dotfiles
+-- Animation config taken from caelestia dotfiles
 -- Animation curves
-hl.curve("specialWorkSwitch", { type = "bezier", points = { { 0.05, 0.7 }, { 0.1, 1 } } })
 hl.curve("emphasizedAccel", { type = "bezier", points = { { 0.3, 0 }, { 0.8, 0.15 } } })
 hl.curve("emphasizedDecel", { type = "bezier", points = { { 0.05, 0.7 }, { 0.1, 1 } } })
 hl.curve("standard", { type = "bezier", points = { { 0.2, 0 }, { 0, 1 } } })
@@ -63,7 +62,7 @@ hl.animation({ leaf = "layersIn", enabled = true, speed = 3, bezier = "emphasize
 hl.animation({ leaf = "layersOut", enabled = true, speed = 2, bezier = "emphasizedAccel", style = "slide" })
 hl.animation({ leaf = "fadeLayers", enabled = true, speed = 3, bezier = "standard" })
 
-hl.animation({ leaf = "windowsIn", enabled = true, speed = 3, bezier = "emphasizedDecel" })
+hl.animation({ leaf = "windowsIn", enabled = true, speed = 2, bezier = "emphasizedDecel" })
 hl.animation({ leaf = "windowsOut", enabled = true, speed = 1, bezier = "emphasizedAccel" })
 hl.animation({ leaf = "windowsMove", enabled = true, speed = 4, bezier = "standard" })
 hl.animation({ leaf = "workspaces", enabled = true, speed = 3, bezier = "standard" })
@@ -72,12 +71,12 @@ hl.animation({
     leaf    = "specialWorkspace",
     enabled = true,
     speed   = 2,
-    bezier  = "specialWorkSwitch",
+    bezier  = "emphasizedAccel",
     style   = "slidefadevert 15%"
 })
 hl.animation({ leaf = "fade", enabled = true, speed = 4, bezier = "standard" })
 hl.animation({ leaf = "fadeDim", enabled = true, speed = 4, bezier = "standard" })
-hl.animation({ leaf = "border", enabled = true, speed = 4, bezier = "standard" })
+hl.animation({ leaf = "border", enabled = true, speed = 2, bezier = "standard" })
 
 
 local mod = "SUPER"
@@ -115,8 +114,9 @@ end)
 hl.bind(mod .. " + S", hl.dsp.workspace.toggle_special("minimized"))
 
 for i = 1, 10 do
-  hl.bind(mod .. " + " .. i % 10, hl.dsp.focus({ workspace = i }))
-  hl.bind(mod .. " + SHIFT + " .. i % 10, hl.dsp.window.move({ workspace = i }))
+  local key = i % 10
+  hl.bind(mod .. " + " .. key, hl.dsp.focus({ workspace = i }))
+  hl.bind(mod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
 end
 
 hl.bind(mod .. " + N", function()
@@ -202,3 +202,26 @@ hl.on("window.open", function(w)
     end
   end)
 end)
+
+hl.window_rule({
+    -- Ignore maximize requests from all apps. You'll probably like this.
+    name  = "suppress-maximize-events",
+    match = { class = ".*" },
+
+    suppress_event = "maximize",
+})
+
+hl.window_rule({
+    -- Fix some dragging issues with XWayland
+    name  = "fix-xwayland-drags",
+    match = {
+        class      = "^$",
+        title      = "^$",
+        xwayland   = true,
+        float      = true,
+        fullscreen = false,
+        pin        = false,
+    },
+
+    no_focus = true,
+})

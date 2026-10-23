@@ -11,6 +11,9 @@ in {
     wl-clipboard
     inkscape
     heroic
+
+    webcord
+
     dolphin-emu
     prismlauncher
     inputs.self.packages.${system}.smb1r
@@ -105,7 +108,5 @@ in {
     };
 
     firefox.enable = true;
-
-    vesktop.enable = true;
   };
 }
