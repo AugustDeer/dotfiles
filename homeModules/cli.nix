@@ -3,17 +3,15 @@
   config,
   ...
 }: {
-  imports = [./neovim.nix];
+  imports = [./neovim];
 
   home = {
-    packages = [
-      pkgs.opencode
+    packages = with pkgs; [
+      alejandra
+      nixd
+      lua-language-server
+      opencode
     ];
-
-    sessionVariables = {
-      EDITOR = "nvim";
-      VISUAL = "nvim";
-    };
 
     shellAliases.cat = "bat";
   };
