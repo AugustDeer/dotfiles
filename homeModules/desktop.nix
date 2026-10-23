@@ -92,7 +92,7 @@ in {
       enable = true;
       settings = {
         theme = "Kanagawa Wave";
-        font-family = "FiraCode Nerd Font";
+        font-family = "FiraCode Nerd Font Mono";
         background-opacity = 0.9;
         custom-shader = "${cursor_warp}";
       };

@@ -96,9 +96,9 @@ lz.load({
   after = function() require('telescope').setup() end,
   cmd = 'Telescope',
   keys = {
-    { '<leader>ff', '<cmd>Telescope find_files', desc = 'Telescope find files' },
-    { '<leader>fg', '<cmd>Telescope live_grep',  desc = 'Telescope live grep' },
-    { '<leader>fb', '<cmd>Telescope buffers',    desc = 'Telescope buffers' },
+    { '<leader>ff', '<cmd>Telescope find_files<CR>', desc = 'Telescope find files' },
+    { '<leader>fg', '<cmd>Telescope live_grep<CR>',  desc = 'Telescope live grep' },
+    { '<leader>fb', '<cmd>Telescope buffers<CR>',    desc = 'Telescope buffers' },
   }
 })
 
