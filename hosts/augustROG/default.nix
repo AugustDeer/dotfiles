@@ -1,8 +1,5 @@
 {
-  imports = [
-    ./hardware.nix
-  ];
-
+  imports = [ ./hardware.nix ];
   my.desktop = {
     enable = true;
     gaming = true;

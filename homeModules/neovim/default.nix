@@ -3,7 +3,8 @@
   config,
   src,
   ...
-}: {
+}:
+{
   programs.neovim = {
     enable = true;
     viAlias = true;

@@ -2,10 +2,12 @@
   pkgs,
   inputs,
   ...
-}: let
+}:
+let
   inherit (pkgs.stdenv.hostPlatform) system;
-in {
-  imports = [./hyprland];
+in
+{
+  imports = [ ./hyprland ];
 
   home.packages = with pkgs; [
     wl-clipboard
@@ -91,21 +93,23 @@ in {
         custom_shaders = "cursor-trail-motion-blur";
       };
     };
-    ghostty = let
-      cursor_warp = pkgs.fetchurl {
-        url = "https://raw.githubusercontent.com/sahaj-b/cursor-shaders/9ad9158a93c0de0c045e1c6b27df37da698bc8af/ghostty/cursor_warp.glsl";
-        hash = "sha256-WJ9x9TfO6JCgfkCPE9Bi/32T3m2fdCyE5L3mEExdUfs=";
+    ghostty =
+      let
+        cursor_warp = pkgs.fetchurl {
+          url = "https://raw.githubusercontent.com/sahaj-b/cursor-shaders/9ad9158a93c0de0c045e1c6b27df37da698bc8af/ghostty/cursor_warp.glsl";
+          hash = "sha256-WJ9x9TfO6JCgfkCPE9Bi/32T3m2fdCyE5L3mEExdUfs=";
+        };
+      in
+      {
+        enable = true;
+        settings = {
+          background-opacity = 0.9;
+          custom-shader = "${cursor_warp}";
+          font-family = "FiraCode Nerd Font Mono";
+          scrollbar = "never";
+          theme = "Kanagawa Wave";
+        };
       };
-    in {
-      enable = true;
-      settings = {
-        background-opacity = 0.9;
-        custom-shader = "${cursor_warp}";
-        font-family = "FiraCode Nerd Font Mono";
-        scrollbar = "never";
-        theme = "Kanagawa Wave";
-      };
-    };
 
     firefox.enable = true;
   };

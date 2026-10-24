@@ -1,14 +1,14 @@
 {
   pkgs,
-  config,
   src,
   ...
-}: {
-  imports = [./neovim];
+}:
+{
+  imports = [ ./neovim ];
 
   home = {
     packages = with pkgs; [
-      alejandra
+      nixfmt
       nixd
       lua-language-server
       opencode
@@ -23,7 +23,7 @@
 
     starship = {
       enable = true;
-      presets = ["nerd-font-symbols"];
+      presets = [ "nerd-font-symbols" ];
     };
 
     fastfetch = {
@@ -152,7 +152,7 @@
 
     zoxide = {
       enable = true;
-      options = ["--cmd cd"];
+      options = [ "--cmd cd" ];
     };
 
     nh = {

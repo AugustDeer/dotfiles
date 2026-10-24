@@ -11,58 +11,64 @@
     };
   };
 
-  outputs = inputs @ {nixpkgs, ...}: let
-    inherit (nixpkgs) lib;
+  outputs =
+    inputs@{ nixpkgs, ... }:
+    let
+      inherit (nixpkgs) lib;
 
-    src = "/home/adeer/dotfiles/"; # Must be current directory
+      src = "/home/adeer/dotfiles/"; # Must be current directory
 
-    systems = ["x86_64-linux"];
+      systems = [ "x86_64-linux" ];
 
-    config = {
-      allowUnfreePredicate = pkg:
-        builtins.elem (lib.getName pkg) [
-          "nvidia-x11"
-          "nvidia-settings"
+      config = {
+        allowUnfreePredicate =
+          pkg:
+          builtins.elem (lib.getName pkg) [
+            "nvidia-x11"
+            "nvidia-settings"
 
-          "steam"
-          "steam-unwrapped"
-        ];
-    };
-
-    pkgsFor = system:
-      import nixpkgs {
-        inherit system config;
+            "steam"
+            "steam-unwrapped"
+          ];
       };
 
-    forAllSystems = f: lib.genAttrs systems (system: f (pkgsFor system));
+      pkgsFor =
+        system:
+        import nixpkgs {
+          inherit system config;
+        };
 
-    hostsDir = ./hosts;
-    hosts = builtins.attrNames (
-      lib.filterAttrs (_name: type: type == "directory") (builtins.readDir hostsDir)
-    );
-    mkHost = name:
-      lib.nixosSystem {
-        specialArgs = {inherit inputs src;};
-        modules = [
-          ./nixosModules
-          (hostsDir + "/${name}")
-          {
-            networking.hostName = lib.mkDefault name;
-            nixpkgs = {inherit config;};
-          }
-        ];
-      };
-  in {
-    packages = forAllSystems (
-      pkgs:
+      forAllSystems = f: lib.genAttrs systems (system: f (pkgsFor system));
+
+      hostsDir = ./hosts;
+      hosts = builtins.attrNames (
+        lib.filterAttrs (_name: type: type == "directory") (builtins.readDir hostsDir)
+      );
+      mkHost =
+        name:
+        lib.nixosSystem {
+          specialArgs = { inherit inputs src; };
+          modules = [
+            ./nixosModules
+            (hostsDir + "/${name}")
+            {
+              networking.hostName = lib.mkDefault name;
+              nixpkgs = { inherit config; };
+            }
+          ];
+        };
+    in
+    {
+      packages = forAllSystems (
+        pkgs:
         lib.packagesFromDirectoryRecursive {
           inherit (pkgs) callPackage;
           directory = ./packages;
         }
-    );
+      );
 
-    formatter = forAllSystems (pkgs: pkgs.alejandra);
+      formatter = forAllSystems (pkgs: pkgs.nixfmt-tree);
 
-    nixosConfigurations = lib.genAttrs hosts mkHost;
-  };
+      nixosConfigurations = lib.genAttrs hosts mkHost;
+    };
 }

@@ -2,7 +2,8 @@
   config,
   src,
   ...
-}: {
+}:
+{
   wayland.windowManager.hyprland = {
     enable = true;
     package = null;

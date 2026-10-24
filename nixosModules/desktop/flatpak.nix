@@ -2,9 +2,11 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   cfg = config.my.desktop;
-in {
+in
+{
   options.my.desktop.flatpak = lib.mkOption {
     type = lib.types.bool;
     default = cfg.enable;

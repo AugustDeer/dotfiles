@@ -3,9 +3,11 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   cfg = config.my.desktop;
-in {
+in
+{
   imports = [
     ./flatpak.nix
     ./gaming.nix
