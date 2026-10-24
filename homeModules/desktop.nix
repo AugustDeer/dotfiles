@@ -69,6 +69,28 @@ in
     noctalia = {
       enable = true;
 
+      # Dependencies for Wallpaper Depth plugin
+      package =
+        let
+          wrapped-python = pkgs.python314.withPackages (
+            ps: with ps; [
+              numpy
+              onnxruntime
+              pillow
+            ]
+          );
+        in
+        pkgs.symlinkJoin {
+          inherit (pkgs.noctalia) version meta;
+          pname = "noctalia-wrapped";
+          buildInputs = [ pkgs.makeBinaryWrapper ];
+          paths = [ pkgs.noctalia ];
+          postBuild = ''
+            wrapProgram $out/bin/noctalia \
+              --prefix PATH : ${pkgs.lib.makeBinPath [ wrapped-python ]}
+          '';
+        };
+
       settings = {
         theme = {
           mode = "dark";
