@@ -29,7 +29,7 @@ in
     mimeApps = {
       enable = true;
       defaultApplicationPackages = with pkgs; [
-        xarchiver
+        file-roller
         firefox
         vesktop
       ];
