@@ -26,9 +26,7 @@
     sideloadInitLua = true;
   };
 
-  xdg.configFile."nvim/init.lua" = {
-    enable = pkgs.lib.mkForce true;
-    text = pkgs.lib.mkForce null;
-    source = config.lib.file.mkOutOfStoreSymlink "${src}/homeModules/neovim/init.lua";
+  xdg.configFile."nvim" = {
+    source = config.lib.file.mkOutOfStoreSymlink "${src}/config/nvim";
   };
 }
