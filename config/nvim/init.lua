@@ -164,4 +164,17 @@ vim.lsp.config('nixd', {
 })
 vim.lsp.enable('nixd')
 
+vim.lsp.config('lua_ls', {
+  settings = {
+    Lua = {
+      format = {
+        enable = true,
+        defaultConfig = {
+          indent_style = "space",
+          indent_size = "2",
+        }
+      }
+    }
+  }
+})
 vim.lsp.enable('lua_ls')

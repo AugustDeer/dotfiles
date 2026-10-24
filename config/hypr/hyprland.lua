@@ -73,11 +73,11 @@ hl.animation({ leaf = "windowsMove", enabled = true, speed = 4, bezier = "standa
 hl.animation({ leaf = "workspaces", enabled = true, speed = 3, bezier = "standard" })
 
 hl.animation({
-    leaf    = "specialWorkspace",
-    enabled = true,
-    speed   = 2,
-    bezier  = "emphasizedAccel",
-    style   = "slidefadevert 15%"
+  leaf    = "specialWorkspace",
+  enabled = true,
+  speed   = 2,
+  bezier  = "emphasizedAccel",
+  style   = "slidefadevert 15%"
 })
 hl.animation({ leaf = "fade", enabled = true, speed = 4, bezier = "standard" })
 hl.animation({ leaf = "fadeDim", enabled = true, speed = 4, bezier = "standard" })
@@ -209,24 +209,24 @@ hl.on("window.open", function(w)
 end)
 
 hl.window_rule({
-    -- Ignore maximize requests from all apps. You'll probably like this.
-    name  = "suppress-maximize-events",
-    match = { class = ".*" },
+  -- Ignore maximize requests from all apps. You'll probably like this.
+  name           = "suppress-maximize-events",
+  match          = { class = ".*" },
 
-    suppress_event = "maximize",
+  suppress_event = "maximize",
 })
 
 hl.window_rule({
-    -- Fix some dragging issues with XWayland
-    name  = "fix-xwayland-drags",
-    match = {
-        class      = "^$",
-        title      = "^$",
-        xwayland   = true,
-        float      = true,
-        fullscreen = false,
-        pin        = false,
-    },
+  -- Fix some dragging issues with XWayland
+  name     = "fix-xwayland-drags",
+  match    = {
+    class      = "^$",
+    title      = "^$",
+    xwayland   = true,
+    float      = true,
+    fullscreen = false,
+    pin        = false,
+  },
 
-    no_focus = true,
+  no_focus = true,
 })
