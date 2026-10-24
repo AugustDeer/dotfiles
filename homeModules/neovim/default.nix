@@ -1,4 +1,9 @@
-{pkgs, lib, config, ...}: {
+{
+  pkgs,
+  config,
+  src,
+  ...
+}: {
   programs.neovim = {
     enable = true;
     viAlias = true;
@@ -21,8 +26,8 @@
   };
 
   xdg.configFile."nvim/init.lua" = {
-    enable = lib.mkForce true;
-    text = lib.mkForce null;
-    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/homeModules/neovim/init.lua";
+    enable = pkgs.lib.mkForce true;
+    text = pkgs.lib.mkForce null;
+    source = config.lib.file.mkOutOfStoreSymlink "${src}/homeModules/neovim/init.lua";
   };
 }

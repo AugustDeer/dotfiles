@@ -1,6 +1,7 @@
 {
   inputs,
   config,
+  src,
   ...
 }: {
   imports = [
@@ -10,7 +11,7 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    extraSpecialArgs = {inherit inputs;};
+    extraSpecialArgs = {inherit inputs src;};
     users."${config.my.userName}" = {
       imports = [../homeModules];
       home = {

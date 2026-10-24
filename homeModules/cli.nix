@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  src,
   ...
 }: {
   imports = [./neovim];
@@ -156,7 +157,7 @@
 
     nh = {
       enable = true;
-      flake = "${config.home.homeDirectory}/dotfiles";
+      flake = src;
     };
   };
 }

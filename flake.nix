@@ -14,6 +14,8 @@
   outputs = inputs @ {nixpkgs, ...}: let
     inherit (nixpkgs) lib;
 
+    src = "/home/adeer/dotfiles/"; # Must be current directory
+
     systems = ["x86_64-linux"];
 
     config = {
@@ -40,7 +42,7 @@
     );
     mkHost = name:
       lib.nixosSystem {
-        specialArgs = {inherit inputs;};
+        specialArgs = {inherit inputs src;};
         modules = [
           ./nixosModules
           (hostsDir + "/${name}")
