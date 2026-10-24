@@ -7,7 +7,7 @@ let
   inherit (pkgs.stdenv.hostPlatform) system;
 in
 {
-  imports = [ ./hyprland ];
+  imports = [ ./hyprland.nix ];
 
   home.packages = with pkgs; [
     wl-clipboard
