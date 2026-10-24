@@ -53,7 +53,11 @@ MiniIcons.mock_nvim_web_devicons()
 require('mini.pairs').setup()
 
 
-require('lualine').setup {}
+require('lualine').setup {
+  sections = {
+    lualine_x = { 'lsp_status', 'filetype' }
+  }
+}
 
 
 lz.load({
