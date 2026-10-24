@@ -112,5 +112,11 @@ in
       };
 
     firefox.enable = true;
+
+    keepassxc.enable = true;
+  };
+
+  services.syncthing = {
+    enable = true;
   };
 }
