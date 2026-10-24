@@ -1,15 +1,25 @@
+-- SECTION 1: Options
+vim.o.breakindent = true
+vim.o.confirm = true
 vim.o.expandtab = true
+vim.o.mouse = 'a'
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.shiftwidth = 2
+vim.o.showmode = false -- Already in statusline
+vim.o.undofile = true
 
 vim.api.nvim_create_autocmd({ 'TextYankPost' }, { callback = function() vim.hl.on_yank { higroup = 'Visual' } end })
 
+-- SECTION 2: Keymaps
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
-for _, c in ipairs({ 'h', 'j', 'k', 'l' }) do
-  vim.keymap.set('n', '<C-' .. c .. '>', '<cmd>wincmd ' .. c .. '<CR>')
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+
+for c, desc in pairs({ h = 'left', j = 'down', k = 'up', l = 'right' }) do
+  vim.keymap.set('n', '<C-' .. c .. '>', '<C-w>' .. c, { desc = 'Go to the ' .. desc .. 'window' })
+  vim.keymap.set('n', '<C-S-' .. c .. '>', '<C-w>' .. string.upper(c), { desc = 'Move window to the far ' .. desc })
 end
 
 vim.keymap.set({ 'n', 'v' }, '<leader>la', vim.lsp.buf.code_action, { desc = "Code action" })
@@ -20,13 +30,13 @@ vim.keymap.set('n', '<leader>ln', vim.lsp.buf.rename, { desc = "Rename symbol" }
 
 
 require('mini.pick').setup()
+vim.keymap.set('n', '<leader>fb', '<cmd>Pick buffers<CR>', { desc = 'Buffers' })
 vim.keymap.set('n', '<leader>ff', '<cmd>Pick files<CR>', { desc = 'Files' })
 vim.keymap.set('n', '<leader>fg', '<cmd>Pick grep_live<CR>', { desc = 'Grep live' })
-vim.keymap.set('n', '<leader>fb', '<cmd>Pick buffers<CR>', { desc = 'Buffers' })
 vim.keymap.set('n', '<leader>fh', '<cmd>Pick help<CR>', { desc = 'Help tags' })
 
 
-
+-- SECTION 3: Plugins
 local lz = require('lz.n')
 
 
@@ -37,7 +47,10 @@ vim.cmd.colorscheme('kanagawa')
 
 
 require('mini.icons').setup()
-require('mini.icons').mock_nvim_web_devicons()
+MiniIcons.mock_nvim_web_devicons()
+
+
+require('mini.pairs').setup()
 
 
 require('lualine').setup {}
@@ -108,7 +121,6 @@ lz.load({
 })
 
 
-
 lz.load({
   'which-key-nvim',
   after = function()
@@ -122,6 +134,13 @@ lz.load({
   event = "DeferredUIEnter"
 })
 
+
+
+-- SECTION 4: LSP Config
+
+vim.diagnostic.config {
+  virtual_text = true
+}
 
 vim.lsp.config('nixd', {
   settings = {
