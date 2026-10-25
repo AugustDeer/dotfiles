@@ -14,9 +14,7 @@ hl.monitor({
   position = "0x0",
   scale = 1,
   bitdepth = 10,
-  cm = "hdr",
   vrr = 1,
-  sdr_max_luminance = 350,
 })
 
 hl.on("hyprland.start", function()
@@ -39,7 +37,7 @@ hl.config({
   decoration = {
     blur = {
       enabled = true,
-      size = 8,
+      size = 4,
       passes = 2,
     },
   },
