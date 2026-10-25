@@ -1,6 +1,7 @@
 {
   pkgs,
   src,
+  osConfig,
   ...
 }:
 {
@@ -18,6 +19,11 @@
     ];
 
     shellAliases.cat = "bat";
+
+    sessionVariables = {
+      NH_FILE = "${src}/system.nix";
+      NH_ATTRP = osConfig.networking.hostName;
+    };
   };
 
   programs = {
@@ -75,9 +81,6 @@
       options = [ "--cmd cd" ];
     };
 
-    nh = {
-      enable = true;
-      flake = src;
-    };
+    nh.enable = true;
   };
 }
