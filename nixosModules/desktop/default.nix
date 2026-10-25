@@ -2,9 +2,11 @@
   pkgs,
   lib,
   config,
+  inputs,
   ...
 }:
 let
+  inherit (pkgs.stdenv.hostPlatform) system;
   cfg = config.my.desktop;
 in
 {
@@ -77,6 +79,7 @@ in
     fonts.packages = with pkgs; [
       nerd-fonts.symbols-only
       nerd-fonts.fira-code
+      inputs.self.packages.${system}.pixeloperator
     ];
   };
 }
