@@ -1,23 +1,15 @@
-{ pkgs, inputs, ... }: {
-  imports =
-    with inputs.nixos-hardware.nixosModules;
-    [
-      common-cpu-amd
-      common-gpu-nvidia
-      common-pc-laptop
-      common-pc-laptop-ssd
-    ]
-    ++ map (path: import ("${inputs.nixos-hardware}/common/" + path)) [
-      "gpu/nvidia/ada-lovelace"
-      "wifi/mediatek/mt7925"
-    ]
-    ++ [
-      ./hardware-configuration.nix
-    ];
+{ pkgs, ... }: {
+  imports = [ ./hardware-configuration.nix ];
 
   hardware = {
     nvidia = {
+      # was: nixos-hardware common-gpu-nvidia / gpu/nvidia/ada-lovelace
+      open = true;
       prime = {
+        offload = {
+          enable = true;
+          enableOffloadCmd = true;
+        };
         amdgpuBusId = "PCI:65@0:0:0";
         nvidiaBusId = "PCI:64@0:0:0";
       };
@@ -34,6 +26,42 @@
 
   services.asusd.enable = true;
   services.tuned.enable = true;
+
+  # was: nixos-hardware common-gpu-nvidia (nvidia/default.nix)
+  services.xserver.videoDrivers = [ "nvidia" ];
+
+  # was: nixos-hardware common/wifi/mediatek/mt7925
+  boot.extraModprobeConfig = ''
+    # MT7925 WiFi - disable all power management for stability
+    options mt7925e disable_aspm=1
+    options mt7925e power_save=0
+
+    # Disable CLC (Country Location Code) - fixes 6GHz band stability
+    options mt7925-common disable_clc=1
+  '';
+
+  networking.networkmanager.wifi = {
+    powersave = false;
+    scanRandMacAddress = false;
+  };
+
+  systemd.services.mediatek-wifi-resume = {
+    description = "Restart NetworkManager after suspend to fix MediaTek WiFi";
+    wantedBy = [
+      "suspend.target"
+      "hibernate.target"
+      "hybrid-sleep.target"
+    ];
+    after = [
+      "suspend.target"
+      "hibernate.target"
+      "hybrid-sleep.target"
+    ];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.systemd}/bin/systemctl restart NetworkManager.service";
+    };
+  };
 
   environment.sessionVariables = {
     WLR_DRM_NO_ATOMIC = 1;
