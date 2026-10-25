@@ -13,14 +13,16 @@ hl.monitor({
   mode = "2560x1600@240",
   position = "0x0",
   scale = 1,
-  vrr = 1,
   bitdepth = 10,
-  cm = "auto",
+  cm = "hdr",
+  vrr = 1,
+  sdr_max_luminance = 350,
 })
 
 hl.on("hyprland.start", function()
   hl.exec_cmd("dbus-update-activation-environment --systemd --all")
   hl.exec_cmd("noctalia")
+  hl.exec_cmd("keepassxc --minimized")
 end)
 
 hl.config({
@@ -30,23 +32,30 @@ hl.config({
     border_size = 2,
     layout = "dwindle",
     col = {
-      active_border = "rgb(76946a)",
-      inactive_border = "rgb(363646)",
+      active_border = "#76946A",
+      inactive_border = "#363646",
     },
   },
-  misc = {
-    background_color = "rgb(1f1f28)",
-    disable_hyprland_logo = true,
-    vrr = 1,
-  },
-  group = {
-    col = {
-      border_active = "rgb(7e9cd8)",
-      border_inactive = "rgb(363646)"
+  decoration = {
+    blur = {
+      enabled = true,
+      size = 8,
+      passes = 2,
     },
   },
   animations = { enabled = true },
   input = { touchpad = { natural_scroll = true } },
+  group = {
+    col = {
+      border_active = "#7E9CD8",
+      border_inactive = "#363646"
+    },
+  },
+  misc = {
+    background_color = "#1F1F28",
+    disable_hyprland_logo = true,
+    vrr = 1,
+  },
   dwindle = {
     force_split = 0,
     preserve_split = true
