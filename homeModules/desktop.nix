@@ -127,7 +127,7 @@ in
         settings = {
           background-opacity = 0.9;
           custom-shader = "${cursor_warp}";
-          font-family = "FiraCode Nerd Font Mono";
+          font-family = "FiraCode Nerd Font";
           scrollbar = "never";
           theme = "Kanagawa Wave";
         };
