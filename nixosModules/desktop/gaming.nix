@@ -1,4 +1,5 @@
 {
+  pkgs,
   lib,
   config,
   ...
@@ -12,6 +13,9 @@ in
   config = lib.mkIf cfg.gaming {
     services.pipewire.alsa.support32Bit = true;
     hardware.graphics.enable32Bit = true;
-    programs.steam.enable = true;
+    programs.steam = {
+      enable = true;
+      extraCompatPackages = [ pkgs.proton-ge-bin ];
+    };
   };
 }
