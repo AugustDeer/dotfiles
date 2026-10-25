@@ -19,6 +19,7 @@
       lualine-nvim
       lz-n
       mini-nvim
+      nvim-highlight-colors
       nvim-lspconfig
       which-key-nvim
     ];

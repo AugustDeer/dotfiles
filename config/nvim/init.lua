@@ -45,6 +45,7 @@ require('kanagawa').setup({
 })
 vim.cmd.colorscheme('kanagawa')
 
+require('nvim-highlight-colors').setup({})
 
 require('mini.icons').setup()
 MiniIcons.mock_nvim_web_devicons()
