@@ -21,6 +21,7 @@
       mini-nvim
       nvim-highlight-colors
       nvim-lspconfig
+      nvim-treesitter.withAllGrammars
       which-key-nvim
     ];
 

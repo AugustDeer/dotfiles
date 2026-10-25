@@ -140,8 +140,16 @@ lz.load({
 })
 
 
+-- Section 4: Treesitter
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = "*",
+  callback = function ()
+    pcall(vim.treesitter.start)
+  end
+})
 
--- SECTION 4: LSP Config
+
+-- SECTION 5: LSP Config
 
 vim.diagnostic.config {
   virtual_text = true
