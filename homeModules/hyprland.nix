@@ -15,7 +15,8 @@
     };
   };
 
-  xdg.configFile."hypr".source = config.lib.file.mkOutOfStoreSymlink "${src}/config/hypr";
+  xdg.configFile."hypr/hyprland.lua".source =
+    config.lib.file.mkOutOfStoreSymlink "${src}/config/hypr/hyprland.lua";
 
   services.hyprpolkitagent.enable = true;
 }
