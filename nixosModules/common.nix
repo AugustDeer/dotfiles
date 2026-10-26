@@ -54,6 +54,8 @@ in
       file
       jq
       unzip
+
+      python3
     ];
 
     users = {
