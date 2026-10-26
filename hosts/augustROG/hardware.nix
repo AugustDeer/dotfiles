@@ -3,7 +3,6 @@
 
   hardware = {
     nvidia = {
-      # was: nixos-hardware common-gpu-nvidia / gpu/nvidia/ada-lovelace
       open = true;
       prime = {
         offload = {
@@ -24,13 +23,12 @@
     display.outputs."eDP-1".edid = "ATNA60DL04-patched.bin";
   };
 
-  services.asusd.enable = true;
-  services.tuned.enable = true;
+  services = {
+    asusd.enable = true;
+    tuned.enable = true;
+    xserver.videoDrivers = [ "nvidia" ];
+  };
 
-  # was: nixos-hardware common-gpu-nvidia (nvidia/default.nix)
-  services.xserver.videoDrivers = [ "nvidia" ];
-
-  # was: nixos-hardware common/wifi/mediatek/mt7925
   boot.extraModprobeConfig = ''
     # MT7925 WiFi - disable all power management for stability
     options mt7925e disable_aspm=1
@@ -61,10 +59,6 @@
       Type = "oneshot";
       ExecStart = "${pkgs.systemd}/bin/systemctl restart NetworkManager.service";
     };
-  };
-
-  environment.sessionVariables = {
-    WLR_DRM_NO_ATOMIC = 1;
   };
 
   boot.initrd.luks.devices."luks-f785ec98-a216-429b-85ae-94f440a19e62".device =

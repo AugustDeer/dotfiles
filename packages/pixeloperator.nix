@@ -3,7 +3,7 @@
   fetchzip,
   installFonts,
 }:
-stdenvNoCC.mkDerivation (finalAttrs: {
+stdenvNoCC.mkDerivation {
   pname = "pixeloperator";
   version = "2018.10.04-1";
 
@@ -15,4 +15,4 @@ stdenvNoCC.mkDerivation (finalAttrs: {
   };
 
   nativeBuildInputs = [ installFonts ];
-})
+}

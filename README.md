@@ -17,12 +17,8 @@ but more machines are planned to be added in the future.
 ## Usage
 
 I primarily use the [nh](https://github.com/nix-community/nh) Nix CLI helper for
-deployment. If `nh` is not installed, bring it into the environment with the
-following command:
-
-```sh
-nix-shell -p nh      # without flakes
-```
+deployment. If `nh` is not installed, bring it and other development tools into
+the environment with the `nix-shell` command.
 
 Deploy the os configuration with one of the following commands:
 

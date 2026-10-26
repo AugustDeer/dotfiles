@@ -12,9 +12,6 @@
 
   home = {
     packages = with pkgs; [
-      nixfmt
-      nixd
-      lua-language-server
       opencode
     ];
 
@@ -55,6 +52,8 @@
       };
     };
     lazygit.enable = true;
+
+    direnv.enable = true;
 
     bat = {
       enable = true;
