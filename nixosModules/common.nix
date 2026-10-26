@@ -76,6 +76,7 @@ in
       nix-ld.enable = true;
     };
 
+    nix.channel.enable = false;
     nix.settings = {
       substituters = [
         "https://nix-community.cachix.org"

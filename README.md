@@ -1,8 +1,8 @@
 # My Nix Configuration
 
-This is my personal Nix configuration for NixOS, Home-Manager and related
-services. It currently serves one user (myself, August Deer) and one machine,
-but more machines are planned to be added in the future.
+This is my personal Nix flake for NixOS, Home-Manager and related services. It
+currently serves one user (myself, August Deer) and one machine, but more
+machines are planned to be added in the future.
 
 ## Features
 
@@ -17,23 +17,33 @@ but more machines are planned to be added in the future.
 ## Usage
 
 I primarily use the [nh](https://github.com/nix-community/nh) Nix CLI helper for
-deployment. If `nh` is not installed, bring it and other development tools into
-the environment with the `nix-shell` command.
+deployment. If `nh` is not installed, bring it into the environment with one of
+the following commands:
+
+```sh
+nix shell nixpkgs#nh # with flakes
+nix-shell -p nh      # without flakes
+```
 
 Deploy the os configuration with one of the following commands:
 
 ```sh
-nh os switch -f system.nix <hostname> # build and activate the current NixOS configuration
-nh os boot -f system.nix <hostname>   # build current NixOS configuration and prepare for reboot
+nh os switch . # build and activate the current NixOS configuration
+nh os boot .   # build current NixOS configuration and prepare for reboot
 ```
 
-This project uses npins, so inputs are pinned and not updated by default. To
-update nixpkgs and other inputs, run `npins update`. 
+This is a nix flake, so inputs are pinned and not updated by default. To update
+nixpkgs and other inputs, include the `--update` flag. Also include
+`--commit-lock-file` to commit the updated inputs.
+
+> [!CAUTION]
+> Nix ignores files which are untracked by git. `git add` any new files before
+> rebuilding.
 
 ## Layout
 
 - `packages/`: Custom packages not currently in upstream nixpkgs. Packages are
-  auto-imported and overlayed onto nixpkgs, available under `pkgs.my.<name>`.
+  auto-imported and overlayed onto nixpkgs, available under `pkgs.<name>`.
   Single-file packages are imported from `<name>.nix`, multi-file packages (none
   at the moment) are imported from `<name>/package.nix`.
 - `nixosModules/`: Reusable system modules. Auto-imported into each NixOS configuration.
@@ -42,7 +52,6 @@ update nixpkgs and other inputs, run `npins update`.
 - `homeModules/`: User configuration via Home-Manager. Imported as a NixOS
   module, so not necessary to use directly.
 - `assets/`: Non-nix assets.
-- `config/`: Non-nix configuration, typically symlinked to `~/.config`.
 
 ## Adding a New Machine
 
@@ -60,12 +69,12 @@ automatically set by `./nixosModules/common.nix`. Set `my.desktop.enable = true;
 for gui-specific tools.
 
 > [!NOTE]
-> Remember to commit + push your changes.
+> Remember to `git add` all new files, and commit + push your changes.
 
 Finally, deploy the configuration with
 
 ```sh
-nixos-install --attr <hostname>
+nh os boot . -H <hostname>
 ```
 
 and reboot to enjoy your new NixOS install.

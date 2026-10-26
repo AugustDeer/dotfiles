@@ -2,7 +2,6 @@
   pkgs,
   src,
   config,
-  osConfig,
   ...
 }:
 {
@@ -17,11 +16,6 @@
     ];
 
     shellAliases.cat = "bat";
-
-    sessionVariables = {
-      NH_FILE = "${src}/system.nix";
-      NH_ATTRP = osConfig.networking.hostName;
-    };
   };
 
   xdg.configFile."opencode/agents".source =
@@ -84,6 +78,9 @@
       options = [ "--cmd cd" ];
     };
 
-    nh.enable = true;
+    nh = {
+      enable = true;
+      flake = src;
+    };
   };
 }
