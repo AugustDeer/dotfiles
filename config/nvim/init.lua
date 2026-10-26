@@ -161,11 +161,11 @@ vim.lsp.config('nixd', {
       formatting = { command = { "nixfmt" } },
       options = {
         nixos = {
-          expr = "(builtins.getFlake (builtins.toString ./.)).nixosConfigurations.augustROG.options"
+          expr = "(import <nixos-system>).augustROG.options"
         },
         home_manager = {
           expr =
-          "(builtins.getFlake (builtins.toString ./.)).nixosConfigurations.augustROG.options.home-manager.users.type.getSubOptions []"
+          "(import <nixos-system>).augustROG.options.home-manager.users.type.getSubOptions []"
         }
       }
     }
