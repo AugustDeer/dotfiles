@@ -73,11 +73,23 @@ in
       hyprshutdown
     ];
 
-    fonts.enableDefaultPackages = true;
-    fonts.packages = with pkgs; [
-      nerd-fonts.symbols-only
-      nerd-fonts.fira-code
-      my.pixeloperator
-    ];
+    fonts = {
+      enableDefaultPackages = true;
+
+      fontconfig = {
+        defaultFonts = {
+          serif = [ "Liberation Serif" ];
+          sansSerif = [ "Liberation Sans" ];
+          monospace = [ "FiraCode Nerd Font" ];
+        };
+        subpixel.rgba = "rgb";
+      };
+
+      packages = with pkgs; [
+        nerd-fonts.symbols-only
+        nerd-fonts.fira-code
+        my.pixeloperator
+      ];
+    };
   };
 }
