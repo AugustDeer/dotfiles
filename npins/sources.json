@@ -1,5 +1,18 @@
 {
   "pins": {
+    "git-hooks.nix": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "cachix",
+        "repo": "git-hooks.nix"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "1ba1dbfe28738c9a71c266be6efa5b89e75491a9",
+      "url": "https://github.com/cachix/git-hooks.nix/archive/1ba1dbfe28738c9a71c266be6efa5b89e75491a9.tar.gz",
+      "hash": "sha256-VAhpCOmrun/KXimYfR8NM88bciKCui7CqHHhThSzgag="
+    },
     "home-manager": {
       "type": "Git",
       "repository": {
