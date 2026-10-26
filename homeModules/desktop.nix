@@ -117,7 +117,7 @@
       {
         enable = true;
         settings = {
-          background-opacity = 0.9;
+          background-opacity = 0.8;
           custom-shader = "${cursor_warp}";
           font-family = "FiraCode Nerd Font";
           scrollbar = "never";
