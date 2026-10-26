@@ -62,7 +62,7 @@
             (hostsDir + "/${name}")
             {
               networking.hostName = lib.mkDefault name;
-              nixpkgs = { inherit config; };
+              nixpkgs = { inherit config overlays; };
             }
           ];
         };

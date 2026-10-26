@@ -158,6 +158,9 @@ vim.diagnostic.config {
 vim.lsp.config('nixd', {
   settings = {
     nixd = {
+      nixpkgs = {
+        expr = "(builtins.getFlake \"/home/adeer/dotfiles\").nixosConfigurations.augustROG._module.args.pkgs",
+      },
       formatting = { command = { "nixfmt" } },
       options = {
         nixos = {

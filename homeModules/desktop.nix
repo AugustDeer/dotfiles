@@ -1,12 +1,4 @@
-{
-  pkgs,
-  inputs,
-  ...
-}:
-let
-  inherit (pkgs.stdenv.hostPlatform) system;
-in
-{
+{ pkgs, ... }: {
   imports = [ ./hyprland.nix ];
 
   home.packages = with pkgs; [
@@ -18,7 +10,7 @@ in
 
     dolphin-emu
     prismlauncher
-    inputs.self.packages.${system}.smb1r
+    my.smb1r
   ];
 
   xdg = {
