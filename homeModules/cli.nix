@@ -1,6 +1,7 @@
 {
   pkgs,
   src,
+  config,
   osConfig,
   ...
 }:
@@ -22,6 +23,9 @@
       NH_ATTRP = osConfig.networking.hostName;
     };
   };
+
+  xdg.configFile."opencode/agents".source =
+    config.lib.file.mkOutOfStoreSymlink "${src}/config/opencode/agents";
 
   programs = {
     bash.enable = true;
