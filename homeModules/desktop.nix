@@ -33,8 +33,8 @@
 
   home.pointerCursor = {
     enable = true;
-    package = pkgs.adwaita-icon-theme;
-    name = "Adwaita";
+    package = pkgs.yaru-theme;
+    name = "Yaru-blue-dark";
     size = 24;
     gtk.enable = true;
     x11.enable = true;
@@ -44,12 +44,12 @@
     enable = true;
     colorScheme = "dark";
     theme = {
-      name = "Breeze";
-      package = pkgs.kdePackages.breeze-gtk;
+      name = "Yaru-blue-dark";
+      package = pkgs.yaru-theme;
     };
     iconTheme = {
-      name = "breeze-dark";
-      package = pkgs.kdePackages.breeze-icons;
+      name = "Yaru-blue-dark";
+      package = pkgs.yaru-theme;
     };
   };
   qt = {
