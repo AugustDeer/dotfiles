@@ -8,8 +8,6 @@
 
     proton-vpn
 
-    webcord
-
     dolphin-emu
     prismlauncher
     my.smb1r
@@ -130,6 +128,8 @@
     firefox.enable = true;
 
     keepassxc.enable = true;
+
+    vesktop.enable = true;
   };
 
   services.syncthing = {
