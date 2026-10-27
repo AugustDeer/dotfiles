@@ -38,13 +38,11 @@
             "steam-unwrapped"
           ];
       };
-      overlay = final: _prev: { my = myPkgs final; };
-      overlays = [ overlay ];
 
       pkgsFor =
         system:
         import nixpkgs {
-          inherit system config overlays;
+          inherit system config;
         };
 
       forAllSystems = f: lib.genAttrs systems (system: f (pkgsFor system));
@@ -62,7 +60,7 @@
             (hostsDir + "/${name}")
             {
               networking.hostName = lib.mkDefault name;
-              nixpkgs = { inherit config overlays; };
+              nixpkgs = { inherit config; };
             }
           ];
         };
