@@ -6,6 +6,8 @@
     inkscape
     heroic
 
+    proton-vpn
+
     webcord
 
     dolphin-emu
