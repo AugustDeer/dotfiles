@@ -165,7 +165,7 @@ vim.lsp.config('nixd', {
         },
         home_manager = {
           expr =
-          "(builtins.getFlake \"/home/adeer/dotfiles\").augustROG.options.home-manager.users.type.getSubOptions []"
+          "(builtins.getFlake \"/home/adeer/dotfiles\").nixosConfigurations.augustROG.options.home-manager.users.type.getSubOptions []"
         }
       }
     }
