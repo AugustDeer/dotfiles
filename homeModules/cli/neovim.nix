@@ -1,10 +1,4 @@
-{
-  pkgs,
-  config,
-  src,
-  ...
-}:
-{
+{ pkgs, ... }: {
   programs.neovim = {
     enable = true;
     viAlias = true;
@@ -28,7 +22,5 @@
     sideloadInitLua = true;
   };
 
-  xdg.configFile."nvim" = {
-    source = config.lib.file.mkOutOfStoreSymlink "${src}/config/nvim";
-  };
+  xdg.configFile."nvim".source = ../../config/nvim;
 }

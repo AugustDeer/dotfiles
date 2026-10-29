@@ -1,9 +1,4 @@
 {
-  config,
-  src,
-  ...
-}:
-{
   systemd.user.targets.hyprland-session = {
     Unit = {
       Description = "Hyprland compositor session";
@@ -15,8 +10,7 @@
     };
   };
 
-  xdg.configFile."hypr/hyprland.lua".source =
-    config.lib.file.mkOutOfStoreSymlink "${src}/config/hypr/hyprland.lua";
+  xdg.configFile."hypr/hyprland.lua".source = ../../config/hypr/hyprland.lua;
 
   services.hyprpolkitagent.enable = true;
 }
