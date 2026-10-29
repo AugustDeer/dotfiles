@@ -10,7 +10,7 @@ in
 {
   options.my.common.enable = lib.mkOption {
     default = true;
-    description = "Enable general system configuration";
+    description = "Whether to enable general system configuration.";
     type = lib.types.bool;
   };
 

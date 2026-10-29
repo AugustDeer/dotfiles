@@ -17,7 +17,7 @@ in
   ];
 
   options.my.desktop = {
-    enable = lib.mkEnableOption "Enable desktop/gui-specific settings";
+    enable = lib.mkEnableOption "desktop/gui-specific settings";
     environment = lib.mkOption {
       default = "hyprland";
       description = "Which desktop environment to use.";

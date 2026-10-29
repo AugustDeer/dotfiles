@@ -10,7 +10,7 @@ in
   options.my.desktop.flatpak = lib.mkOption {
     type = lib.types.bool;
     default = cfg.enable;
-    description = "Whether to enable flatpak support";
+    description = "Whether to enable flatpak support.";
   };
 
   config = lib.mkIf cfg.flatpak {
