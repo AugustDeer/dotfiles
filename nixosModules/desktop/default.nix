@@ -13,10 +13,16 @@ in
   imports = [
     ./flatpak.nix
     ./gaming.nix
+    ./hyprland.nix
   ];
 
   options.my.desktop = {
     enable = lib.mkEnableOption "Enable desktop/gui-specific settings";
+    environment = lib.mkOption {
+      default = "hyprland";
+      description = "Which desktop environment to use.";
+      type = lib.types.enum [ "hyprland" ];
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -54,11 +60,6 @@ in
     hardware.graphics.enable = true;
 
     programs = {
-      hyprland = {
-        enable = true;
-        withUWSM = false;
-      };
-
       thunar = {
         enable = true;
         plugins = with pkgs; [
@@ -72,7 +73,6 @@ in
     environment.systemPackages = with pkgs; [
       brightnessctl
       file-roller
-      hyprshutdown
     ];
 
     fonts = {

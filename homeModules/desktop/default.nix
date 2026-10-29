@@ -9,7 +9,6 @@ in
 {
   imports = [
     ./ghostty.nix
-    ./hyprland.nix
     ./noctalia.nix
     ./theming.nix
   ];
