@@ -8,7 +8,6 @@
 {
   config = lib.mkIf (config.my.desktop.environment == "hyprland") {
     programs.hyprland.enable = true;
-    programs.hyprland.withUWSM = false;
 
     environment.systemPackages = [ pkgs.hyprshutdown ];
 
