@@ -1,6 +1,6 @@
 {
   imports = [
-    ./cli.nix
-    ./desktop.nix
+    ./cli
+    ./desktop
   ];
 }
