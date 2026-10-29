@@ -20,6 +20,8 @@
 
       inputs' = inputs // {
         inherit src pkgsFor;
+        assets = ./assets;
+        config = ./config;
       };
 
       systems = [ "x86_64-linux" ];
@@ -69,6 +71,8 @@
       nixosModules.default = import ./nixosModules;
 
       nixosConfigurations = import ./hosts inputs';
+
+      homeModules.default = import ./homeModules;
 
       devShells = forAllSystems (pkgs: {
         default = pkgs.mkShell {

@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  inputs,
   ...
 }:
 {
@@ -23,7 +24,7 @@
           PropagatesStopTo = [ "graphical-session.target" ];
         };
 
-        xdg.configFile."hypr/hyprland.lua".source = ../../config/hypr/hyprland.lua;
+        xdg.configFile."hypr/hyprland.lua".source = "${inputs.config}/hypr/hyprland.lua";
 
         services.hyprpolkitagent.enable = true;
       }

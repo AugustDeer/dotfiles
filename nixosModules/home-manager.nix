@@ -14,7 +14,7 @@
     useUserPackages = true;
     extraSpecialArgs = { inherit inputs src; };
     users."${config.my.userName}" = {
-      imports = [ ../homeModules ];
+      imports = [ inputs.self.homeModules.default ];
       home = {
         username = config.my.userName;
         homeDirectory = "/home/${config.my.userName}";

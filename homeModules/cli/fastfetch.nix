@@ -1,10 +1,10 @@
-{
+{ inputs, ... }: {
   programs.fastfetch = {
     enable = true;
     settings = {
       logo = {
         type = "kitty";
-        source = ../../assets/pfp_transparent.png;
+        source = "${inputs.assets}/pfp_transparent.png";
         height = 21;
         padding.top = 1;
         padding.left = 2;
