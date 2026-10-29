@@ -1,5 +1,4 @@
 { pkgs, ... }:
-
 let
   # Dependencies for Wallpaper Depth plugin
   wrapped-python = pkgs.python314.withPackages (
@@ -9,6 +8,7 @@ let
       pillow
     ]
   );
+
   wrapped-noctalia = pkgs.symlinkJoin {
     inherit (pkgs.noctalia) version meta;
     pname = "noctalia-wrapped";
@@ -27,14 +27,20 @@ in
     package = wrapped-noctalia;
 
     settings = {
+      plugins.enabled = [ "noctalia/wallpaper_depth" ];
+
       theme = {
         mode = "dark";
         source = "builtin";
         builtin = "Kanagawa";
       };
-      widget.clock = {
-        format = "{:%-I:%M %p}";
+
+      wallpaper = {
+        enabled = true;
+        directory = "$HOME/Pictures/Wallpapers/";
       };
+
+      widget.clock.format = "{:%-I:%M %p}";
     };
   };
 }
