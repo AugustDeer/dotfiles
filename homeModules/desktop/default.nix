@@ -38,6 +38,9 @@ in
         vesktop
       ];
     };
+    configFile."xfce4/helpers.rc".text = ''
+      TerminalEmulator=kitty
+    '';
   };
 
   programs = {
@@ -46,7 +49,7 @@ in
       themeFile = "kanagawa";
       settings = {
         font_family = "FiraCode Nerd Font";
-        background_opacity = 0.85;
+        background_opacity = 0.8;
         enable_audio_bell = false;
         cursor_trail = 10;
         cursor_trail_decay = "0.05 0.2";

@@ -1,4 +1,4 @@
-local term = "ghostty";
+local term = "kitty";
 local browser = "firefox";
 local files = "thunar";
 

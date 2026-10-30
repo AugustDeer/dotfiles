@@ -18,7 +18,4 @@ in
       theme = "Kanagawa Wave";
     };
   };
-  xdg.configFile."xfce4/helpers.rc".text = ''
-    TerminalEmulator=ghostty
-  '';
 }
