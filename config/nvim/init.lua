@@ -1,3 +1,5 @@
+vim.loader.enable()
+
 -- SECTION 1: Options
 vim.o.breakindent = true
 vim.o.confirm = true
@@ -5,8 +7,11 @@ vim.o.expandtab = true
 vim.o.mouse = 'a'
 vim.o.number = true
 vim.o.relativenumber = true
+vim.o.scrolloff = 10
 vim.o.shiftwidth = 2
 vim.o.showmode = false -- Already in statusline
+vim.o.splitbelow = true
+vim.o.splitright = true
 vim.o.undofile = true
 
 vim.api.nvim_create_autocmd({ 'TextYankPost' }, { callback = function() vim.hl.on_yank { higroup = 'Visual' } end })
