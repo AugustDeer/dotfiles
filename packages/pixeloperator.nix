@@ -14,5 +14,8 @@ stdenvNoCC.mkDerivation {
     extension = "zip";
   };
 
+  __structuredAttrs = true;
+  strictDeps = true;
+
   nativeBuildInputs = [ installFonts ];
 }
