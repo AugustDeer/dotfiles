@@ -1,25 +1,17 @@
 {
-  inputs = {
-    nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst";
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    git-hooks = {
-      url = "github:cachix/git-hooks.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-  };
-
   outputs =
-    inputs@{ self, nixpkgs, ... }:
+    { self, ... }@args:
     let
-      inherit (nixpkgs) lib;
+      inputs = (import ./.tack) {
+        overrides = args.tackOverrides or { };
+      };
+
+      inherit (inputs.nixpkgs) lib;
 
       src = "/home/adeer/dotfiles/"; # Must be current directory
 
       inputs' = inputs // {
-        inherit src pkgsFor;
+        inherit self src pkgsFor;
         assets = ./assets;
         config = ./config;
       };
@@ -35,7 +27,7 @@
 
       pkgsFor =
         system:
-        import nixpkgs {
+        import inputs.nixpkgs {
           inherit system;
           config = {
             allowUnfreePredicate =
@@ -77,6 +69,7 @@
       devShells = forAllSystems (pkgs: {
         default = pkgs.mkShell {
           packages = with pkgs; [
+            tack
             nh
 
             nixd

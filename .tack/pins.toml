@@ -1,0 +1,15 @@
+[all_follow]
+nixpkgs = "nixpkgs"
+
+[omit_inputs]
+names = ["flake-compat"]
+
+[inputs.nixpkgs]
+url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst"
+
+[inputs.home-manager]
+url = "github:nix-community/home-manager"
+
+[inputs.git-hooks]
+url = "github:cachix/git-hooks.nix"
+
