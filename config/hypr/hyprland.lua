@@ -2,10 +2,6 @@ local term = "kitty";
 local browser = "firefox";
 local files = "thunar";
 
-hl.env("XDG_CURRENT_DESKTOP", "Hyprland")
-hl.env("XDG_SESSION_TYPE", "wayland")
-hl.env("XDG_SESSION_DESKTOP", "Hyprland")
-
 hl.env("AQ_DRM_DEVICES", "/dev/dri/card2:/dev/dri/card1")
 
 hl.monitor({
@@ -18,14 +14,8 @@ hl.monitor({
 })
 
 hl.on("hyprland.start", function()
-  hl.exec_cmd("systemctl --user start hyprland-session.target")
-  hl.exec_cmd("dbus-update-activation-environment --systemd --all")
   hl.exec_cmd("noctalia")
   hl.exec_cmd("keepassxc --minimized")
-end)
-
-hl.on("hyprland.shutdown", function()
-  os.execute("systemctl --user stop hyprland-session.target && sleep 0.1")
 end)
 
 hl.config({
