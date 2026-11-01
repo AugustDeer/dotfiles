@@ -33,14 +33,6 @@ in
       enable = true;
       createDirectories = true;
     };
-    mimeApps = {
-      enable = true;
-      defaultApplicationPackages = with pkgs; [
-        file-roller
-        myPkgs.helium
-        vesktop
-      ];
-    };
     configFile."xfce4/helpers.rc".text = ''
       TerminalEmulator=kitty
     '';
