@@ -5,6 +5,7 @@
 }:
 let
   inherit (pkgs.stdenv.hostPlatform) system;
+  myPkgs = inputs.self.packages.${system};
 in
 {
   imports = [
@@ -14,15 +15,17 @@ in
   ];
 
   home.packages = with pkgs; [
+    myPkgs.helium
+
     wl-clipboard
     inkscape
-    heroic
 
     proton-vpn
 
+    heroic
     dolphin-emu
     prismlauncher
-    inputs.self.packages.${system}.smb1r
+    myPkgs.smb1r
   ];
 
   xdg = {
@@ -34,7 +37,7 @@ in
       enable = true;
       defaultApplicationPackages = with pkgs; [
         file-roller
-        firefox
+        myPkgs.helium
         vesktop
       ];
     };
