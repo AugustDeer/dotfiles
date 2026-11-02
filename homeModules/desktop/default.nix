@@ -26,6 +26,7 @@ in
     dolphin-emu
     prismlauncher
     myPkgs.smb1r
+    myPkgs.eden-nightly
   ];
 
   xdg = {
