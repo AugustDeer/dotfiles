@@ -66,6 +66,7 @@
           packages = with pkgs; [
             tack
             nh
+            nix-update
 
             nixd
             nixfmt
