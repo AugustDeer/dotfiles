@@ -1,9 +1,9 @@
 {
   imports = [
+    ./agents.nix
     ./bat.nix
     ./fastfetch.nix
     ./git.nix
-    ./opencode.nix
     ./neovim.nix
     ./nh.nix
   ];
