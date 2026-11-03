@@ -10,15 +10,15 @@
   writeShellApplication,
 }:
 let
-  tag = "build-142";
+  tag = "build-168";
 in
 appimageTools.wrapType2 (finalAttrs: {
   pname = "eglantine";
   version = "0-${tag}";
 
   src = fetchurl {
-    url = "https://github.com/Djihads80/Eglantine/releases/download/build-142/eglantine-linux-x86_64-pgo.AppImage";
-    hash = "sha256-Xy91BeLOaGR6oMf4M/obcKWsxg1eWhkwvHeqeuiZK/w=";
+    url = "https://github.com/Djihads80/Eglantine/releases/download/${tag}/eglantine-linux-x86_64-pgo.AppImage";
+    hash = "sha256-vIYGxO/rYGpGQnu8QHOqn9DJaMznzTBqVLbPHE0g2oA=";
   };
 
   extraPkgs = pkgs: [ pkgs.libgpg-error ];
@@ -44,11 +44,6 @@ appimageTools.wrapType2 (finalAttrs: {
         "https://api.github.com/repos/Djihads80/Eglantine/releases?per_page=1")"
 
       tag="$(jq --raw-output '.[0].tag_name' <<< "$release")"
-      url="$(jq --raw-output '
-        .[0].assets[]
-        | select(.name | test("^eglantine-linux-x86_64-pgo[.]AppImage$"))
-        | .browser_download_url
-      ' <<< "$release")"
 
       current_tag="$(sed --quiet 's/^  tag = "\(.*\)";$/\1/p' packages/eglantine.nix)"
 
@@ -59,7 +54,6 @@ appimageTools.wrapType2 (finalAttrs: {
 
       sed --in-place \
         -e "s|^  tag = \".*\";$|  tag = \"$tag\";|" \
-        -e "s|^    url = \".*\";$|    url = \"$url\";|" \
         packages/eglantine.nix
 
       nix-update --version=skip --src-only eglantine
