@@ -27,6 +27,7 @@ in
     prismlauncher
     myPkgs.smb1r
     myPkgs.eden-nightly
+    myPkgs.eglantine
   ];
 
   xdg = {
