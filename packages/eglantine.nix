@@ -10,7 +10,7 @@
   writeShellApplication,
 }:
 let
-  tag = "build-189";
+  tag = "build-212";
 in
 appimageTools.wrapType2 (finalAttrs: {
   pname = "eglantine";
@@ -18,7 +18,7 @@ appimageTools.wrapType2 (finalAttrs: {
 
   src = fetchurl {
     url = "https://github.com/Djihads80/Eglantine/releases/download/${tag}/eglantine-linux-x86_64-pgo.AppImage";
-    hash = "sha256-TBh+TweacLDvLGUiqFcJH3qGUV/dezjjnn7MR3lFIRs=";
+    hash = "sha256-z8Mo9KbGVDJiN8oxON9DmtFi2mEPebURwLir/VgvH/4=";
   };
 
   extraPkgs = pkgs: [ pkgs.libgpg-error ];
