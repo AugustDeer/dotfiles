@@ -9,6 +9,7 @@
         };
         commit.gpgSign = true;
         tag.gpgSign = true;
+        init.defaultBranch = "main";
       };
     };
     gh.enable = true;
