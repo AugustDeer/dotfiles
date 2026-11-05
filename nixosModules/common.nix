@@ -22,6 +22,8 @@ in
 
       # Use latest kernel.
       kernelPackages = pkgs.linuxPackages_latest;
+
+      tmp.cleanOnBoot = true;
     };
 
     # Set your time zone.
