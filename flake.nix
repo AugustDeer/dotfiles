@@ -1,20 +1,16 @@
 {
   outputs =
-    { self, ... }@args:
+    { self, ... }:
     let
-      inputs = (import ./.tack) {
-        overrides = args.tackOverrides or { };
+      inputs = import ./.tack // {
+        inherit self src pkgsFor;
+        assets = ./assets;
+        config = ./config;
       };
 
       inherit (inputs.nixpkgs) lib;
 
       src = "/home/adeer/dotfiles/"; # Must be current directory
-
-      inputs' = inputs // {
-        inherit self src pkgsFor;
-        assets = ./assets;
-        config = ./config;
-      };
 
       systems = [ "x86_64-linux" ];
 
@@ -73,7 +69,7 @@
 
       nixosModules.default = import ./nixosModules;
 
-      nixosConfigurations = import ./hosts inputs';
+      nixosConfigurations = import ./hosts inputs;
 
       homeModules.default = import ./homeModules;
 
