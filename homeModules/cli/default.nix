@@ -34,5 +34,7 @@
       enable = true;
       options = [ "--cmd cd" ];
     };
+
+    uv.enable = true;
   };
 }
