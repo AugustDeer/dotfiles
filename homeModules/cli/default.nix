@@ -1,4 +1,4 @@
-{
+{ pkgs, ... }: {
   imports = [
     ./agents.nix
     ./bat.nix
@@ -7,6 +7,8 @@
     ./neovim.nix
     ./nh.nix
   ];
+
+  home.packages = with pkgs; [ glow ];
 
   programs = {
     bash.enable = true;
