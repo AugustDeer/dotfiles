@@ -25,6 +25,8 @@
 
     fzf.enable = true;
 
+    fd.enable = true;
+
     ripgrep.enable = true;
 
     eza = {
