@@ -30,6 +30,8 @@ in
     myPkgs.eglantine
   ];
 
+  home.file.".face".source = "${inputs.assets}/pfp.png";
+
   xdg = {
     userDirs = {
       enable = true;
