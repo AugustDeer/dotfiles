@@ -12,10 +12,10 @@
 }:
 appimageTools.wrapAppImage (finalAttrs: {
   pname = "eden";
-  version = "0-unstable-2026-11-03";
+  version = "0-unstable-2026-11-06";
   src = fetchurl {
-    url = "https://nightly.eden-emu.dev/v1793745818.07677aa500/Eden-Linux-07677aa500-rog-ally-clang-pgo.AppImage";
-    hash = "sha256-xkdVpntJHtaZwmEEXgw8xQqe0YC7sTLeEg3218FmKvk=";
+    url = "https://nightly.eden-emu.dev/v1794004511.885b333c08/Eden-Linux-885b333c08-rog-ally-clang-pgo.AppImage";
+    hash = "sha256-RgimzKby7HBqDe07nmjdkUqeS6wB8fiPjfny+FOzBQg=";
     executable = true;
   };
 
