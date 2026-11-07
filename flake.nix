@@ -14,7 +14,12 @@
 
       systems = [ "x86_64-linux" ];
 
-      myPkgs = pkgs: import ./. { inherit pkgs; };
+      myPkgs =
+        pkgs:
+        pkgs.lib.packagesFromDirectoryRecursive {
+          inherit (pkgs) callPackage;
+          directory = ./packages;
+        };
 
       pkgsFor = lib.genAttrs systems (
         system:
