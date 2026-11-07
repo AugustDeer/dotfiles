@@ -6,6 +6,7 @@
     ./git.nix
     ./neovim.nix
     ./nh.nix
+    ./nix-index-database.nix
   ];
 
   home.packages = with pkgs; [ glow ];
