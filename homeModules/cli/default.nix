@@ -40,5 +40,6 @@
     };
 
     uv.enable = true;
+    npm.enable = true;
   };
 }
