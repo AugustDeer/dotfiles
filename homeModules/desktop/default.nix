@@ -8,12 +8,6 @@ let
   myPkgs = inputs.self.packages.${system};
 in
 {
-  imports = [
-    ./ghostty.nix
-    ./noctalia.nix
-    ./theming.nix
-  ];
-
   home.packages = with pkgs; [
     myPkgs.helium
 

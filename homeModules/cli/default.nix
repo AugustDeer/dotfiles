@@ -1,14 +1,4 @@
 { pkgs, ... }: {
-  imports = [
-    ./agents.nix
-    ./bat.nix
-    ./fastfetch.nix
-    ./git.nix
-    ./neovim.nix
-    ./nh.nix
-    ./nix-index-database.nix
-  ];
-
   home.packages = with pkgs; [ glow ];
 
   programs = {

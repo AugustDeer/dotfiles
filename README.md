@@ -28,8 +28,8 @@ nix-shell -p nh      # without flakes
 Deploy the os configuration with one of the following commands:
 
 ```sh
-nh os switch . # build and activate the current NixOS configuration
-nh os boot .   # build current NixOS configuration and prepare for reboot
+nh os switch # build and activate the current NixOS configuration
+nh os boot   # build current NixOS configuration and prepare for reboot
 ```
 
 This is a nix flake, so inputs are pinned and not updated by default. To update
@@ -42,16 +42,20 @@ nixpkgs and other inputs, include the `--update` flag. Also include
 
 ## Layout
 
-- `packages/`: Custom packages not currently in upstream nixpkgs. Packages are
-  auto-imported and overlayed onto nixpkgs, available under `pkgs.<name>`.
-  Single-file packages are imported from `<name>.nix`, multi-file packages (none
-  at the moment) are imported from `<name>/package.nix`.
-- `nixosModules/`: Reusable system modules. Auto-imported into each NixOS configuration.
-- `hosts/`: Device-specific system configuration. Each host is auto-imported
-  from `<hostname>/default.nix`.
+- `assets/`: Non-nix assets.
+- `config/`: Non-nix configuration.
+- `flakeModules/`: flake-parts modules for wiring up flake outputs.
 - `homeModules/`: User configuration via Home-Manager. Imported as a NixOS
   module, so not necessary to use directly.
-- `assets/`: Non-nix assets.
+- `hosts/`: Device-specific system configuration. Each host is auto-imported
+  from `hosts/<hostname>/default.nix`. (Currently, all hosts are assumed to be
+  of type `x86_64-linux`.)
+- `nixosModules/`: Reusable system modules. Auto-imported into each NixOS
+  configuration.
+- `packages/`: Custom packages not currently in upstream nixpkgs. Packages are
+  auto-imported and reexported as `flake.packages.<system>.<name>`. Single-file
+  packages are imported from `packages/<name>.nix`, multi-file packages (none
+  at the moment) are imported from `packgaes/<name>/package.nix`.
 
 ## Adding a New Machine
 
@@ -82,8 +86,7 @@ and reboot to enjoy your new NixOS install.
 ## AI Usage
 
 Portions of this configuration were written with LLM assistance (primarily via
-the [opencode](https://github.com/anomalyco/opencode) agent). At all points, the
-goal is my own education. No code has been committed which I myself do not
-understand and cannot explain.
+the [pi](https://pi.dev) agent). At all points, the goal is my own education.
+No code has been committed which I myself do not understand and cannot explain.
 
 All documentation (including this README) is human-written.

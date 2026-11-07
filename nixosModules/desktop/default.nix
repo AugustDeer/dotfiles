@@ -10,12 +10,6 @@ let
   cfg = config.my.desktop;
 in
 {
-  imports = [
-    ./flatpak.nix
-    ./gaming.nix
-    ./hyprland.nix
-  ];
-
   options.my.desktop = {
     enable = lib.mkEnableOption "desktop/gui-specific settings";
     environment = lib.mkOption {
