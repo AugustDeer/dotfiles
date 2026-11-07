@@ -1,4 +1,4 @@
-{ inputs, ... }: {
+{ config, ... }: {
   programs.nh.enable = true;
-  programs.nh.flake = inputs.src;
+  programs.nh.flake = "${config.home.homeDirectory}/dotfiles/";
 }
