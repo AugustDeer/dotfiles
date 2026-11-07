@@ -16,7 +16,7 @@
 
       myPkgs = pkgs: import ./. { inherit pkgs; };
 
-      pkgsFor =
+      pkgsFor = lib.genAttrs systems (
         system:
         import inputs.nixpkgs {
           inherit system;
@@ -31,9 +31,10 @@
                 "steam-unwrapped"
               ];
           };
-        };
+        }
+      );
 
-      forAllSystems = f: lib.genAttrs systems (system: f (pkgsFor system));
+      forAllSystems = f: lib.mapAttrs (_: f) pkgsFor;
 
       treefmtFor = pkgs: (inputs.treefmt-nix.lib.evalModule pkgs ./treefmt.nix).config.build.wrapper;
     in

@@ -15,7 +15,7 @@ let
         self.nixosModules.default
         module
         {
-          nixpkgs.pkgs = pkgsFor system;
+          nixpkgs.pkgs = pkgsFor.${system};
         }
       ];
     };
