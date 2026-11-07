@@ -4,8 +4,6 @@
     let
       inputs = import ./.tack // {
         inherit self src pkgsFor;
-        assets = ./assets;
-        config = ./config;
       };
 
       inherit (inputs.nixpkgs) lib;

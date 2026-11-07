@@ -13,7 +13,7 @@
 
     home-manager.sharedModules = [
       {
-        xdg.configFile."hypr/hyprland.lua".source = "${inputs.config}/hypr/hyprland.lua";
+        xdg.configFile."hypr/hyprland.lua".source = "${inputs.self}/config/hypr/hyprland.lua";
 
         services.hyprpolkitagent.enable = true;
       }

@@ -22,5 +22,5 @@
     sideloadInitLua = true;
   };
 
-  xdg.configFile."nvim".source = "${inputs.config}/nvim";
+  xdg.configFile."nvim".source = "${inputs.self}/config/nvim";
 }

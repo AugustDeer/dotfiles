@@ -30,7 +30,7 @@ in
     myPkgs.eglantine
   ];
 
-  home.file.".face".source = "${inputs.assets}/pfp.png";
+  home.file.".face".source = "${inputs.self}/assets/pfp.png";
 
   xdg = {
     userDirs = {
