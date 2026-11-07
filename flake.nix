@@ -34,19 +34,20 @@
         };
 
       forAllSystems = f: lib.genAttrs systems (system: f (pkgsFor system));
+
+      treefmtFor = pkgs: (inputs.treefmt-nix.lib.evalModule pkgs ./treefmt.nix).config.build.wrapper;
     in
     {
       packages = forAllSystems myPkgs;
 
-      formatter = forAllSystems (pkgs: pkgs.nixfmt-tree);
+      formatter = forAllSystems treefmtFor;
 
       checks = forAllSystems (pkgs: {
         pre-commit-check = inputs.git-hooks.lib.${pkgs.stdenv.hostPlatform.system}.run {
           src = ./.;
-          hooks = {
-            nixfmt.enable = true;
-            statix.enable = true;
-            deadnix.enable = true;
+          hooks.treefmt = {
+            enable = true;
+            packageOverrides.treefmt = treefmtFor pkgs;
           };
         };
       });
@@ -65,11 +66,9 @@
             nix-update
 
             nixd
-            nixfmt
-            statix
-            deadnix
-
             lua-language-server
+
+            self.formatter.${pkgs.stdenv.hostPlatform.system}
           ];
 
           inherit (self.checks.${pkgs.stdenv.hostPlatform.system}.pre-commit-check) shellHook;
