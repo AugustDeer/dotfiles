@@ -31,22 +31,6 @@
                 "steam-unwrapped"
               ];
           };
-          # TEMPORARY fix for https://github.com/NixOS/nixpkgs/issues/582673
-          # TODO: Remove once closed
-          overlays = [
-            (final: prev: {
-              opencode = prev.opencode.overrideAttrs (
-                old:
-                final.lib.optionalAttrs
-                  ((old.node_modules.outputHash or null) == "sha256-xfOVcw1+waLVNhFDwzOtzxrUSQEogvn88YomydOlhwc=")
-                  {
-                    node_modules = old.node_modules.overrideAttrs (_: {
-                      outputHash = "sha256-prx9dX7kUvs/E3zopkaPk5LXh3xJAy5sZeum/W8L7cA=";
-                    });
-                  }
-              );
-            })
-          ];
         };
 
       forAllSystems = f: lib.genAttrs systems (system: f (pkgsFor system));
