@@ -1,10 +1,4 @@
-{
-  inputs,
-  config,
-  src,
-  ...
-}:
-{
+{ inputs, config, ... }: {
   imports = [
     inputs.home-manager.nixosModules.default
   ];
@@ -12,7 +6,7 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    extraSpecialArgs = { inherit inputs src; };
+    extraSpecialArgs = { inherit inputs; };
     users."${config.my.userName}" = {
       imports = [ inputs.self.homeModules.default ];
       home = {

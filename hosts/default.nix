@@ -1,25 +1,23 @@
 {
-  self,
-  nixpkgs,
-  pkgsFor,
-  src,
+  config,
+  inputs,
+  withSystem,
   ...
-}@inputs:
+}:
 let
-  inherit (nixpkgs.lib) nixosSystem;
   mkHost =
     system: module:
-    nixosSystem {
-      specialArgs = { inherit inputs src; };
+    inputs.nixpkgs.lib.nixosSystem {
+      specialArgs = { inherit inputs; };
       modules = [
-        self.nixosModules.default
+        config.flake.nixosModules.default
         module
-        {
-          nixpkgs.pkgs = pkgsFor.${system};
-        }
+        { nixpkgs.pkgs = withSystem system ({ pkgs, ... }: pkgs); }
       ];
     };
 in
 {
-  augustROG = mkHost "x86_64-linux" ./augustROG;
+  flake.nixosConfigurations = {
+    augustROG = mkHost "x86_64-linux" ./augustROG;
+  };
 }

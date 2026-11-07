@@ -1,4 +1,4 @@
-{ src, ... }: {
+{ inputs, ... }: {
   programs.nh.enable = true;
-  programs.nh.flake = src;
+  programs.nh.flake = inputs.src;
 }

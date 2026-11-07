@@ -19,3 +19,6 @@ url = "github:nix-community/nix-index-database"
 [inputs.treefmt-nix]
 url = "github:numtide/treefmt-nix"
 
+[inputs.flake-parts]
+url = "github:hercules-ci/flake-parts"
+
