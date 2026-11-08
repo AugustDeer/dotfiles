@@ -6,9 +6,9 @@ All documentation in this repository is written by a human, without exception:
 README files, code comments, and Nix option `description` strings included.
 
 The purpose is not tidiness. The user edits this configuration by hand and will
-not rely on agents for every change. When a feature is rewritten by a human,
-its documentation has to reflect that human's way of thinking, which prose
-written by an agent does not. Prose you write now becomes a liability later.
+not rely on agents for every change. When a feature is rewritten by a human, its
+documentation has to reflect that human's way of thinking, which prose written
+by an agent does not. Prose you write now becomes a liability later.
 
 When a change would benefit from documentation, do not write it yourself. Tell
 the user what is missing and let them write it in their own words.
@@ -49,9 +49,9 @@ unverified change is an unknown change.
 - Validate with `nix flake check`.
 - Build the configuration without activating it:
   `nixos-rebuild build --flake .#<hostname>`, or
-  `nix build .#nixosConfigurations.<hostname>.config.system.build.toplevel`.
-  Use plain Nix commands rather than `nh`; `nh` is the user's personal
-  convenience, not a dependency of this repository.
+  `nix build .#nixosConfigurations.<hostname>.config.system.build.toplevel`. Use
+  plain Nix commands rather than `nh`; `nh` is the user's personal convenience,
+  not a dependency of this repository.
 - Reasoning about a module you did not evaluate is not verification. Say which
   of the above you actually ran.
 
@@ -75,9 +75,10 @@ with their tool, or ask the user.
 - `hosts/<hostname>/*.bin`: captured hardware data. The patched EDID is derived
   from the original by `patch_edid.py`.
 
-Note that `hosts/<hostname>/hardware.nix` is *not* generated. It imports
+Note that `hosts/<hostname>/hardware.nix` is _not_ generated. It imports
 `facter.json` and holds handwritten hardware settings (LUKS, filesystems,
 drivers, quirks). Change it freely, subject to the documentation rules above.
+
 - `.direnv/`: devshell state.
 
 ## Proportional Changes

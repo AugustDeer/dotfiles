@@ -1,17 +1,19 @@
-{ inputs, ... }: {
+{ lib, inputs, ... }: {
   imports = [ inputs.treefmt-nix.flakeModule ];
 
-  perSystem.treefmt.programs = {
-    nixfmt.enable = true;
-    statix.enable = true;
-    deadnix.enable = true;
+  perSystem = { config, ... }: {
+    pre-commit.settings.hooks.treefmt.settings.formatters =
+      lib.attrValues config.treefmt.build.programs;
 
-    stylua = {
-      enable = true;
-
-      settings = {
-        indent_type = "Spaces";
-        indent_width = 2;
+    treefmt.programs = {
+      deno.enable = true;
+      nixfmt.enable = true;
+      stylua = {
+        enable = true;
+        settings = {
+          indent_type = "Spaces";
+          indent_width = 2;
+        };
       };
     };
   };

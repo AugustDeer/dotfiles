@@ -54,8 +54,8 @@ nixpkgs and other inputs, include the `--update` flag. Also include
   configuration.
 - `packages/`: Custom packages not currently in upstream nixpkgs. Packages are
   auto-imported and reexported as `flake.packages.<system>.<name>`. Single-file
-  packages are imported from `packages/<name>.nix`, multi-file packages (none
-  at the moment) are imported from `packages/<name>/package.nix`.
+  packages are imported from `packages/<name>.nix`, multi-file packages (none at
+  the moment) are imported from `packages/<name>/package.nix`.
 
 ## Adding a New Machine
 
@@ -70,15 +70,15 @@ Rename `configuration.nix` to `default.nix` so it is imported correctly, and
 make any desired changes.
 
 This repo uses [disko](https://github.com/nix-community/disko) for managing
-partitions and filesystems. Reference an existing `disko.nix`, or a file
-from the disko
+partitions and filesystems. Reference an existing `disko.nix`, or a file from
+the disko
 [examples folder](https://github.com/nix-community/disko/tree/latest/example),
 while configuring.
 
-Note that most settings in `configuration.nix` can be deleted: the hostname
-is automatically set based on the folder name, and sensible defaults are
-automatically set by `./nixosModules/common.nix`. Set `my.desktop.enable = true;`
-for gui-specific tools.
+Note that most settings in `configuration.nix` can be deleted: the hostname is
+automatically set based on the folder name, and sensible defaults are
+automatically set by `./nixosModules/common.nix`. Set
+`my.desktop.enable = true;` for gui-specific tools.
 
 > [!NOTE]
 > Remember to `git add` all new files, and commit + push your changes.
@@ -96,7 +96,7 @@ and reboot to enjoy your new NixOS install.
 ## AI Usage
 
 Portions of this configuration were written with LLM assistance (primarily via
-the [pi](https://pi.dev) agent). At all points, the goal is my own education.
-No code has been committed which I myself do not understand and cannot explain.
+the [pi](https://pi.dev) agent). At all points, the goal is my own education. No
+code has been committed which I myself do not understand and cannot explain.
 
 All documentation (including this README) is human-written.

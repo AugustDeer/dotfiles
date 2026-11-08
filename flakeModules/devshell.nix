@@ -11,10 +11,8 @@
           nixd
           lua-language-server
         ];
-        inputsFrom = [
-          config.pre-commit.devShell
-          config.treefmt.build.devShell
-        ];
+
+        inputsFrom = [ config.pre-commit.devShell ];
         inherit (config.pre-commit) shellHook;
       };
     };
