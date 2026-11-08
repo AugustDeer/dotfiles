@@ -13,7 +13,12 @@
       presets = [ "nerd-font-symbols" ];
     };
 
-    direnv.enable = true;
+    direnv = {
+      enable = true;
+      config = {
+        global.hide_env_diff = true;
+      };
+    };
 
     yazi.enable = true;
 
