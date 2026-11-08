@@ -10,7 +10,7 @@
   writeShellApplication,
 }:
 let
-  tag = "daily-20261106";
+  tag = "daily-20261107";
 in
 appimageTools.wrapType2 (finalAttrs: {
   pname = "eglantine";
@@ -18,7 +18,7 @@ appimageTools.wrapType2 (finalAttrs: {
 
   src = fetchurl {
     url = "https://github.com/Djihads80/Eglantine/releases/download/${tag}/eglantine-linux-x86_64-pgo.AppImage";
-    hash = "sha256-EOESVF8/AWocECvyeeF7p+PBfwqlDrxA0vcFI9/gz0c=";
+    hash = "sha256-hhhUCpKajK0hHon/AksOIyO948dp4lD0+iatJ18jhsc=";
   };
 
   __structuredAttrs = true;
@@ -59,7 +59,7 @@ appimageTools.wrapType2 (finalAttrs: {
         -e "s|^  tag = \".*\";$|  tag = \"$tag\";|" \
         packages/eglantine.nix
 
-      nix-update --version=skip --src-only eglantine
+      nix-update --flake --version=skip --src-only eglantine
     '';
   };
 })

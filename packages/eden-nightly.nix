@@ -12,10 +12,10 @@
 }:
 appimageTools.wrapAppImage (finalAttrs: {
   pname = "eden";
-  version = "0-unstable-2026-11-06";
+  version = "0-unstable-2026-11-07";
   src = fetchurl {
-    url = "https://nightly.eden-emu.dev/v1794004511.885b333c08/Eden-Linux-885b333c08-rog-ally-clang-pgo.AppImage";
-    hash = "sha256-RgimzKby7HBqDe07nmjdkUqeS6wB8fiPjfny+FOzBQg=";
+    url = "https://nightly.eden-emu.dev/v1794086134.7f1bc0c9d1/Eden-Linux-7f1bc0c9d1-rog-ally-clang-pgo.AppImage";
+    hash = "sha256-cFxIq7OWYVfXsORkURFGGoNhmgtnjUEWRgd3bCwXZU8=";
     executable = true;
   };
 
@@ -66,7 +66,7 @@ appimageTools.wrapAppImage (finalAttrs: {
         -e "s|^    url = \".*\";$|    url = \"$url\";|" \
         packages/eden-nightly.nix
 
-      nix-update --version=skip --src-only eden-nightly
+      nix-update --flake --version=skip --src-only eden-nightly
     '';
   };
 })
