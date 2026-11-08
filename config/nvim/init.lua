@@ -4,7 +4,7 @@ vim.loader.enable()
 vim.o.breakindent = true
 vim.o.confirm = true
 vim.o.expandtab = true
-vim.o.mouse = 'a'
+vim.o.mouse = "a"
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.scrolloff = 10
@@ -14,181 +14,226 @@ vim.o.splitbelow = true
 vim.o.splitright = true
 vim.o.undofile = true
 
-vim.api.nvim_create_autocmd({ 'TextYankPost' }, { callback = function() vim.hl.on_yank { higroup = 'Visual' } end })
+vim.api.nvim_create_autocmd({ "TextYankPost" }, {
+  callback = function()
+    vim.hl.on_yank({ higroup = "Visual" })
+  end,
+})
 
 -- SECTION 2: Keymaps
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
-for c, desc in pairs({ h = 'left', j = 'down', k = 'up', l = 'right' }) do
-  vim.keymap.set('n', '<C-' .. c .. '>', '<C-w>' .. c, { desc = 'Go to the ' .. desc .. 'window' })
-  vim.keymap.set('n', '<C-S-' .. c .. '>', '<C-w>' .. string.upper(c), { desc = 'Move window to the far ' .. desc })
+for c, desc in pairs({ h = "left", j = "down", k = "up", l = "right" }) do
+  vim.keymap.set("n", "<C-" .. c .. ">", "<C-w>" .. c, { desc = "Go to the " .. desc .. "window" })
+  vim.keymap.set("n", "<C-S-" .. c .. ">", "<C-w>" .. string.upper(c), { desc = "Move window to the far " .. desc })
 end
 
-vim.keymap.set({ 'n', 'v' }, '<leader>la', vim.lsp.buf.code_action, { desc = "Code action" })
-vim.keymap.set('n', '<leader>ld', vim.diagnostic.open_float, { desc = "Display diagnostics" })
-vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format, { desc = "Format buffer" })
-vim.keymap.set('n', '<leader>li', vim.lsp.buf.implementation, { desc = "Show implementation" })
-vim.keymap.set('n', '<leader>ln', vim.lsp.buf.rename, { desc = "Rename symbol" })
+vim.keymap.set({ "n", "v" }, "<leader>la", vim.lsp.buf.code_action, { desc = "Code action" })
+vim.keymap.set("n", "<leader>ld", vim.diagnostic.open_float, { desc = "Display diagnostics" })
+vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, { desc = "Format buffer" })
+vim.keymap.set("n", "<leader>li", vim.lsp.buf.implementation, { desc = "Show implementation" })
+vim.keymap.set("n", "<leader>ln", vim.lsp.buf.rename, { desc = "Rename symbol" })
 
-
-require('mini.pick').setup()
-vim.keymap.set('n', '<leader>fb', '<cmd>Pick buffers<CR>', { desc = 'Buffers' })
-vim.keymap.set('n', '<leader>ff', '<cmd>Pick files<CR>', { desc = 'Files' })
-vim.keymap.set('n', '<leader>fg', '<cmd>Pick grep_live<CR>', { desc = 'Grep live' })
-vim.keymap.set('n', '<leader>fh', '<cmd>Pick help<CR>', { desc = 'Help tags' })
-
+require("mini.pick").setup()
+vim.keymap.set("n", "<leader>fb", "<cmd>Pick buffers<CR>", { desc = "Buffers" })
+vim.keymap.set("n", "<leader>ff", "<cmd>Pick files<CR>", { desc = "Files" })
+vim.keymap.set("n", "<leader>fg", "<cmd>Pick grep_live<CR>", { desc = "Grep live" })
+vim.keymap.set("n", "<leader>fh", "<cmd>Pick help<CR>", { desc = "Help tags" })
 
 -- SECTION 3: Plugins
-local lz = require('lz.n')
+local lz = require("lz.n")
 
-
-require('kanagawa').setup({
+require("kanagawa").setup({
   transparent = true,
 })
-vim.cmd.colorscheme('kanagawa')
+vim.cmd.colorscheme("kanagawa")
 
-require('nvim-highlight-colors').setup({})
+require("nvim-highlight-colors").setup({})
 
-require('mini.icons').setup()
+require("mini.icons").setup()
 MiniIcons.mock_nvim_web_devicons()
 
+require("mini.pairs").setup()
 
-require('mini.pairs').setup()
-
-
-require('lualine').setup {
+require("lualine").setup({
   sections = {
-    lualine_x = { 'lsp_status', 'filetype' }
-  }
-}
-
+    lualine_x = { "lsp_status", "filetype" },
+  },
+})
 
 lz.load({
-  'blink-cmp',
+  "blink-cmp",
   after = function()
-    require('blink.cmp').setup({
-      keymap = { preset = 'super-tab' }
+    require("blink.cmp").setup({
+      keymap = { preset = "super-tab" },
     })
   end,
-  event = { 'InsertEnter', 'CmdlineEnter' }
+  event = { "InsertEnter", "CmdlineEnter" },
 })
 
-
 lz.load({
-  'gitsigns-nvim',
+  "gitsigns-nvim",
   after = function()
-    require('gitsigns').setup()
+    require("gitsigns").setup()
   end,
-  cmd = 'Gitsigns',
-  event = { 'BufReadPost', 'BufNewFile' },
+  cmd = "Gitsigns",
+  event = { "BufReadPost", "BufNewFile" },
   keys = {
     {
-      ']c',
+      "]c",
       function()
         if vim.wo.diff then
-          vim.cmd.normal({ ']c', bang = true })
+          vim.cmd.normal({ "]c", bang = true })
         else
-          require('gitsigns').nav_hunk('next')
+          require("gitsigns").nav_hunk("next")
         end
       end,
-      desc = 'Next hunk'
+      desc = "Next hunk",
     },
     {
-      '[c',
+      "[c",
       function()
         if vim.wo.diff then
-          vim.cmd.normal({ ']c', bang = true })
+          vim.cmd.normal({ "]c", bang = true })
         else
-          require('gitsigns').nav_hunk('prev')
+          require("gitsigns").nav_hunk("prev")
         end
       end,
-      desc = 'Previous hunk'
-    },
-    { '<leader>hs', function() require('gitsigns').stage_hunk() end, desc = 'Stage hunk' },
-    { '<leader>hr', function() require('gitsigns').reset_hunk() end, desc = 'Reset hunk' },
-    {
-      '<leader>hs',
-      function() require('gitsigns').stage_hunk { vim.fn.line('.'), vim.fn.line('v') } end,
-      mode = 'v',
-      desc = 'Stage hunk'
+      desc = "Previous hunk",
     },
     {
-      '<leader>hr',
-      function() require('gitsigns').reset_hunk { vim.fn.line('.'), vim.fn.line('v') } end,
-      mode = 'v',
-      desc = 'Reset hunk'
+      "<leader>hs",
+      function()
+        require("gitsigns").stage_hunk()
+      end,
+      desc = "Stage hunk",
     },
-    { '<leader>hS', function() require('gitsigns').stage_buffer() end,             desc = 'Stage buffer' },
-    { '<leader>hR', function() require('gitsigns').reset_buffer() end,             desc = 'Reset buffer' },
-    { '<leader>hp', function() require('gitsigns').preview_hunk() end,             desc = 'Preview hunk' },
-    { '<leader>hi', function() require('gitsigns').preview_hunk_inline() end,      desc = 'Preview hunk inline' },
-    { '<leader>hb', function() require('gitsigns').blame_line { full = true } end, desc = 'Blame line' },
-    { '<leader>hd', function() require('gitsigns').diffthis() end,                 desc = 'Diff this' },
-  }
+    {
+      "<leader>hr",
+      function()
+        require("gitsigns").reset_hunk()
+      end,
+      desc = "Reset hunk",
+    },
+    {
+      "<leader>hs",
+      function()
+        require("gitsigns").stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+      end,
+      mode = "v",
+      desc = "Stage hunk",
+    },
+    {
+      "<leader>hr",
+      function()
+        require("gitsigns").reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+      end,
+      mode = "v",
+      desc = "Reset hunk",
+    },
+    {
+      "<leader>hS",
+      function()
+        require("gitsigns").stage_buffer()
+      end,
+      desc = "Stage buffer",
+    },
+    {
+      "<leader>hR",
+      function()
+        require("gitsigns").reset_buffer()
+      end,
+      desc = "Reset buffer",
+    },
+    {
+      "<leader>hp",
+      function()
+        require("gitsigns").preview_hunk()
+      end,
+      desc = "Preview hunk",
+    },
+    {
+      "<leader>hi",
+      function()
+        require("gitsigns").preview_hunk_inline()
+      end,
+      desc = "Preview hunk inline",
+    },
+    {
+      "<leader>hb",
+      function()
+        require("gitsigns").blame_line({ full = true })
+      end,
+      desc = "Blame line",
+    },
+    {
+      "<leader>hd",
+      function()
+        require("gitsigns").diffthis()
+      end,
+      desc = "Diff this",
+    },
+  },
 })
 
-
 lz.load({
-  'which-key-nvim',
+  "which-key-nvim",
   after = function()
-    require('which-key').add({
-      { '<leader>f', group = 'Find' },
-      { '<leader>h', group = 'Hunk' },
-      { '<leader>l', group = 'LSP' },
+    require("which-key").add({
+      { "<leader>f", group = "Find" },
+      { "<leader>h", group = "Hunk" },
+      { "<leader>l", group = "LSP" },
     })
   end,
   cmd = "WhichKey",
-  event = "DeferredUIEnter"
+  event = "DeferredUIEnter",
 })
-
 
 -- Section 4: Treesitter
-vim.api.nvim_create_autocmd('FileType', {
+vim.api.nvim_create_autocmd("FileType", {
   pattern = "*",
-  callback = function ()
+  callback = function()
     pcall(vim.treesitter.start)
-  end
+  end,
 })
-
 
 -- SECTION 5: LSP Config
 
-vim.diagnostic.config {
-  virtual_text = true
-}
+vim.diagnostic.config({
+  virtual_text = true,
+})
 
-vim.lsp.config('nixd', {
+local nixFlake = '(builtins.getFlake "/home/adeer/dotfiles").'
+vim.lsp.config("nixd", {
   settings = {
     nixd = {
       formatting = { command = { "nixfmt" } },
       options = {
         nixos = {
-          expr = "(builtins.getFlake \"/home/adeer/dotfiles\").nixosConfigurations.augustROG.options"
+          expr = nixFlake .. "nixosConfigurations.augustROG.options",
         },
         home_manager = {
-          expr =
-          "(builtins.getFlake \"/home/adeer/dotfiles\").nixosConfigurations.augustROG.options.home-manager.users.type.getSubOptions []"
-        }
-      }
-    }
-  }
+          expr = nixFlake .. "nixosConfigurations.augustROG.options.home-manager.users.type.getSubOptions []",
+        },
+        flake_parts = {
+          expr = nixFlake .. "debug.options",
+        },
+        flake_parts2 = {
+          expr = nixFlake .. "currentSystem.options",
+        },
+        pre_commit = {
+          expr = nixFlake .. "currentSystem.options.pre-commit.settings.type.getSubOptions []",
+        },
+        treefmt = {
+          expr = nixFlake .. "currentSystem.options.treefmt.type.getSubOptions []",
+        },
+      },
+    },
+  },
 })
-vim.lsp.enable('nixd')
+vim.lsp.enable("nixd")
 
-vim.lsp.config('lua_ls', {
-  settings = {
-    Lua = {
-      format = {
-        enable = true,
-        defaultConfig = {
-          indent_style = "space",
-          indent_size = "2",
-        }
-      }
-    }
-  }
-})
-vim.lsp.enable('lua_ls')
+vim.lsp.enable("lua_ls")
