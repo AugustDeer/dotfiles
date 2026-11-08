@@ -6,6 +6,7 @@
         packages = with pkgs; [
           nh
           nix-update
+          nix-diff
 
           nixd
           lua-language-server
