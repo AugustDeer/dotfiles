@@ -62,12 +62,20 @@ nixpkgs and other inputs, include the `--update` flag. Also include
 Create a new default configuration with this command:
 
 ```sh
-nixos-generate-config --dir ./hosts/<hostname>/
+nixos-generate-config --dir ./hosts/<hostname>/ --no-filesystems
 ```
 
 This will create a default `configuration.nix` and `hardware-configuration.nix`.
 Rename `configuration.nix` to `default.nix` so it is imported correctly, and
-make any desired changes. Note that most settings can be deleted: the hostname
+make any desired changes.
+
+This repo uses [disko](https://github.com/nix-community/disko) for managing
+partitions and filesystems. Reference an existing `disko.nix`, or a file
+from the disko
+[examples folder](https://github.com/nix-community/disko/tree/latest/example),
+while configuring.
+
+Note that most settings in `configuration.nix` can be deleted: the hostname
 is automatically set based on the folder name, and sensible defaults are
 automatically set by `./nixosModules/common.nix`. Set `my.desktop.enable = true;`
 for gui-specific tools.
@@ -78,7 +86,9 @@ for gui-specific tools.
 Finally, deploy the configuration with
 
 ```sh
-nh os boot . -H <hostname>
+sudo nix run 'github:nix-community/disko/latest#disko-install' -- \
+  --flake .#<hostname> \
+  --disk <disk-name> <disk-device>
 ```
 
 and reboot to enjoy your new NixOS install.

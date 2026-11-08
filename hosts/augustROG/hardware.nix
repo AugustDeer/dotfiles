@@ -6,13 +6,6 @@
   };
 
   boot = {
-    initrd.luks.devices = {
-      "luks-ef859b59-20ee-484f-a089-5cd8acfd06e8".device =
-        "/dev/disk/by-uuid/ef859b59-20ee-484f-a089-5cd8acfd06e8";
-      "luks-f785ec98-a216-429b-85ae-94f440a19e62".device =
-        "/dev/disk/by-uuid/f785ec98-a216-429b-85ae-94f440a19e62";
-    };
-
     extraModprobeConfig = ''
       # MT7925 WiFi - disable all power management for stability
       options mt7925e disable_aspm=1
@@ -22,38 +15,6 @@
       options mt7925-common disable_clc=1
     '';
   };
-
-  fileSystems = {
-    "/" = {
-      device = "/dev/mapper/luks-ef859b59-20ee-484f-a089-5cd8acfd06e8";
-      fsType = "btrfs";
-    };
-
-    "/nix" = {
-      device = "/dev/mapper/luks-ef859b59-20ee-484f-a089-5cd8acfd06e8";
-      fsType = "btrfs";
-      options = [ "subvol=nix" ];
-    };
-
-    "/home" = {
-      device = "/dev/mapper/luks-ef859b59-20ee-484f-a089-5cd8acfd06e8";
-      fsType = "btrfs";
-      options = [ "subvol=home" ];
-    };
-
-    "/boot" = {
-      device = "/dev/disk/by-uuid/7541-4241";
-      fsType = "vfat";
-      options = [
-        "fmask=0077"
-        "dmask=0077"
-      ];
-    };
-  };
-
-  swapDevices = [
-    { device = "/dev/mapper/luks-f785ec98-a216-429b-85ae-94f440a19e62"; }
-  ];
 
   hardware = {
     nvidia = {

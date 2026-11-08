@@ -26,6 +26,7 @@ in
         specialArgs = { inherit inputs; };
         modules = [
           config.flake.nixosModules.default
+          inputs.disko.nixosModules.disko
           inputs.nixpkgs.nixosModules.readOnlyPkgs
           (hostsDir + "/${name}")
           {
