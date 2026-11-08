@@ -1,5 +1,11 @@
 { inputs, ... }: {
   imports = [ inputs.git-hooks.flakeModule ];
 
-  perSystem.pre-commit.settings.hooks.treefmt.enable = true;
+  perSystem = { pkgs, ... }: {
+    pre-commit.settings = {
+      hooks.treefmt.enable = true;
+
+      package = pkgs.prek;
+    };
+  };
 }
