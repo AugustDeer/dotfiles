@@ -8,6 +8,9 @@ appimageTools.wrapType2 (finalAttrs: {
     hash = "sha256-H69Thkj+FKHqkuMlyxI4rojEeGZsteY9DSrxcP5MoDc=";
   };
 
+  __structuredAttrs = true;
+  strictDeps = true;
+
   extraInstallCommands = /* bash */ ''
     install -m 444 -D ${finalAttrs.contents}/helium.desktop $out/share/applications/helium.desktop
     install -m 444 -D ${finalAttrs.contents}/usr/share/icons/hicolor/256x256/apps/helium.png \

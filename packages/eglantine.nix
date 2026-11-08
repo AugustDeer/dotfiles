@@ -21,6 +21,9 @@ appimageTools.wrapType2 (finalAttrs: {
     hash = "sha256-EOESVF8/AWocECvyeeF7p+PBfwqlDrxA0vcFI9/gz0c=";
   };
 
+  __structuredAttrs = true;
+  strictDeps = true;
+
   extraPkgs = pkgs: [ pkgs.libgpg-error ];
 
   extraInstallCommands = /* bash */ ''

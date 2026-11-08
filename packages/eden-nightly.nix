@@ -19,6 +19,9 @@ appimageTools.wrapAppImage (finalAttrs: {
     executable = true;
   };
 
+  __structuredAttrs = true;
+  strictDeps = true;
+
   contents = runCommand "eden-extracted" { } ''
     ${finalAttrs.src} --appimage-extract
     cp -r AppDir $out
