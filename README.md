@@ -55,7 +55,7 @@ nixpkgs and other inputs, include the `--update` flag. Also include
 - `packages/`: Custom packages not currently in upstream nixpkgs. Packages are
   auto-imported and reexported as `flake.packages.<system>.<name>`. Single-file
   packages are imported from `packages/<name>.nix`, multi-file packages (none
-  at the moment) are imported from `packgaes/<name>/package.nix`.
+  at the moment) are imported from `packages/<name>/package.nix`.
 
 ## Adding a New Machine
 
