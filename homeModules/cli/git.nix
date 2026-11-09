@@ -1,28 +1,34 @@
+{ config, lib, ... }:
+let
+  cfg = config.my.shell;
+in
 {
-  programs = {
-    git = {
-      enable = true;
-      settings = {
-        user = {
-          name = "August Deer";
-          email = "august@augustdeer.com";
+  config = lib.mkIf cfg.enable {
+    programs = {
+      git = {
+        enable = true;
+        settings = {
+          user = {
+            name = "August Deer";
+            email = "august@augustdeer.com";
+          };
+          commit.gpgSign = true;
+          tag.gpgSign = true;
+          init.defaultBranch = "main";
         };
-        commit.gpgSign = true;
-        tag.gpgSign = true;
-        init.defaultBranch = "main";
       };
-    };
-    gh = {
-      enable = true;
-      settings.git_protocol = "ssh";
-    };
-    delta = {
-      enable = true;
-      enableGitIntegration = true;
-      options = {
-        side-by-side = true;
+      gh = {
+        enable = true;
+        settings.git_protocol = "ssh";
       };
+      delta = {
+        enable = true;
+        enableGitIntegration = true;
+        options = {
+          side-by-side = true;
+        };
+      };
+      lazygit.enable = true;
     };
-    lazygit.enable = true;
   };
 }

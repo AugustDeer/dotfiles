@@ -1,45 +1,60 @@
-{ pkgs, ... }: {
-  home.packages = with pkgs; [ glow ];
-  home.preferXdgDirectories = true;
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  cfg = config.my.shell;
+in
+{
+  options.my.shell.enable = (lib.mkEnableOption "shell tools") // {
+    default = true;
+  };
 
-  programs = {
-    bash.enable = true;
-    zsh = {
-      enable = true;
-      defaultKeymap = "emacs";
-    };
+  config = lib.mkIf cfg.enable {
+    home.packages = with pkgs; [ glow ];
+    home.preferXdgDirectories = true;
 
-    starship = {
-      enable = true;
-      presets = [ "nerd-font-symbols" ];
-    };
-
-    direnv = {
-      enable = true;
-      config = {
-        global.hide_env_diff = true;
+    programs = {
+      bash.enable = true;
+      zsh = {
+        enable = true;
+        defaultKeymap = "emacs";
       };
+
+      starship = {
+        enable = true;
+        presets = [ "nerd-font-symbols" ];
+      };
+
+      direnv = {
+        enable = true;
+        config = {
+          global.hide_env_diff = true;
+        };
+      };
+
+      yazi.enable = true;
+
+      fzf.enable = true;
+
+      fd.enable = true;
+
+      ripgrep.enable = true;
+
+      eza = {
+        enable = true;
+        icons = "auto";
+      };
+
+      zoxide = {
+        enable = true;
+        options = [ "--cmd cd" ];
+      };
+
+      uv.enable = true;
+      npm.enable = true;
     };
-
-    yazi.enable = true;
-
-    fzf.enable = true;
-
-    fd.enable = true;
-
-    ripgrep.enable = true;
-
-    eza = {
-      enable = true;
-      icons = "auto";
-    };
-
-    zoxide = {
-      enable = true;
-      options = [ "--cmd cd" ];
-    };
-
-    uv.enable = true;
-    npm.enable = true;
   };
 }

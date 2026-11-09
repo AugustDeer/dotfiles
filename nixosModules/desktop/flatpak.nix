@@ -7,10 +7,8 @@ let
   cfg = config.my.desktop;
 in
 {
-  options.my.desktop.flatpak = lib.mkOption {
-    type = lib.types.bool;
+  options.my.desktop.flatpak = (lib.mkEnableOption "flatpak support") // {
     default = cfg.enable;
-    description = "Whether to enable flatpak support.";
   };
 
   config = lib.mkIf cfg.flatpak {

@@ -1,5 +1,12 @@
-{ pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
+  cfg = config.my.desktop;
+
   # Dependencies for Wallpaper Depth plugin
   wrapped-python = pkgs.python314.withPackages (
     ps: with ps; [
@@ -21,26 +28,28 @@ let
   };
 in
 {
-  programs.noctalia = {
-    enable = true;
+  config = lib.mkIf cfg.enable {
+    programs.noctalia = {
+      enable = true;
 
-    package = wrapped-noctalia;
+      package = wrapped-noctalia;
 
-    settings = {
-      plugins.enabled = [ "noctalia/wallpaper_depth" ];
+      settings = {
+        plugins.enabled = [ "noctalia/wallpaper_depth" ];
 
-      theme = {
-        mode = "dark";
-        source = "builtin";
-        builtin = "Kanagawa";
+        theme = {
+          mode = "dark";
+          source = "builtin";
+          builtin = "Kanagawa";
+        };
+
+        wallpaper = {
+          enabled = true;
+          directory = "$HOME/Pictures/Wallpapers/";
+        };
+
+        widget.clock.format = "{:%-I:%M %p}";
       };
-
-      wallpaper = {
-        enabled = true;
-        directory = "$HOME/Pictures/Wallpapers/";
-      };
-
-      widget.clock.format = "{:%-I:%M %p}";
     };
   };
 }

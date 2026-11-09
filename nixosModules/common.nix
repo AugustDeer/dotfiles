@@ -8,10 +8,8 @@ let
   cfg = config.my.common;
 in
 {
-  options.my.common.enable = lib.mkOption {
+  options.my.common.enable = (lib.mkEnableOption "general system configuration") // {
     default = true;
-    description = "Whether to enable general system configuration.";
-    type = lib.types.bool;
   };
 
   config = lib.mkIf cfg.enable {
