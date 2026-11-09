@@ -9,8 +9,6 @@ let
 in
 {
   home.packages = with pkgs; [
-    myPkgs.helium
-
     wl-clipboard
     inkscape
 
