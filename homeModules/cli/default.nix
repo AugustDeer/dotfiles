@@ -1,5 +1,6 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [ glow ];
+  home.preferXdgDirectories = true;
 
   programs = {
     bash.enable = true;
