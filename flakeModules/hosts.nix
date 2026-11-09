@@ -19,11 +19,11 @@ in
   systems = [ system ];
 
   flake.nixosConfigurations = withSystem system (
-    { pkgs, ... }:
+    { pkgs, self', ... }:
     lib.genAttrs hostNames (
       name:
       inputs.nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
+        specialArgs = { inherit inputs self'; };
         modules = [
           config.flake.nixosModules.default
           inputs.disko.nixosModules.disko

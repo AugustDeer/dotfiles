@@ -1,25 +1,9 @@
-{
-  pkgs,
-  inputs,
-  ...
-}:
-let
-  inherit (pkgs.stdenv.hostPlatform) system;
-  myPkgs = inputs.self.packages.${system};
-in
-{
+{ pkgs, inputs, ... }: {
   home.packages = with pkgs; [
     wl-clipboard
     inkscape
 
     proton-vpn
-
-    heroic
-    dolphin-emu
-    prismlauncher
-    myPkgs.smb1r
-    myPkgs.eden-nightly
-    myPkgs.eglantine
   ];
 
   home.file.".face".source = "${inputs.self}/assets/pfp.png";
