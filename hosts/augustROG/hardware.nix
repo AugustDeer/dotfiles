@@ -1,22 +1,12 @@
 { pkgs, ... }: {
-  hardware.facter = {
-    reportPath = ./facter.json;
-    detected.dhcp.enable = false; # Fix WiFi being incorrectly classified as "Ethernet"
-    detected.boot.graphics.kernelModules = [ ]; # Remove unnecessary GPU drivers from initrd
-  };
-
-  boot = {
-    extraModprobeConfig = ''
-      # MT7925 WiFi - disable all power management for stability
-      options mt7925e disable_aspm=1
-      options mt7925e power_save=0
-
-      # Disable CLC (Country Location Code) - fixes 6GHz band stability
-      options mt7925-common disable_clc=1
-    '';
-  };
+  my.hardware.mt7925 = true;
 
   hardware = {
+    facter = {
+      reportPath = ./facter.json;
+      detected.boot.graphics.kernelModules = [ ]; # Remove unnecessary GPU drivers from initrd
+    };
+
     nvidia = {
       open = true;
       prime = {
@@ -42,29 +32,6 @@
     asusd.enable = true;
     tuned.enable = true;
     xserver.videoDrivers = [ "nvidia" ];
-  };
-
-  networking.networkmanager.wifi = {
-    powersave = false;
-    scanRandMacAddress = false;
-  };
-
-  systemd.services.mediatek-wifi-resume = {
-    description = "Restart NetworkManager after suspend to fix MediaTek WiFi";
-    wantedBy = [
-      "suspend.target"
-      "hibernate.target"
-      "hybrid-sleep.target"
-    ];
-    after = [
-      "suspend.target"
-      "hibernate.target"
-      "hybrid-sleep.target"
-    ];
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = "${pkgs.systemd}/bin/systemctl restart NetworkManager.service";
-    };
   };
 
   environment.sessionVariables = {
