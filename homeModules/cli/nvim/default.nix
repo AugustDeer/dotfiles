@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, ... }: {
   programs.neovim = {
     enable = true;
     viAlias = true;
@@ -22,5 +22,5 @@
     sideloadInitLua = true;
   };
 
-  xdg.configFile."nvim".source = "${inputs.self}/config/nvim";
+  xdg.configFile."nvim".source = ./config;
 }

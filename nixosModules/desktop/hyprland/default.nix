@@ -1,8 +1,7 @@
 {
-  pkgs,
-  lib,
   config,
-  inputs,
+  lib,
+  pkgs,
   ...
 }:
 {
@@ -13,7 +12,7 @@
 
     home-manager.sharedModules = [
       {
-        xdg.configFile."hypr/hyprland.lua".source = "${inputs.self}/config/hypr/hyprland.lua";
+        xdg.configFile."hypr/hyprland.lua".source = ./hyprland.lua;
 
         services.hyprpolkitagent.enable = true;
       }

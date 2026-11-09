@@ -43,7 +43,6 @@ nixpkgs and other inputs, include the `--update` flag. Also include
 ## Layout
 
 - `assets/`: Non-nix assets.
-- `config/`: Non-nix configuration.
 - `flakeModules/`: flake-parts modules for wiring up flake outputs.
 - `homeModules/`: User configuration via Home-Manager. Imported as a NixOS
   module, so not necessary to use directly.

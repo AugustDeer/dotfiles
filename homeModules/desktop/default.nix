@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, ... }: {
   home.packages = with pkgs; [
     wl-clipboard
     inkscape
@@ -6,7 +6,7 @@
     proton-vpn
   ];
 
-  home.file.".face".source = "${inputs.self}/assets/pfp.png";
+  home.file.".face".source = ../../assets/pfp.png;
 
   xdg = {
     userDirs = {
