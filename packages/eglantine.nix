@@ -10,7 +10,7 @@
   writeShellApplication,
 }:
 let
-  tag = "daily-20261107";
+  tag = "v0.1.0-rc3";
 in
 appimageTools.wrapType2 (finalAttrs: {
   pname = "eglantine";
@@ -18,7 +18,7 @@ appimageTools.wrapType2 (finalAttrs: {
 
   src = fetchurl {
     url = "https://github.com/Djihads80/Eglantine/releases/download/${tag}/eglantine-linux-x86_64-pgo.AppImage";
-    hash = "sha256-hhhUCpKajK0hHon/AksOIyO948dp4lD0+iatJ18jhsc=";
+    hash = "sha256-vaKxvDLp/ZJzR3omW0nV0Rgppvj+xxttU/YXvSfVGFo=";
   };
 
   __structuredAttrs = true;
