@@ -6,13 +6,15 @@
 }:
 let
   cfg = config.my.desktop;
+  theme = {
+    name = "Yaru-blue-dark";
+    package = pkgs.yaru-theme;
+  };
 in
 {
   config = lib.mkIf cfg.enable {
-    home.pointerCursor = {
+    home.pointerCursor = theme // {
       enable = true;
-      package = pkgs.yaru-theme;
-      name = "Yaru-blue-dark";
       size = 24;
       gtk.enable = true;
       x11.enable = true;
@@ -21,15 +23,10 @@ in
     gtk = {
       enable = true;
       colorScheme = "dark";
-      theme = {
-        name = "Yaru-blue-dark";
-        package = pkgs.yaru-theme;
-      };
-      iconTheme = {
-        name = "Yaru-blue-dark";
-        package = pkgs.yaru-theme;
-      };
+      inherit theme;
+      iconTheme = theme;
     };
+
     qt = {
       enable = true;
       platformTheme.name = "gtk3";

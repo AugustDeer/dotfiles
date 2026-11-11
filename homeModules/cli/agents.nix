@@ -12,8 +12,8 @@ in
     default = true;
   };
 
-  config = lib.mkIf cfg.enable {
-    home.packages = lib.mkIf cfg.agents [
+  config = lib.mkIf (cfg.enable && cfg.agents) {
+    home.packages = [
       pkgs.opencode
       pkgs.pi-coding-agent
     ];

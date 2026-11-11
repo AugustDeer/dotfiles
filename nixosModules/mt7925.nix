@@ -6,6 +6,14 @@
   pkgs,
   ...
 }:
+let
+  sleepTargets = [
+    "suspend.target"
+    "hibernate.target"
+    "hybrid-sleep.target"
+  ];
+in
+
 {
   options.my.hardware.mt7925 = lib.mkEnableOption "mt7925 fixes";
 
@@ -33,16 +41,8 @@
 
     systemd.services.mediatek-wifi-resume = {
       description = "Restart NetworkManager after suspend to fix MediaTek WiFi";
-      wantedBy = [
-        "suspend.target"
-        "hibernate.target"
-        "hybrid-sleep.target"
-      ];
-      after = [
-        "suspend.target"
-        "hibernate.target"
-        "hybrid-sleep.target"
-      ];
+      wantedBy = sleepTargets;
+      after = sleepTargets;
       serviceConfig = {
         Type = "oneshot";
         ExecStart = "${pkgs.systemd}/bin/systemctl restart NetworkManager.service";
