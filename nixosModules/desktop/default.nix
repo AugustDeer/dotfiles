@@ -21,7 +21,6 @@ in
   config = lib.mkIf cfg.enable {
     services = {
       # Enable sound with pipewire.
-      pulseaudio.enable = false;
       pipewire = {
         enable = true;
         alsa.enable = true;
@@ -30,12 +29,6 @@ in
 
       # Enable CUPS to print documents.
       printing.enable = true;
-
-      # Configure keymap in X11.
-      xserver.xkb = {
-        layout = "us";
-        variant = "";
-      };
 
       # Enable touchpad support (enabled default in most desktopManager).
       libinput.enable = true;
