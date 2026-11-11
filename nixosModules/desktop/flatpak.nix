@@ -14,14 +14,6 @@ in
   config = lib.mkIf cfg.flatpak {
     services.flatpak.enable = true;
 
-    home-manager.sharedModules = [
-      {
-        xdg.systemDirs.data = [
-          "/usr/share"
-          "/var/lib/flatpak/exports/share"
-          "$HOME/.local/share/flatpak/exports/share"
-        ];
-      }
-    ];
+    home-manager.sharedModules = [ { xdg.systemDirs.data = [ "/usr/share" ]; } ];
   };
 }
