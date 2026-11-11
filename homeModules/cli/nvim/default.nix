@@ -30,6 +30,12 @@ in
       ];
 
       sideloadInitLua = true;
+
+      extraPackages = with pkgs; [
+        lua-language-server
+        nixd
+        vscode-langservers-extracted
+      ];
     };
 
     xdg.configFile."nvim".source = ./config;
