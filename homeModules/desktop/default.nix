@@ -31,6 +31,7 @@ in
       configFile."xfce4/helpers.rc".text = ''
         TerminalEmulator=kitty
       '';
+      terminal-exec.enable = true;
     };
 
     programs = {
