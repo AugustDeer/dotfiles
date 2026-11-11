@@ -4,8 +4,11 @@
   pkgs,
   ...
 }:
+let
+  cfg = config.my.desktop;
+in
 {
-  config = lib.mkIf (config.my.desktop.environment == "hyprland") {
+  config = lib.mkIf (cfg.enable && cfg.environment == "hyprland") {
     programs.hyprland.enable = true;
 
     environment.systemPackages = [ pkgs.hyprshutdown ];
