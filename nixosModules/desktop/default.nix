@@ -7,6 +7,10 @@
 }:
 let
   cfg = config.my.desktop;
+  theme = {
+    name = "Yaru-blue-dark";
+    package = pkgs.yaru-theme;
+  };
 in
 {
   options.my.desktop = {
@@ -33,7 +37,12 @@ in
       # Enable touchpad support (enabled default in most desktopManager).
       libinput.enable = true;
 
-      displayManager.noctalia-greeter.enable = true;
+      displayManager.regreet = {
+        enable = true;
+        inherit theme;
+        iconTheme = theme;
+        cursorTheme = theme;
+      };
 
       gvfs.enable = true;
       tumbler.enable = true;
