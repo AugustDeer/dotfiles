@@ -24,8 +24,8 @@ in
       pkgs.heroic
       pkgs.dolphin-emu
       pkgs.prismlauncher
+      pkgs.smb1r
 
-      myPkgs.smb1r
       myPkgs.eden-nightly
       myPkgs.eglantine
     ];
