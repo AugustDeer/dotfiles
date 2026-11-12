@@ -33,17 +33,13 @@
                 "/nix" = {
                   mountpoint = "/nix";
                 };
+                "/swap" = {
+                  mountpoint = "/swap";
+                  swap.swapfile = {
+                    size = "8G";
+                  };
+                };
               };
-            };
-          };
-        };
-        swap = {
-          size = "32G";
-          content = {
-            type = "luks";
-            name = "cryptswap";
-            content = {
-              type = "swap";
             };
           };
         };
