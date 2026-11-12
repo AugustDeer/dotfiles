@@ -18,10 +18,7 @@ in
 
     programs = {
       bash.enable = true;
-      zsh = {
-        enable = true;
-        defaultKeymap = "emacs";
-      };
+      fish.enable = true;
 
       starship = {
         enable = true;
