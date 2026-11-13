@@ -19,7 +19,6 @@ in
     programs.ghostty = {
       enable = true;
       settings = {
-        background-opacity = 0.8;
         custom-shader = "${cursor_shaders}/ghostty/cursor_warp.glsl";
         font-family = "FiraCode Nerd Font";
         scrollbar = "never";
