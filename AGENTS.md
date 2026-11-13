@@ -38,6 +38,22 @@ This includes failures that are not obvious in the code. If you cannot build,
 evaluate, or otherwise verify your change, say so plainly. Never report work as
 complete or correct on the assumption that it would have worked.
 
+## Verifying Changes
+
+Evaluate and instantiate without building or activating:
+
+    nix build --dry-run .#nixosConfigurations.<host>.config.system.build.toplevel
+
+This catches typos, bad option names and unknown packages in a few seconds. For
+a single option:
+
+    nix eval .#nixosConfigurations.<host>.config.<option.path>
+
+Format with `nix fmt`. Never run `nh os switch`, `nixos-rebuild switch`, or
+anything that activates a generation: the root filesystem is LUKS-encrypted and
+activation requires the user's passphrase and modifies the bootloader. Build
+only, and report the result.
+
 ## Git
 
 Never commit, amend, rebase, push, or otherwise modify history. The user
@@ -57,3 +73,18 @@ placement drives imports: hosts, system modules, and packages are auto-imported,
 and the hostname is derived from the directory name. Settings that belong to
 this user's configuration use the `my.*` option namespace, not raw NixOS or
 Home-Manager options.
+
+Do not read these: `assets/*.png` and `hosts/augustROG/edid-*.bin` are binary,
+and `hosts/augustROG/facter.json` is machine-generated and large. Refer to them
+by path only.
+
+## Constraints Worth Knowing Up Front
+
+- One user (`adeer`), one host (`augustROG`), `x86_64-linux` only.
+- Hosts are auto-imported from `hosts/<name>/default.nix`; the hostname is
+  derived from the directory name. Never set `networking.hostName` manually.
+- `nixosModules/` and `homeModules/` are auto-imported; new files need no
+  registration. Likewise `packages/<name>.nix`.
+- Unfree packages are allowed centrally in `flakeModules/nixpkgs.nix`. A module
+  needing an unfree package must add it to that list.
+- `stateVersion` is pinned deliberately. Do not bump it without being asked.
