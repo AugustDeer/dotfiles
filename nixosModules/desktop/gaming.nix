@@ -23,7 +23,12 @@ in
     users.users.${config.my.userName}.packages = [
       pkgs.heroic
       pkgs.dolphin-emu
-      pkgs.prismlauncher
+      (pkgs.prismlauncher.override {
+        additionalLibs = with pkgs; [
+          libxt
+          libxtst
+        ];
+      })
       pkgs.smb1r
 
       myPkgs.eden-nightly
