@@ -238,4 +238,7 @@ vim.lsp.enable("nixd")
 
 vim.lsp.enable("lua_ls")
 
+vim.lsp.enable("cssls")
+vim.lsp.enable("html")
 vim.lsp.enable("jsonls")
+vim.lsp.enable("tsc")
