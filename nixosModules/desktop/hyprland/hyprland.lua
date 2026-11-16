@@ -2,6 +2,14 @@ local term = "kitty"
 local browser = "firefox"
 local files = "thunar"
 
+local touchpad_enabled = true
+
+local function toggle_touchpad()
+  touchpad_enabled = not touchpad_enabled
+  hl.device({ name = "asuf1209:00-2808:0219-touchpad", enabled = touchpad_enabled })
+  hl.exec_cmd("noctalia msg notification-show 'Touchpad " .. (touchpad_enabled and "Enable" or "Disable") .. "d'")
+end
+
 hl.env("AQ_DRM_DEVICES", "/dev/dri/card2:/dev/dri/card1")
 
 hl.monitor({
@@ -161,6 +169,7 @@ hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("noctalia msg volume-down"), { r
 hl.bind("XF86AudioMute", hl.dsp.exec_cmd("noctalia msg volume-mute"), { locked = true })
 hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("noctalia msg brightness-up"), { repeating = true, locked = true })
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("noctalia msg brightness-down"), { repeating = true, locked = true })
+hl.bind("XF86TouchpadToggle", toggle_touchpad)
 
 hl.bind(mod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind(mod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
