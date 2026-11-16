@@ -28,6 +28,10 @@ in
           libxt
           libxtst
         ];
+        additionalPrograms = with pkgs; [
+          waywall
+          jre
+        ];
       })
       pkgs.smb1r
 

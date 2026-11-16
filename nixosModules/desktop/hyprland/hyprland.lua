@@ -242,3 +242,11 @@ hl.window_rule({
   match = { class = "org.keepassxc.KeePassXC" },
   float = true,
 })
+hl.window_rule({
+  name = "ninjabrain-bot",
+  match = {
+    class = "^ninjabrainbot-Main$",
+  },
+  float = true,
+  center = true,
+})
