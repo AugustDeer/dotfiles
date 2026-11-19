@@ -17,7 +17,5 @@ in
         file = "kanagawa.tmTheme";
       };
     };
-
-    home.shellAliases.cat = "bat";
   };
 }
