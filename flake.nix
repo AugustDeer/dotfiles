@@ -1,6 +1,14 @@
 {
   inputs = {
     nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst";
+    llm-agents = {
+      url = "github:numtide/llm-agents.nix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+        treefmt-nix.follows = "treefmt-nix";
+      };
+    };
 
     disko = {
       url = "github:nix-community/disko/latest";
