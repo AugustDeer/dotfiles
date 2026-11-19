@@ -47,7 +47,7 @@ in
     ];
 
     users = {
-      defaultUserShell = pkgs.fish;
+      defaultUserShell = pkgs.zsh;
       users."${config.my.userName}" = {
         isNormalUser = true;
         description = "August Deer";
@@ -61,7 +61,7 @@ in
     };
 
     programs = {
-      fish.enable = true;
+      zsh.enable = true;
       gnupg.agent.enable = true;
       nix-ld.enable = true;
     };
