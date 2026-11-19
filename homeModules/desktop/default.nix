@@ -37,7 +37,7 @@ in
     programs = {
       kitty = {
         enable = true;
-        themeFile = "kanagawa";
+        themeFile = "kanagawa_dragon";
         settings = {
           font_family = "FiraCode Nerd Font";
           enable_audio_bell = false;

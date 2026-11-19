@@ -39,8 +39,9 @@ in
 
         theme = {
           mode = "dark";
-          source = "builtin";
+          source = "community";
           builtin = "Kanagawa";
+          community_palette = "Kanagawa Dragon";
         };
 
         wallpaper = {

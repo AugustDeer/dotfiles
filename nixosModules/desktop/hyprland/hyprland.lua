@@ -33,8 +33,8 @@ hl.config({
     border_size = 2,
     layout = "dwindle",
     col = {
-      active_border = "#76946A",
-      inactive_border = "#363646",
+      active_border = "#87a987",
+      inactive_border = "#393836",
     },
   },
   decoration = {
@@ -48,12 +48,12 @@ hl.config({
   input = { touchpad = { natural_scroll = true } },
   group = {
     col = {
-      border_active = "#7E9CD8",
-      border_inactive = "#363646",
+      border_active = "#658594",
+      border_inactive = "#393836",
     },
   },
   misc = {
-    background_color = "#1F1F28",
+    background_color = "#181616",
     disable_hyprland_logo = true,
     vrr = 1,
   },
