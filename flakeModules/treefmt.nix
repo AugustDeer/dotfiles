@@ -8,6 +8,7 @@
     treefmt.programs = {
       deno.enable = true;
       nixfmt.enable = true;
+      ruff-format.enable = true;
       stylua = {
         enable = true;
         settings = {

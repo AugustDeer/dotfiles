@@ -15,7 +15,7 @@ block0[0x7F] = (256 - (sum(block0) % 256)) % 256
 # Create CTA-861 block with HDR data copied from DisplayID block
 cta = bytearray(128)
 cta[0:4] = [0x02, 0x03, 0x51, 0x80]  # CTA header
-cta[4:35] = original[0xBF:0xDE]   # CTA data
+cta[4:35] = original[0xBF:0xDE]  # CTA data
 cta[35:38] = [0xF6, 0x22, 0x02]
 cta[38:58] = original[0x94:0xA8]
 cta[41] = cta[41] & 0x7F
@@ -30,4 +30,3 @@ with open("edid-patched-hdr.bin", "wb") as f:
     f.write(patched)
 
 print(f"Patched EDID saved: {len(patched)} bytes")
-
