@@ -1,4 +1,4 @@
-local term = "kitty"
+local term = "tern"
 local browser = "firefox"
 local files = "thunar"
 
