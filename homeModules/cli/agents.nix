@@ -3,6 +3,7 @@
   lib,
   pkgs,
   inputs,
+  self',
   ...
 }:
 let
@@ -21,6 +22,7 @@ in
       llmPkgs.omp
       pkgs.opencode
       llmPkgs.pi
+      self'.packages.tern
     ];
   };
 }

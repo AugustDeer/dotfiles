@@ -8,6 +8,9 @@
 
         "steam"
         "steam-unwrapped"
+
+        "tern"
+        "tern-x86_64-linux.tar.gz"
       ];
     };
   };
