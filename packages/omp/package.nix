@@ -16,7 +16,7 @@
   curl,
   gnused,
   jq,
-  nix-update,
+  nix,
   writeShellApplication,
 }:
 let
@@ -31,11 +31,11 @@ let
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "omp";
-  version = "19.0.0";
+  version = "19.0.1";
 
   src = fetchurl {
     url = "https://github.com/can1357/oh-my-pi/releases/download/v${finalAttrs.version}/omp-${platform}";
-    hash = "sha256-x8xcjVBQU8j/rxgEF+XVx4EjW52TbyhoEFYBURIBCb8=";
+    hash = "sha256-bO7wRDCFG7EFDG/aOvRnQS60ShHfCm/4Eh/mAQE8VBU=";
   };
 
   dontUnpack = true;
@@ -97,7 +97,7 @@ stdenv.mkDerivation (finalAttrs: {
       curl
       gnused
       jq
-      nix-update
+      nix
     ];
     text = ''
       release="$(curl --fail --silent --show-error --location \
@@ -105,6 +105,7 @@ stdenv.mkDerivation (finalAttrs: {
 
       tag="$(jq --raw-output '.tag_name' <<< "$release")"
       version="''${tag#v}"
+      url="https://github.com/can1357/oh-my-pi/releases/download/v$version/omp-linux-x64"
       current_version="$(sed --quiet 's/^  version = "\(.*\)";$/\1/p' packages/omp/package.nix)"
 
       if [[ "$version" == "$current_version" ]]; then
@@ -112,11 +113,12 @@ stdenv.mkDerivation (finalAttrs: {
         exit 0
       fi
 
-      sed --in-place \
-        "s|^  version = \".*\";$|  version = \"$version\";|" \
-        packages/omp/package.nix
+      hash="$(nix store prefetch-file --hash-type sha256 --json "$url" | jq --raw-output .hash)"
 
-      nix-update --flake --version=skip --src-only omp
+      sed --in-place \
+        -e "s|^  version = \".*\";$|  version = \"$version\";|" \
+        -e "s|^    hash = \".*\";$|    hash = \"$hash\";|" \
+        packages/omp/package.nix
     '';
   };
 

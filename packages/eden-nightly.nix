@@ -7,16 +7,16 @@
   curl,
   gnused,
   jq,
-  nix-update,
+  nix,
   writeShellApplication,
 }:
 appimageTools.wrapAppImage (finalAttrs: {
   pname = "eden";
-  version = "0-unstable-2026-11-14";
+  version = "0-unstable-2026-11-17";
   src = fetchurl {
-    url = "https://nightly.eden-emu.dev/v1794693050.6828dc59dc/Eden-Linux-6828dc59dc-rog-ally-clang-pgo.AppImage";
-    hash = "sha256-WbtnmJ/FGqtMf8XavALCnX6LZljOZQuNDMjXUjPIzaI=";
-    executable = true;
+    url = "https://nightly.eden-emu.dev/v1794878467.d85bad8924/Eden-Linux-d85bad8924-rog-ally-clang-pgo.AppImage";
+    hash = "sha256-B1IKJbMXxCk9gdbUivx/iWy+dDRWdq10ES4RHmDmYbk=";
+    executable = true; # necessary so --appimage-extract works
   };
 
   __structuredAttrs = true;
@@ -41,7 +41,7 @@ appimageTools.wrapAppImage (finalAttrs: {
       curl
       gnused
       jq
-      nix-update
+      nix
     ];
     text = ''
       release="$(curl --fail --silent --show-error --location \
@@ -61,12 +61,13 @@ appimageTools.wrapAppImage (finalAttrs: {
         exit 0
       fi
 
+      hash="$(nix store prefetch-file --executable --hash-type sha256 --json "$url" | jq --raw-output .hash)"
+
       sed --in-place \
         -e "s|^  version = \".*\";$|  version = \"$version\";|" \
         -e "s|^    url = \".*\";$|    url = \"$url\";|" \
+        -e "s|^    hash = \".*\";$|    hash = \"$hash\";|" \
         packages/eden-nightly.nix
-
-      nix-update --flake --version=skip --src-only eden-nightly
     '';
   };
 })

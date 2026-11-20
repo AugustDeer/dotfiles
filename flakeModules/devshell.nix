@@ -5,7 +5,6 @@
       devShells.default = pkgs.mkShell {
         packages = with pkgs; [
           nh
-          nix-update
           nix-diff
 
           nixd
