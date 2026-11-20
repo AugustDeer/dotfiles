@@ -68,9 +68,26 @@ stdenv.mkDerivation (finalAttrs: {
       --set-default PUPPETEER_EXECUTABLE_PATH "${lib.getExe chromium}"
   '';
 
-  # Must run after patchelf
-  preInstallCheck = ''
-    python3 ${./fix-dt-verdef.py} "$out/bin/.omp-wrapped"
+  # These hooks must run after patchelf and autoPatchelf. The standard postFixup
+  # block fires before external postFixupHooks, so these functions are injected
+  # into the array during preFixup.
+  preFixup = ''
+    _ompFixDtVerdef() {
+      python3 ${./fix-dt-verdef.py} "$out/bin/.omp-wrapped"
+    }
+
+    _ompInstallCompletions() {
+      mkdir -p "$TMPDIR/home" "$TMPDIR/xdg"
+      HOME="$TMPDIR/home" XDG_DATA_HOME="$TMPDIR/xdg" "$out/bin/omp" completions bash > "$TMPDIR/omp.bash"
+      HOME="$TMPDIR/home" XDG_DATA_HOME="$TMPDIR/xdg" "$out/bin/omp" completions zsh > "$TMPDIR/_omp"
+      HOME="$TMPDIR/home" XDG_DATA_HOME="$TMPDIR/xdg" "$out/bin/omp" completions fish > "$TMPDIR/omp.fish"
+
+      install -Dm444 "$TMPDIR/omp.bash" "$out/share/bash-completion/completions/omp"
+      install -Dm444 "$TMPDIR/_omp" "$out/share/zsh/site-functions/_omp"
+      install -Dm444 "$TMPDIR/omp.fish" "$out/share/fish/vendor_completions.d/omp.fish"
+    }
+
+    postFixupHooks+=(_ompFixDtVerdef _ompInstallCompletions)
   '';
 
   doInstallCheck = true;
@@ -86,6 +103,13 @@ stdenv.mkDerivation (finalAttrs: {
     grep -q "smoke-test: ok" <<<"$smokeOutput"
 
     patchelf --print-needed "$out/bin/.omp-wrapped" | grep -qx 'libstdc++\.so\.6'
+
+    for completion in \
+      "$out/share/bash-completion/completions/omp" \
+      "$out/share/zsh/site-functions/_omp" \
+      "$out/share/fish/vendor_completions.d/omp.fish"; do
+      test -s "$completion"
+    done
 
     runHook postInstallCheck
   '';
