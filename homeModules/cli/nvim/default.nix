@@ -34,7 +34,9 @@ in
       extraPackages = with pkgs; [
         lua-language-server
         nixd
+        ruff
         vscode-langservers-extracted
+        ty
       ];
     };
 
