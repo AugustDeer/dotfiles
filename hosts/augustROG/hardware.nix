@@ -9,6 +9,7 @@
 
     nvidia = {
       open = true;
+      branch = "latest";
       prime = {
         offload = {
           enable = true;
