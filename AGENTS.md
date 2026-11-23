@@ -74,9 +74,8 @@ and the hostname is derived from the directory name. Settings that belong to
 this user's configuration use the `my.*` option namespace, not raw NixOS or
 Home-Manager options.
 
-Do not read these: `assets/*.png` and `hosts/augustROG/edid-*.bin` are binary,
-and `hosts/augustROG/facter.json` is machine-generated and large. Refer to them
-by path only.
+Do not read these: `assets/*.png` are binary, and `hosts/augustROG/facter.json`
+is machine-generated and large. Refer to them by path only.
 
 ## Constraints Worth Knowing Up Front
 

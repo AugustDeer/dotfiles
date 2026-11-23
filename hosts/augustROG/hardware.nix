@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{
   my.hardware.mt7925 = true;
 
   hardware = {
@@ -19,14 +19,6 @@
         nvidiaBusId = "PCI:64@0:0:0";
       };
     };
-
-    display.edid.packages = [
-      (pkgs.runCommand "edid-ATNA60DL04" { } ''
-        mkdir -p "$out/lib/firmware/edid"
-        cp ${./edid-patched-hdr.bin} "$out/lib/firmware/edid/ATNA60DL04-patched.bin"
-      '')
-    ];
-    display.outputs."eDP-1".edid = "ATNA60DL04-patched.bin";
   };
 
   services = {

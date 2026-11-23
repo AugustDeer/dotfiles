@@ -10,15 +10,16 @@ local function toggle_touchpad()
   hl.exec_cmd("noctalia msg notification-show 'Touchpad " .. (touchpad_enabled and "Enable" or "Disable") .. "d'")
 end
 
-hl.env("AQ_DRM_DEVICES", "/dev/dri/card2:/dev/dri/card1")
-
 hl.monitor({
-  output = "eDP-1",
+  output = "desc:Samsung Display Corp. ATNA60DL04-0",
   mode = "2560x1600@240",
   position = "0x0",
   scale = 1,
   bitdepth = 10,
   vrr = 1,
+  cm = "hdr",
+  max_luminance = 600,
+  sdr_max_luminance = 500,
 })
 
 hl.on("hyprland.start", function()
@@ -63,6 +64,9 @@ hl.config({
   },
   scrolling = {
     column_width = 0.5,
+  },
+  render = {
+    cm_sdr_eotf = "gamma22",
   },
 })
 
@@ -167,8 +171,16 @@ hl.bind(mod .. " + SHIFT + S", hl.dsp.exec_cmd("noctalia msg screenshot-region")
 hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("noctalia msg volume-up"), { repeating = true, locked = true })
 hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("noctalia msg volume-down"), { repeating = true, locked = true })
 hl.bind("XF86AudioMute", hl.dsp.exec_cmd("noctalia msg volume-mute"), { locked = true })
-hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("noctalia msg brightness-up"), { repeating = true, locked = true })
-hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("noctalia msg brightness-down"), { repeating = true, locked = true })
+hl.bind(
+  "XF86MonBrightnessUp",
+  hl.dsp.exec_cmd("sh $HOME/.config/hypr/hdr-brightness.sh up"),
+  { repeating = true, locked = true }
+)
+hl.bind(
+  "XF86MonBrightnessDown",
+  hl.dsp.exec_cmd("sh $HOME/.config/hypr/hdr-brightness.sh down"),
+  { repeating = true, locked = true }
+)
 hl.bind("XF86TouchpadToggle", toggle_touchpad)
 
 hl.bind(mod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
