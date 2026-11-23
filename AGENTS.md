@@ -2,8 +2,8 @@
 
 ## Human-Written Documentation
 
-All documentation in this repository is written by a human, without exception:
-README files, code comments, and Nix option `description` strings included.
+All documentation in this repository is written by a human: README files, code
+comments, and Nix option `description` strings included.
 
 The purpose is not tidiness. The user edits this configuration by hand and will
 not rely on agents for every change. When a feature is rewritten by a human, its
@@ -24,7 +24,13 @@ explain what changed. Flag drift when you introduce it, not in a summary at the
 end. Never leave stale documentation behind silently, and never quietly rewrite
 it.
 
-Exception: AGENTS.md, SKILL.md, and other text whose primary reader is an agent.
+### Agent-Targeted Files
+
+The rules above apply to prose whose reader is the user. They do not apply to
+AGENTS.md, SKILL.md, or any other file written to instruct agents. You may edit
+those files directly, and you should: they are instructions for agents, so
+keeping them accurate is ordinary maintenance, not documentation. When your
+change makes one stale, fix it in the same commit.
 
 ## Ask, Don't Assume
 
