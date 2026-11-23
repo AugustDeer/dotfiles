@@ -31,11 +31,11 @@ let
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "omp";
-  version = "19.1.0";
+  version = "19.1.1";
 
   src = fetchurl {
     url = "https://github.com/can1357/oh-my-pi/releases/download/v${finalAttrs.version}/omp-${platform}";
-    hash = "sha256-vitFxDe2I+FcKbH4yYqsuEL5IRgZZFS16e7YhDWemgE=";
+    hash = "sha256-BOlJD5OU2m1oBEdMwuQes9GPjiYhXfSzS91K1MDYpAE=";
   };
 
   dontUnpack = true;
