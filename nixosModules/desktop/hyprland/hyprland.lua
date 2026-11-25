@@ -65,6 +65,9 @@ hl.config({
   scrolling = {
     column_width = 0.5,
   },
+  xwayland = {
+    force_zero_scaling = true,
+  },
   render = {
     cm_sdr_eotf = "gamma22",
   },
