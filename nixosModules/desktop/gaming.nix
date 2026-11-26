@@ -18,6 +18,7 @@ in
       enable = true;
       extraCompatPackages = [ pkgs.proton-ge-bin ];
       protontricks.enable = true;
+      remotePlay.openFirewall = true;
     };
 
     users.users.${config.my.userName}.packages = [
