@@ -25,12 +25,12 @@ let
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "tern";
-  version = "0.9.31";
+  version = "0.9.35";
 
   # Tern is distributed through a private waitlist; each archive is added to the store by hand.
   src = requireFile {
     name = "tern-${system}.tar.gz";
-    hash = "sha256-3Lx0CmnHCuAviAscmXIlG8fxmWafsXYcaswearuf3sg=";
+    hash = "sha256-+D6UEiBHdn2kKvCh/chVu/fztq2PGv7kFuqleicTw8I=";
     message = ''
       Download the Tern ${finalAttrs.version} ${system} archive, then add it to the Nix store with:
 
